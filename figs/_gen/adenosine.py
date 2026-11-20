@@ -127,7 +127,7 @@ add('<text x="372" y="34" text-anchor="middle" class="lb">星狀膠細胞 <tspan
 # --- postsynaptic membrane with receptors ---
 MY = 352
 add('<rect x="14" y="%s" width="440" height="34" fill="url(#ink-membrane)"/>' % MY)
-add('<rect x="14" y="%s" width="440" height="128" fill="#f3d9c6" fill-opacity=".55"/>' % (MY + 34))
+add('<rect x="14" y="%s" width="440" height="112" fill="#f3d9c6" fill-opacity=".55"/>' % (MY + 34))
 add('<path d="M14 %s H454" class="ink"/>' % MY)
 add('<text x="24" y="%s" class="ls" style="font-style:italic">突觸後神經元 Postsynaptic neuron</text>' % (MY + 120))
 
@@ -178,7 +178,7 @@ add(caff(RX[2] + 30, MY - 9, 6))
 # adenosine bouncing off caffeine-blocked receptor
 add('<path d="M%s %s q16 0 28 -10" stroke="%s" stroke-width="1" fill="none" stroke-dasharray="2 2" marker-end="url(#ink-arrow)"/>' % (RX[2] + 44, MY - 4, AD))
 add(adeno(RX[2] + 86, MY - 18))
-add('<path d="M%s %s l6 6 M%s %s l-6 6" stroke="%s" stroke-width="1.6"/>' % (RX[2] + 58, MY - 13, RX[2] + 64, MY - 13, RED))
+add('<path d="M%s %s l8 8 M%s %s l-8 8" stroke="%s" stroke-width="2.2"/>' % (RX[2] + 58, MY - 13, RX[2] + 64, MY - 13, RED))
 # receptor names (above, small)
 for x, zh, col in [(RX[0], 'A1 受體', '#2c5d9c'), (RX[1], 'A2A 受體', '#8a6a12'), (RX[2], 'A2A + 咖啡因', CAF)]:
     add('<text x="%s" y="%s" text-anchor="middle" class="lb halo" style="fill:%s">%s</text>' % (x + 30, MY - 24, col, zh))
