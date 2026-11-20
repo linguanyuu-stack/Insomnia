@@ -28,7 +28,7 @@ PLACEMENTS = [
     ('pl-synapse',        T % 'THE KEY STUDY', 'before'),
     # ch9
     ('pl-banxia',         T % 'READING 2', 'before'),
-    ('pl-weiqi',          T % 'READING 3', 'before'),
+    ('pl-weiqi',          T % 'READING 2', 'before'),
     ('pl-stomach',        T % 'READING 4', 'before'),
     # ch10
     ('pl-herbs',          T % 'BETWEEN THE LINES', 'before'),
