@@ -26,7 +26,7 @@ def pinna(x, y, ang, R, s, closed, rnd, n=11):
         w = 2.5 * s * taper
         if closed:
             # pairs folded upward face to face: seen as one narrow leaflet pressed forward
-            dA += leaflet(px, py, ta - 16, l * 1.02, w * .6)
+            dA += leaflet(px, py, ta - 14, l * 1.05, w * .85)
         else:
             dA += leaflet(px, py, ta - 68, l, w)
             dB += leaflet(px, py, ta + 68, l, w)
@@ -53,9 +53,26 @@ def leaf(x, y, ang, s, closed, seed=1):
         f(x), f(y), f(3 * s), f(1.8 * s), INK, f(ang), f(x), f(y)))
     spread = [-8, -3, 3, 8] if closed else [-36, -12, 12, 36]
     for i, sp in enumerate(spread):
-        R = 46 * s * (.86 if i in (0, 3) else 1)
-        out.append(pinna(tip[0], tip[1], ang + sp, R, s, closed, rnd))
+        k = s * (.86 if i in (0, 3) else 1)
+        v = rnd.randrange(3)
+        out.append('<use href="#%s-pn%s%d" transform="translate(%s %s) rotate(%s) scale(%s)"/>' % (
+            PID, 'c' if closed else 'o', v, f(tip[0]), f(tip[1]), f(ang + sp), '%.3f' % k))
     return ''.join(out)
+
+
+PID = 'pp-mimosa'
+
+
+def pinna_defs():
+    """unit pinnae (R=46, s=1, origin at base, pointing +x): 3 bend variants x open/closed"""
+    o = []
+    for closed in (False, True):
+        for v, b in enumerate((-5, 0, 5)):
+            class R_:
+                def uniform(self, a, c):
+                    return b
+            o.append('<g id="%s-pn%s%d">%s</g>' % (PID, 'c' if closed else 'o', v, pinna(0, 0, 0, 46, 1, closed, R_())))
+    return ''.join(o)
 
 
 def pompom(x, y, r, seed=3):
@@ -111,7 +128,7 @@ def pot(x, y, s):
     return ''.join(o)
 
 
-def plant(x, y, s, closed, seed=7, flowers=True):
+def plant(x, y, s, closed, seed=7, flowers=True, lk=1.0):
     """Potted Mimosa pudica; (x,y) = pot rim centre."""
     def g(P):
         return [(x + u * s, y + v * s) for u, v in P]
@@ -142,5 +159,5 @@ def plant(x, y, s, closed, seed=7, flowers=True):
         fl.append(bud(bb[0], bb[1], 3.2 * s))
     for i, ((u, v), a) in enumerate(nodes):
         X, Y = g([(u, v)])[0]
-        o.append(leaf(X, Y, a, s, closed, seed=seed + i))
+        o.append(leaf(X, Y, a, s * lk, closed, seed=seed + i))
     return pot(x, y, s) + ''.join(o) + ''.join(fl)

@@ -143,10 +143,10 @@ B.append('<path d="%s" fill="none" stroke="%s" stroke-width=".4" stroke-opacity=
 
 # brain inside the head (front view, faint)
 for sg in (1, -1):
-    bh = [(sg * 1.2, 4.5), (sg * 12, 3), (sg * 21, 9), (sg * 24, 20), (sg * 22, 31), (sg * 14, 34), (sg * 5, 33), (sg * 1.2, 27)]
+    bh = [(sg * 1.2, 4.5), (sg * 12, 3), (sg * 21, 8), (sg * 24, 16), (sg * 23, 23), (sg * 15, 24), (sg * 6, 24.5), (sg * 1.2, 26)]
     d_ = SP(bh, True)
     B.append('<path d="%s" fill="#efd3c6" fill-opacity=".85"/><path d="%s" fill="url(#ink-stipple-l)"/><path d="%s" class="ink" stroke-width=".8"/>' % (d_, d_, d_))
-    for g in [[(sg * 5, 8), (sg * 11, 13), (sg * 8, 19)], [(sg * 16, 7), (sg * 20, 15), (sg * 15, 21)], [(sg * 6, 23), (sg * 13, 26), (sg * 21, 25)]]:
+    for g in [[(sg * 5, 8), (sg * 11, 13), (sg * 8, 19)], [(sg * 16, 7), (sg * 20, 15), (sg * 15, 21)], [(sg * 6, 20), (sg * 13, 21), (sg * 20, 19)]]:
         B.append('<path d="%s" class="ink2" stroke-opacity=".6"/>' % SP(g))
 B.append(details(CX, TOP, S, eyes='open'))
 # modern short hair
@@ -170,17 +170,18 @@ CL = {  # name: local coords of clock
     'heart': (7, 140), 'liver': (-19, 171), 'stomach': (22, 174), 'pancreas': (3, 199),
     'gut': (-3, 224), 'fat': (-35, 222), 'muscle': (-27, 296), 'skin': (-60 - aoff(214), 214),
 }
-trunk = [SCN, P(0, 50), P(0, 72), P(0, 96)]
-cues = []
+HUB = P(0, 104)
+cues = ['<path d="%s" fill="none" stroke="#b8862a" stroke-width="1.6" stroke-dasharray="4 2.5"/>' % smooth([SCN, P(0, 50), P(0, 76), HUB])]
 for k, (x, y) in CL.items():
     if k == 'skin':
-        path = [SCN, P(0, 50), P(-8, 70), P(-30, 80), P(-46, 92), P(-52, 140), P(-56, 180), P(x, y - 9)]
-    elif k in ('muscle', 'fat'):
-        path = [SCN, P(0, 50), P(-4, 72), P(-20, 100), P(-28, 140), P(-30, 180), P(x, y - 10)] if k == 'fat' else \
-               [SCN, P(0, 50), P(-4, 72), P(-20, 100), P(-26, 150), P(-26, 200), P(-28, 250), P(x, y - 10)]
+        path = [HUB, P(-24, 112), P(-44, 130), P(-52, 170), P(x + 3, y - 9)]
+    elif k == 'muscle':
+        path = [HUB, P(-14, 130), P(-24, 200), P(-26, 250), P(x, y - 9)]
+    elif k == 'fat':
+        path = [HUB, P(-14, 130), P(-26, 180), P(x + 2, y - 9)]
     else:
-        path = [SCN, P(0, 50), P(0, 72), P(0, 100), P(x * .5, (y + 100) / 2), P(x, y - 9)]
-    cues.append('<path d="%s" fill="none" stroke="#b8862a" stroke-width="1.1" stroke-dasharray="3 2.4" stroke-opacity=".9"/>' % smooth(path))
+        path = [HUB, P(x * .4, (y + 104) / 2), P(x, y - 9)]
+    cues.append('<path d="%s" fill="none" stroke="#b8862a" stroke-width=".9" stroke-dasharray="3 2.4" stroke-opacity=".85"/>' % smooth(path))
 add('\n'.join(cues))
 for k, (x, y) in CL.items():
     cx_, cy_ = P(x, y)
@@ -278,14 +279,14 @@ add('<circle cx="%d" cy="%d" r="%d" fill="none" stroke="%s" stroke-width="1"/><c
 L = []
 L.append(T(MX, 44, '腦中的總指揮', 'lb', 'middle', size=15, color='#5b3f8c'))
 L.append(T(MX, 58, '視交叉上核 SCN（下視丘）', 'le', 'middle', size=12))
-L.append(lab2(700, 120, '下視丘', 'hypothalamus', size=13, ensize=11))
-L.append(lead([(698, 116), (680, 116), (MX + 46, MY - 2)]))
-L.append(lab2(498, 300, '視神經交叉', 'optic chiasm', anchor='end', size=13, ensize=11))
-L.append(lead([(502, 296), (520, 296), (MX - 6, MY + 72)]))
+L.append(lab2(MX - 2, 296, '視神經交叉', 'optic chiasm', anchor='middle', size=13, ensize=11))
+L.append(lead([(MX - 2, 282), (MX - 2, MY + 80)]))
 L.append(lab2(700, 268, '腦下垂體', 'pituitary', size=13, ensize=11))
 L.append(lead([(698, 264), (684, 264), (MX + 56, MY + 92)]))
-L.append(lab2(612, 300, '光訊號由此進來', 'light signal from the eyes', size=12.5, ensize=11, color='#8a6418'))
-L.append(lead([(610, 296), (MX - 40, MY + 62)]))
+L.append(lab2(474, 252, '光訊號', 'from the eyes', anchor='end', size=13, ensize=11, color='#8a6418'))
+L.append(lead([(478, 248), (MX - 78, MY + 66)]))
+L.append(lab2(700, 120, '指揮台', 'SCN podium', size=13, ensize=11, color='#5b3f8c'))
+L.append(lead([(698, 116), (686, 116), (MX + 26, MY + 40)]))
 add('\n'.join(L))
 
 # ---------------- labels: light ----------------
@@ -322,7 +323,7 @@ add(T(368, 452, '金色虛線：總指揮把「現在幾點」', 'ls', size=11.5
 add(T(368, 466, '透過神經與荷爾蒙傳到各器官', 'ls', size=11.5, color='#8a6418'))
 
 # ---------------- secondary cues panel (right bottom) ----------------
-PX, PY, PW, PH = 520, 324, 230, 152
+PX, PY, PW, PH = 556, 336, 194, 156
 cue = []
 cue.append('<rect x="%d" y="%d" width="%d" height="%d" rx="4" class="panel"/>' % (PX, PY, PW, PH))
 cue.append(T(PX + 10, PY + 18, '其他對時訊號（力量較小）', 'lb', size=12.5))
@@ -337,7 +338,7 @@ cue.append('<path d="M%d %d h10 v3 h-10z" fill="#e3d9c2" stroke="%s" stroke-widt
 cue.append(T(PX + 64, PY + 56, '吃飯時間', 'lb', size=13))
 cue.append(T(PX + 64, PY + 70, '→ 肝、胃、腸、胰臟', 'ls', size=11.5, color=TCM))
 # exercise: running shoe
-sx_, sy_ = PX + 26, PY + 100
+sx_, sy_ = PX + 34, PY + 100
 cue.append('<path d="M%d %d q2 -8 8 -9 l6 6 q8 3 14 4 q6 1 6 6 v3 h-34 z" fill="#d6dfe9" stroke="%s" stroke-width=".9"/>' % (sx_ - 16, sy_ + 8, INK))
 cue.append('<path d="M%d %d h34 v3 h-34z" fill="#fbf6ea" stroke="%s" stroke-width=".7"/>' % (sx_ - 16, sy_ + 14, INK))
 cue.append('<path d="M%d %d l3 3 M%d %d l3 3 M%d %d l3 3" class="ink2"/>' % (sx_ - 6, sy_ + 1, sx_ - 3, sy_ + 2, sx_, sy_ + 3))
@@ -352,12 +353,16 @@ cue.append('<path d="M%d %d h3 M%d %d h3 M%d %d h3" class="ink2"/>' % (tx_ + 4, 
 cue.append(T(PX + 64, PY + 136, '冷熱變化', 'lb', size=13))
 cue.append(T(PX + 64, PY + 150, '→ 皮膚、全身', 'ls', size=11.5, color=WEST))
 add('\n'.join(cue))
-# small arrows from cues toward the body
-for (y0, col, tgt) in ((PY + 52, 'am', P(25, 182)), (PY + 96, 'aq', P(-14, 300)), (PY + 132, 'ab', P(-57 - aoff(222), 228))):
-    pass
-add('<path d="M%d %d C%d %d %d %d %s %s" fill="none" stroke="#a8412c" stroke-width="1.3" marker-end="url(#%s-am)"/>' % (
-    PX - 2, PY + 52, PX - 40, PY + 40, 330, 250, f(P(26, 186)[0] + 4), f(P(26, 186)[1] + 2), PID))
-
+# small coloured arrows (secondary cues) pointing at the clocks they tune
+def sarrow(key, ang, col, L_=17, off=11):
+    x, y = P(*CL[key])
+    a = math.radians(ang)
+    x1, y1 = x + (off + L_) * math.cos(a), y + (off + L_) * math.sin(a)
+    x2, y2 = x + off * math.cos(a), y + off * math.sin(a)
+    return '<path d="M%s %sL%s %s" stroke="%s" stroke-width="2" marker-end="url(#%s-%s)"/>' % (f(x1), f(y1), f(x2), f(y2), {'am': '#a8412c', 'aq': '#4f7a3a', 'ab': '#2c5d9c'}[col], PID, col)
+for key, ang, col in (('liver', 140, 'am'), ('stomach', -20, 'am'), ('gut', 20, 'am'), ('pancreas', 10, 'am'),
+                      ('muscle', 160, 'aq'), ('heart', -30, 'aq'), ('skin', 100, 'ab')):
+    add(sarrow(key, ang, col))
 # ---------------- desync inset (left bottom) ----------------
 IX, IY = 12, 470
 ins = ['<rect x="%d" y="%d" width="132" height="128" rx="4" class="panel"/>' % (IX, IY)]
