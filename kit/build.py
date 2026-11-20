@@ -84,6 +84,41 @@ def slim(t):
     t = re.sub(r'(?:<circle\s[^>]*?/?>(?:</circle>)?\s*){4,}', _merge_circles, t)
     return t
 
+# The Claude app's file preview only shows the first ~1 MB of a file. Raw plates are ~2.5 MB, so
+# each plate is stored deflate-compressed (base64) and unpacked in the browser on load
+# (DecompressionStream: Chrome 80+, Safari 16.4+, Firefox 113+). Set PLATES_RAW=1 for an uncompressed build.
+import zlib, base64, html as _html
+COMPRESS = os.environ.get('PLATES_RAW') != '1'
+def pack(pid, snip):
+    if not COMPRESS:
+        return snip
+    snip = re.sub(r'>\s+<', '><', snip)
+    z = base64.b64encode(zlib.compress(snip.encode('utf-8'), 9)).decode()
+    t = re.search(r'<span class="ptt">(.*?)</span>', snip)
+    title = re.sub('<[^>]+>', '', t.group(1)) if t else ''
+    return f'<div class="plate-z" data-id="{pid}" data-z="{z}">圖版載入中：{_html.escape(title)}…</div>'
+if COMPRESS:
+    sub1('</head>', """<style>.plate-z{margin:26px 0;padding:40px 16px;border:1px dashed #cdbf9f;border-radius:6px;background:#fbf6ea;color:#8a6a3a;text-align:center;font-size:14px}</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('.plate-z');
+  if(!('DecompressionStream' in window)){els.forEach(function(el){el.textContent='（這個瀏覽器太舊，無法顯示圖版，請用新版 Chrome 或 Safari 開啟）';});return;}
+  // decompress everything first, then swap all plates in a single frame (one layout instead of 26)
+  var jobs=Array.prototype.map.call(els,function(el){
+    try{
+      var b=atob(el.getAttribute('data-z')),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
+      return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream('deflate'))).text().catch(function(){return null;});
+    }catch(e){return Promise.resolve(null);}
+  });
+  Promise.all(jobs).then(function(ts){requestAnimationFrame(function(){
+    var y=window.scrollY,anchor=null;
+    ts.forEach(function(t,i){if(t)els[i].outerHTML=t;else els[i].textContent='（圖版解壓失敗）';});
+    if(location.hash){var h=document.getElementById(location.hash.slice(1));if(h)h.scrollIntoView();}
+  });});
+});
+</script>
+</head>""")
+
 # (plate id, anchor text that must occur exactly once, 'before'|'after')
 from placements import PLACEMENTS
 missing = []
@@ -100,9 +135,11 @@ for pid, anchor, where in PLACEMENTS:
     i = s.index(anchor)
     if where == 'after':
         i += len(anchor)
-    s = s[:i] + '\n' + snip + '\n' + s[i:]
+    s = s[:i] + '\n' + pack(pid, snip) + '\n' + s[i:]
 
-# reveal animation: plates should also fade in like other figures (already covered by 'figure' selector)
 out = P('重新認識失眠_圖解版.html')
 open(out, 'w', encoding='utf-8').write(s)
-print('wrote', out, len(s)//1024, 'KB', '| missing plates:', missing or 'none')
+size = len(s.encode('utf-8'))
+print('wrote', out, size // 1024, 'KB', '| missing plates:', missing or 'none')
+if COMPRESS and size > 950_000:
+    sys.exit('WARNING: over ~950 KB - the Claude app preview truncates around 1 MB')

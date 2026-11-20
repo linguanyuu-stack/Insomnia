@@ -6,7 +6,7 @@ const {chromium}=require('playwright');const path=require('path');
   const b=await chromium.launch();const p=await b.newPage({viewport:{width:W,height:900}});
   const errs=[];p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
   await p.goto('file://'+path.resolve(__dirname,'..','重新認識失眠_圖解版.html'));
-  await p.addStyleTag({content:'.reveal{opacity:1!important;transform:none!important}'});await p.waitForTimeout(800);
+  await p.addStyleTag({content:'.reveal{opacity:1!important;transform:none!important}'});await p.waitForTimeout(4000);
   const rep=await p.evaluate(()=>{const res=[];
     document.querySelectorAll('figure.plate').forEach(f=>{const svg=f.querySelector(':scope > svg');const sb=svg.getBoundingClientRect();
       const ts=[...svg.querySelectorAll('text')].filter(t=>t.textContent.trim()&&!t.closest('defs,symbol')).map(t=>({t:t.textContent.trim().slice(0,20),r:t.getBoundingClientRect()})).filter(a=>a.r.width>0);

@@ -4,7 +4,7 @@ const {chromium}=require('playwright');const path=require('path');
  const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:W,height:850}});const p=await ctx.newPage();
  const errs=[];p.on('pageerror',e=>errs.push('pageerror: '+e.message));p.on('console',m=>{if(m.type()==='error')errs.push('console: '+m.text())});
  const cdp=await ctx.newCDPSession(p);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
- const t0=Date.now();await p.goto('file://'+f,{waitUntil:'load',timeout:120000});const load=Date.now()-t0;
+ const t0=Date.now();await p.goto('file://'+f,{waitUntil:'load',timeout:120000});await p.waitForFunction(()=>!document.querySelector('.plate-z'),null,{timeout:60000});const load=Date.now()-t0;
  const r=await p.evaluate(async()=>{const H=document.documentElement.scrollHeight;let worst=0,long=0,frames=0;let last=performance.now();
    const t0=performance.now();
    for(let y=0;y<H;y+=400){scrollTo(0,y);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const n=performance.now();const d=n-last;last=n;frames++;if(d>worst)worst=d;if(d>200)long++;}
