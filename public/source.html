@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>重新認識失眠・民眾版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f1e6; --paper2:#efe6d6; --card:#fffdf8;
+  --ink:#22273a; --ink2:#4c5268; --mute:#7f8496; --rule:#ddd1bd;
+  --night:#172340; --moon:#d29a2e; --moon-soft:#f6e7c4;
+  --red:#b5473a; --red-soft:#f7e0d9; --blue:#2c5d9c; --blue-soft:#e1e9f5;
+  --green:#4f7f45; --green-soft:#e6f0e0; --plum:#6b4fa0; --plum-soft:#eee8f7;
+  --serif:"Noto Serif TC","Fraunces",serif; --sans:"Noto Sans TC",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.9}
+a{color:var(--blue)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px 120px}
+/* top nav */
+nav.chips{position:sticky;top:0;z-index:5;background:rgba(247,241,230,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);overflow-x:auto;white-space:nowrap;padding:8px 14px;font-size:14px}
+nav.chips a{display:inline-block;padding:4px 12px;margin-right:4px;border-radius:999px;color:var(--ink2);text-decoration:none;border:1px solid transparent}
+nav.chips a:hover{border-color:var(--rule);background:var(--card)}
+/* cover */
+.hero{background:var(--night);color:#f3ead6;padding:80px 26px 64px;position:relative;overflow:hidden}
+.hero .in{max-width:820px;margin:0 auto;position:relative}
+.hero .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--moon)}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,8vw,72px);line-height:1.12;margin:.25em 0 .3em}
+.hero h1 em{font-style:normal;color:var(--moon)}
+.hero p{max-width:600px;color:#cfd6e6;font-size:18px}
+.hero .moon{position:absolute;right:0;top:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f8e8bf 0,#d9b25d 55%,#9c7428 100%);box-shadow:0 0 110px rgba(210,154,46,.35);opacity:.9}
+.hero .moon:after{content:"";position:absolute;width:156px;height:156px;border-radius:50%;background:var(--night);left:48px;top:-18px}
+.hero .meta{margin-top:30px;font-size:14px;color:#aab3c8;display:flex;gap:22px;flex-wrap:wrap}
+.hero .meta b{display:block;color:#f3ead6;font-size:15px}
+/* chapters */
+section.ch{padding-top:70px}
+.ch-head{border-bottom:3px double var(--ink);padding-bottom:14px;margin-bottom:22px}
+.ch-head .no{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--mute)}
+.ch-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(28px,5vw,38px);line-height:1.3;margin:.15em 0 .1em}
+.ch-head .hook{font-family:var(--serif);font-size:19px;color:var(--ink2)}
+h3{font-family:var(--serif);font-weight:900;font-size:24px;margin:2em 0 .4em;line-height:1.4}
+h3 .yr{font-family:var(--mono);font-size:13px;color:var(--moon);display:block;letter-spacing:.1em}
+p{margin:.75em 0}
+.lead{font-family:var(--serif);font-size:20px;color:var(--ink2)}
+mark{background:linear-gradient(transparent 55%,var(--moon-soft) 55%);color:inherit;padding:0 2px}
+.en{font-family:"Fraunces",serif;font-style:italic;color:var(--ink2)}
+/* boxes */
+.box{border-radius:14px;padding:16px 20px;margin:22px 0;background:var(--card);border:1px solid var(--rule)}
+.box .bt{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;font-weight:600;margin-bottom:4px}
+.box.like{background:var(--moon-soft);border-color:#e8cf95}.box.like .bt{color:#9a6d16}
+.box.sci{background:var(--blue-soft);border-color:#bccde6}.box.sci .bt{color:var(--blue)}
+.box.warn{background:var(--red-soft);border-color:#ecbfb2}.box.warn .bt{color:var(--red)}
+.box.tip{background:var(--green-soft);border-color:#bad3ae}.box.tip .bt{color:var(--green)}
+.box.say{background:#fff;border-left:6px solid var(--moon);border-radius:4px 14px 14px 4px}.box.say .bt{color:var(--moon)}
+.box.big{background:var(--night);color:#efe7d3;border:0;font-family:var(--serif);font-size:21px;line-height:1.7;text-align:center;padding:26px}
+.box.big b{color:var(--moon)}
+/* timeline */
+.tl{position:relative;margin:24px 0;padding-left:30px}
+.tl:before{content:"";position:absolute;left:10px;top:6px;bottom:6px;width:2px;background:var(--rule)}
+.tl .ev{position:relative;margin:0 0 14px}
+.tl .ev:before{content:"";position:absolute;left:-26px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:3px solid var(--moon)}
+.tl .ev.star:before{background:var(--moon)}
+.tl .y{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--moon)}
+/* tables */
+.tw{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:16px;background:var(--card)}
+th,td{border-bottom:1px solid var(--rule);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--ink);color:#fff;font-weight:500;font-size:15px}
+th.old{background:#8a8f9e}th.new{background:var(--blue)}
+/* myth cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0}
+.card{perspective:900px;min-height:290px;cursor:pointer;position:relative}
+.card .in{position:relative;width:100%;height:100%;min-height:290px;transition:transform .55s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:16px 18px;overflow:auto}
+.card .f{background:#fff;border:1.5px solid var(--red)}
+.card .f .tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--red)}
+.card .f .t{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.45;margin-top:6px}
+.card .f .hint{position:absolute;bottom:10px;right:14px;font-size:12px;color:var(--mute)}
+.card .b{background:var(--green-soft);border:1.5px solid var(--green);transform:rotateY(180deg);font-size:15.5px;line-height:1.7}
+.card .b .tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--green)}
+.card .b b{color:var(--green)}
+/* quiz / self check */
+.widget{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:18px 20px;margin:26px 0;box-shadow:0 10px 30px rgba(20,32,58,.08)}
+.widget .wt{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--blue);font-weight:600}
+.widget h4{font-family:var(--serif);font-size:20px;margin:.3em 0 .6em}
+.chk label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--rule);font-size:16.5px;cursor:pointer}
+.chk input{margin-top:7px;width:18px;height:18px;accent-color:var(--ink)}
+.out{background:var(--paper);border-radius:10px;padding:12px 16px;margin-top:12px;font-size:16px}
+details.q{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:10px 16px;margin:8px 0}
+details.q summary{cursor:pointer;font-weight:500;list-style:none}
+details.q summary:before{content:"Q ";font-family:var(--mono);color:var(--moon);font-weight:700}
+details.q .a{border-top:1px dashed var(--rule);margin-top:8px;padding-top:8px;font-size:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.pane{border-radius:14px;padding:14px 18px;background:#fff;border-top:6px solid var(--blue)}
+.pane.r{border-top-color:var(--red)}.pane.g{border-top-color:var(--green)}
+.pane h5{margin:0 0 4px;font-family:var(--serif);font-size:18px}
+@media(max-width:700px){.two{grid-template-columns:1fr}body{font-size:17px}.hero{padding-top:110px}.hero .moon{width:120px;height:120px;top:-24px;right:-6px}.hero .moon:after{width:104px;height:104px;left:32px;top:-12px}}
+.refs{font-size:14px;line-height:1.65;color:var(--ink2)}
+.refs li{margin:5px 0}
+.next{margin-top:40px;background:var(--card);border:2px dashed var(--moon);border-radius:16px;padding:20px 22px}
+.next h4{font-family:var(--serif);margin:0 0 6px;font-size:20px}
+.next ul{margin:6px 0 0;padding-left:20px}
+.foot{margin-top:40px;font-size:13.5px;color:var(--mute);border-top:1px solid var(--rule);padding-top:14px}
+/* plates (shared with the doctors' edition) */
+figure{margin:26px 0}
+figcaption{font-size:14.5px;color:var(--ink2);margin-top:8px;padding-top:8px}
+</style>
+</head>
+<body>
+<header class="hero" id="top"><div class="moon"></div><div class="in">
+<div class="kicker">PUBLIC EDITION · 給睡不好的你和家人</div>
+<h1>重新認識<em>失眠</em></h1>
+<p>從一株「記得時間」的含羞草、一個關了人的洞穴、幾隻果蠅，講到 2017 年的諾貝爾獎。然後再回頭看：你的失眠，可能跟你以為的不一樣。</p>
+<div class="meta"><div><b>適合誰</b>睡不好的人、家人、想了解的人</div><div><b>閱讀時間</b>約 25 分鐘</div><div><b>互動</b>迷思翻卡・自我檢查・小測驗</div></div>
+</div></header>
+<nav class="chips">
+<a href="#ch1">1 身體裡的時鐘</a><a href="#ch2">2 為什麼會想睡</a><a href="#ch3">3 什麼才叫失眠</a><a href="#ch4">4 觀念的改變</a><a href="#ch5">5 十個迷思</a><a href="#ch6">6 比你想像的複雜</a><a href="#ch7">7 那該怎麼辦</a><a href="#ch8">8 小測驗</a>
+</nav>
+<div class="wrap">
+
+<!-- ================= CH1 ================= -->
+<section class="ch" id="ch1">
+<div class="ch-head"><div class="no">CHAPTER 1</div><h2>你的身體裡，有一個會自己走的時鐘</h2><div class="hook">這不是養生說法，而是花了將近三百年、最後拿到諾貝爾獎的科學。</div></div>
+
+<p class="lead">在談「睡不著」之前，我們先回到 1729 年的法國。故事的主角不是醫生，是一位天文學家，和一盆含羞草。</p>
+
+<h3><span class="yr">1729 · 法國巴黎</span>一盆在黑暗中仍然「記得時間」的含羞草</h3>
+<p>天文學家德梅朗（Jean-Jacques d'Ortous de Mairan）注意到，含羞草的葉子白天張開、晚上合起來。大家都以為那是植物在「看太陽」。他想知道：如果看不到太陽呢？</p>
+<p>於是他把含羞草放進不透光的櫃子裡。結果，<mark>葉子照樣在白天張開、在晚上合起來</mark>，好像櫃子裡也有日出日落。</p>
+<!--PLATE:pp-mimosa-->
+<p>這個小實驗第一次暗示了一件事：生物體內，可能有一個<b>不需要看太陽、自己就會走的時鐘</b>。只是當時沒有人知道它在哪裡、由什麼做成。</p>
+
+<h3><span class="yr">1938 · 美國肯塔基州 猛瑪洞</span>把人關進沒有白天黑夜的地方</h3>
+<p>兩百年後，被稱為「睡眠研究之父」的克萊特曼（Nathaniel Kleitman）和學生理查森，帶著床搬進地底深處的猛瑪洞（Mammoth Cave），在裡面住了一個多月。洞裡沒有陽光、溫度恆定，他們想試試看：人能不能改過一天 28 小時的生活？</p>
+<p>答案是：很難。身體似乎很堅持自己的節奏。後來德國的阿紹夫（Jürgen Aschoff）把自願者關在地下碉堡、法國的西弗爾（Michel Siffre）獨自住進洞穴，都觀察到同一件事：<mark>沒有時鐘、沒有陽光時，人照樣規律地睡和醒，只是每天會慢慢往後飄一點</mark>。1999 年哈佛團隊用更嚴謹的方法測量，人體時鐘的週期平均大約是 <b>24 小時又 10 分鐘左右</b>。</p>
+<!--PLATE:pp-cave-->
+<div class="box like"><div class="bt">打個比方</div>你的生理時鐘像一支<b>每天慢一點點的手錶</b>。早上的陽光，就是每天幫它對時的那個動作。不對時，它就會一天一天地慢下去——這也是為什麼長期日夜顛倒、少曬太陽，睡眠會越來越亂。</div>
+
+<h3><span class="yr">1971 → 2017</span>幾隻果蠅，帶來一座諾貝爾獎</h3>
+<p>時鐘在哪裡？由什麼做成？答案來自實驗室裡最常見的小動物：果蠅。</p>
+<p>1971 年，美國的科諾普卡（Ronald Konopka）和本澤（Seymour Benzer）找到幾種突變果蠅：有的一天只有 19 小時，有的長達 28 小時，有的完全沒有節律。壞掉的，都是同一個基因，他們把它叫做 <span class="en">period</span>（週期）。</p>
+<p>1980 年代起，霍爾（Jeffrey Hall）、羅斯巴希（Michael Rosbash）和楊恩（Michael Young）把這個基因找了出來，並且弄懂它怎麼「計時」：基因做出一種蛋白質，蛋白質在夜裡慢慢累積，多到一個程度，就回頭<b>把自己的基因關掉</b>；蛋白質被分解掉以後，基因又重新開工。這一圈剛好約 24 小時。</p>
+<!--PLATE:pp-nobel-->
+<div class="box big">2017 年，這三位科學家因為「<b>發現控制晝夜節律的分子機制</b>」，獲得諾貝爾生理學或醫學獎。</div>
+<p>後來的研究發現，人類幾乎<b>每一個細胞</b>裡都有類似的時鐘：肝臟、心臟、腸胃、肌肉、皮膚都有。而它們的總指揮，在大腦下方一個米粒大小的地方——<b>視交叉上核</b>（<span class="en">suprachiasmatic nucleus, SCN</span>），就坐在兩條視神經交叉處的正上方。它離眼睛那麼近不是巧合：它最重要的工作，就是<b>用眼睛看到的光</b>來幫全身對時。</p>
+<!--PLATE:pp-clocks-->
+<!--PLATE:pl-scn|視交叉上核在這裡。光從眼睛進來，訊號送到視交叉上核，再一路傳到松果體：白天光線讓褪黑激素幾乎不分泌，天黑以後才開始釋放，告訴全身「現在是晚上」。（取自醫師版圖版）-->
+<div class="box sci"><div class="bt">為什麼要從這裡講起</div>因為接下來要談的很多事——為什麼不要太早上床、為什麼早上要曬太陽、為什麼週末補眠反而更累、為什麼褪黑激素不是安眠藥——都不是誰的經驗之談，而是建立在這套<b>被時間和諾貝爾獎認證過</b>的科學上。</div>
+</section>
+
+<!-- ================= CH2 ================= -->
+<section class="ch" id="ch2">
+<div class="ch-head"><div class="no">CHAPTER 2</div><h2>為什麼晚上會想睡？兩股力量和一個警報器</h2><div class="hook">很累，不一定睡得著；不累，也不一定醒得來。</div></div>
+<p>睡眠不是「電池沒電就關機」這麼簡單。至少有三樣東西一起在決定你什麼時候睡得著：</p>
+<div class="two">
+<div class="pane"><h5>① 睡意沙漏</h5>醒著越久，腦裡累積的「睡意物質」（例如<b>腺苷</b>）越多，沙漏越滿；睡一覺，沙子才漏掉。咖啡會提神，就是因為咖啡因會擋住腺苷的作用。</div>
+<div class="pane r"><h5>② 生理時鐘的潮汐</h5>第一章那個時鐘，會讓清醒程度像潮汐一樣起伏。有趣的是，<b>睡前兩三個小時反而是清醒訊號最強的時候</b>，清晨四五點最低。</div>
+</div>
+<div class="pane g" style="margin:0 0 18px"><h5>③ 壓力警報器</h5>遇到威脅、壓力、疼痛、焦慮時，大腦會強行把你留在清醒狀態。這是保命機制——古時候，危險來了還睡得著的人活不久。問題是，現代的「危險」常常是明天的會議、帳單、家人的病。</div>
+<!--PLATE:pp-forces-->
+<div class="box like"><div class="bt">打個比方</div>沙漏滿了、潮水退了，睡眠的門就打開。<b>午睡睡太久，等於白天就先把沙子漏掉一半</b>；晚上八點就上床，等於潮水還在最高點時硬要開門——躺在床上等，只會越等越清醒。</div>
+<p>還有一件很多人不知道的事：大腦裡管「睡」和管「醒」的神經，<b>像蹺蹺板一樣互相壓制</b>，所以正常人通常是「睡著」或「醒著」，很少卡在中間。失眠的人，常常就是這個蹺蹺板兩邊同時被用力壓住——第六章會再談。</p>
+</section>
+
+<!-- ================= CH3 ================= -->
+<section class="ch" id="ch3">
+<div class="ch-head"><div class="no">CHAPTER 3</div><h2>什麼才叫「失眠」？</h2><div class="hook">睡得少，不等於失眠；睡得夠久，也可能是失眠。</div></div>
+<p>醫學上的失眠（失眠障礙，<span class="en">insomnia disorder</span>），要同時符合三件事：</p>
+<div class="tw"><table>
+<tr><th>條件</th><th>意思</th><th>不符合的例子</th></tr>
+<tr><td><b>① 你覺得睡不好</b></td><td>難入睡、容易醒、太早醒、醒來沒睡飽感</td><td>天生睡 5 小時、白天精神很好的人</td></tr>
+<tr><td><b>② 明明有機會睡</b></td><td>時間、環境都允許，卻還是睡不好</td><td>輪班、照顧嬰兒、加班到半夜——這叫「睡眠不足」，處理方法完全不同</td></tr>
+<tr><td><b>③ 白天受到影響</b></td><td>累、專注力差、情緒差、工作或生活受影響</td><td>偶爾一晚沒睡好，隔天照常</td></tr>
+</table></div>
+<p>如果這種狀況<b>每週至少 3 晚、持續 3 個月以上</b>，就叫「慢性失眠」。</p>
+<p>失眠也有好幾種樣子。同樣說「睡不好」，有人是躺很久睡不著，有人是半夜醒來就醒很久，有人是天還沒亮就醒、再也睡不回去：</p>
+<!--PLATE:pl-patterns|三種常見的失眠樣子：(a) 入睡困難、(b) 半夜醒來難再睡、(c) 太早醒。下面的時間條，藍色是睡著，橘色斜線是躺在床上卻醒著。很多人其實是混合型，而且會隨時間改變。-->
+<div class="box sci"><div class="bt">有多常見</div>大約每三個成人，就有一個偶爾有失眠症狀；符合「失眠障礙」診斷的大約一成。台灣的調查，慢性失眠約 11%。女性大約是男性的兩倍，年紀越大越常見。</div>
+<div class="box tip"><div class="bt">「累」和「睏」不一樣</div>失眠的人幾乎都說累，但多半<b>白天躺下來也睡不著</b>。如果你是白天開會、開車會不小心睡著的「睏」，那要先想到別的問題，例如睡眠呼吸中止（第六章）。</div>
+</section>
+
+<!-- ================= CH4 ================= -->
+<section class="ch" id="ch4">
+<div class="ch-head"><div class="no">CHAPTER 4</div><h2>以前怎麼想，現在怎麼想</h2><div class="hook">這十幾年來，醫學界對失眠的看法改變了不少。</div></div>
+<div class="tw"><table>
+<tr><th style="width:22%"></th><th class="old">以前常見的想法</th><th class="new">現在的理解</th></tr>
+<tr><td><b>失眠是什麼</b></td><td>只是別的病的「症狀」，把主病治好就好</td><td>2013–2014 年起，國際診斷標準把失眠當成<b>一個需要被單獨處理的問題</b>。就算有憂鬱、疼痛等其他病，失眠也常常不會跟著自己好</td></tr>
+<tr><td><b>睡眠是什麼</b></td><td>大腦累了就「關機」休息</td><td>睡眠是大腦<b>主動切換</b>的狀態，有專門管睡和管醒的神經互相拉鋸，還有生理時鐘在指揮</td></tr>
+<tr><td><b>怎麼判斷睡得好不好</b></td><td>算時數，要睡滿 8 小時</td><td>看<b>白天的狀態</b>和自己的感受；每個人需要的時數不一樣，成人大多落在 7–9 小時</td></tr>
+<tr><td><b>第一線治療</b></td><td>安眠藥，或「放輕鬆、別想太多」</td><td><b>失眠認知行為治療（CBT-I）</b>是各國指引的首選，效果比藥物持久；藥物是短期輔助</td></tr>
+<tr><td><b>為什麼會變慢性</b></td><td>體質不好、想太多</td><td>常常是<b>為了睡著而做的努力</b>（早早上床、躺著硬撐、白天補眠、擔心）反過來讓失眠持續</td></tr>
+</table></div>
+<div class="box say"><div class="bt">換句話說</div>以前覺得失眠是「一個症狀」，現在知道它常常會<b>長出自己的引擎</b>。就算當初讓你睡不著的那件事已經過去了，失眠還會自己繼續跑。這就是為什麼「等壓力過去就好了」常常不夠。</div>
+</section>
+
+<!-- ================= CH5 ================= -->
+<section class="ch" id="ch5">
+<div class="ch-head"><div class="no">CHAPTER 5</div><h2>十個常見迷思，點一下翻面</h2><div class="hook">有些是阿公阿嬤說的，有些是網路上看的，有些甚至是醫生以前也這樣講。</div></div>
+<div class="cards" id="myths"></div>
+<p class="small" style="font-size:14px;color:var(--mute)">每張卡片的說法整理自國際失眠治療指引與睡眠醫學綜述，詳見文末參考資料。</p>
+</section>
+
+<!-- ================= CH6 ================= -->
+<section class="ch" id="ch6">
+<div class="ch-head"><div class="no">CHAPTER 6</div><h2>失眠，比你想像的複雜</h2><div class="hook">讓你開始失眠的原因，常常不是讓你一直失眠的原因。</div></div>
+
+<h3>一場火：柴、火柴、和一直搧風的手</h3>
+<p>睡眠醫學最常用來解釋慢性失眠的，是 1980 年代史匹曼（Arthur Spielman）提出的「3P 模型」。用一場火來想最容易懂：</p>
+<ul>
+<li><b>柴（體質）</b>：有些人天生比較敏感、容易緊張，或家裡有人也睡不好。柴多，容易起火。</li>
+<li><b>火柴（誘發事件）</b>：工作壓力、生病、親人過世、時差、更年期熱潮紅……點燃了第一把火。</li>
+<li><b>搧風的手（維持因素）</b>：為了睡著而做的事——太早上床、躺著硬撐、白天補眠、喝酒助眠、越來越怕睡不著。火柴早就熄了，火卻一直燒。</li>
+</ul>
+<!--PLATE:pp-3p-->
+<p>好消息是：<b>柴很難改，火柴常常已經不在了，但搧風的手是可以停下來的。</b>這正是失眠認知行為治療在做的事。</p>
+
+<h3>很累，卻睡不著：油門和煞車同時踩</h3>
+<p>研究發現，很多失眠的人整個身體都處在「熱機」狀態：心跳較快、代謝較高、壓力荷爾蒙較多，睡著時腦波裡「思考用的快波」也比較多。大腦的煞車（睡意）在踩，油門（警覺）也在踩。</p>
+<!--PLATE:pp-pedals-->
+
+<h3>床，變成了清醒的地方</h3>
+<p>很多人在沙發上看電視會打瞌睡，一走進臥室就清醒。這不是你的錯覺，是大腦的「學習」：在床上翻來覆去、滑手機、擔心明天，重複幾十個晚上，大腦就把「床」和「清醒、焦慮」連在一起了。</p>
+<!--PLATE:pl-conditioning|同一個人：在沙發上看電視會打瞌睡，一進臥室就清醒。下方是「制約」怎麼形成，以及怎麼用「睡不著就起床」把床和睡眠重新連起來。-->
+
+<h3>「我整晚都沒睡」：感覺和儀器不一樣</h3>
+<p>用儀器整晚記錄腦波後發現，慢性失眠的人跟好睡的人比，實際睡眠通常只少 30–60 分鐘左右，但自己的感覺常常差了兩三個小時。這<b>不是誇大</b>：失眠的人在淺睡時，大腦活動仍然很像醒著，醒來後就會記成「一直醒著在想事情」。</p>
+<!--PLATE:pp-perception-->
+<div class="box tip"><div class="bt">這對你有什麼用</div>知道「我其實睡得比感覺的多」，本身就能降低焦慮、鬆開一部分油門。這也是醫師會請你寫<b>睡眠日誌</b>的原因之一。</div>
+
+<h3>長得很像失眠的其他問題</h3>
+<p>有些「睡不好」根本不是失眠，用失眠的方法處理反而會耽誤。最常見的幾個：</p>
+<!--PLATE:pl-osa|睡眠呼吸中止：睡著後喉嚨的軟組織和舌根往後塌，把呼吸道堵住，血氧下降，大腦被迫一直「微醒」來救命。典型的人會大聲打鼾、被看到停止呼吸、白天很睏。有些安眠藥會讓它更嚴重，所以要先篩檢。-->
+<!--PLATE:pl-rls-rbd|左：不寧腿——傍晚到夜裡，小腿深處有說不出的不舒服，一定要動一動、起來走才會好。右：REM 睡眠行為障礙——在夢裡打架，真的揮拳踢腳，常見於長者，需要轉神經科或睡眠中心。-->
+<div class="tw"><table>
+<tr><th>你可能會說</th><th>要想到</th><th>為什麼重要</th></tr>
+<tr><td>「家人說我打呼很大聲，有時會停住」「白天開車會打瞌睡」</td><td>睡眠呼吸中止</td><td>跟高血壓、心血管疾病有關；某些安眠藥會讓它更糟</td></tr>
+<tr><td>「晚上腿怪怪的，不動不行」</td><td>不寧腿症候群</td><td>可能跟缺鐵、某些藥物有關，治療方向不同</td></tr>
+<tr><td>「我先生睡覺會揮拳、大叫」</td><td>REM 睡眠行為障礙</td><td>可能是神經系統疾病的早期訊號，要轉介</td></tr>
+<tr><td>「我傍晚就好睏，三四點就醒」</td><td>生理時鐘前移</td><td>越早睡只會越早醒，需要調時鐘，不是多睡</td></tr>
+<tr><td>「心情很低落，半夜醒來就一直想」</td><td>憂鬱、焦慮</td><td>失眠和情緒會互相加重，兩邊都要處理</td></tr>
+</table></div>
+
+<h3>年紀和荷爾蒙，也會改變睡眠</h3>
+<!--PLATE:pl-elderly|長者常見的「相位前移」：傍晚就在沙發上打盹、很早上床，結果凌晨兩三點就醒。下方比較年輕人與長者的睡眠時段和褪黑激素曲線：長者的時鐘整個往前移，褪黑激素也比較少。-->
+<!--PLATE:pl-hotflash|更年期的下半夜醒：體溫調節的「舒適區」變窄，核心體溫稍微一升就觸發熱潮紅、流汗而醒。處理熱潮紅本身，就是處理失眠的一部分；也別忘了停經後打鼾、呼吸中止的機會會增加。-->
+</section>
+
+<!-- ================= CH7 ================= -->
+<section class="ch" id="ch7">
+<div class="ch-head"><div class="no">CHAPTER 7</div><h2>那，該怎麼辦？</h2><div class="hook">不是「放輕鬆」三個字，而是一套有證據的方法。</div></div>
+
+<h3>第一線：失眠認知行為治療（CBT-I）</h3>
+<p>這是一套通常 4–8 次的課程，由受過訓練的醫師或心理師帶。它不教你「怎麼睡著」，而是<b>把那隻一直搧風的手停下來</b>。歐美的失眠治療指引都把它列為慢性失眠的第一選擇，研究顯示大約六到七成的人有明顯改善，而且停止治療後效果仍能維持。</p>
+<!--PLATE:pp-cbti-->
+<div class="box warn"><div class="bt">睡眠限制要有人帶</div>工具箱裡最有效、也最反直覺的是「睡眠限制」：先<b>縮短</b>在床上的時間，讓睡意沙漏裝得夠滿，再慢慢延長。初期白天會比較睏，需要開車或操作機械的人要特別小心。請在專業人員指導下進行，不要自己硬來。</div>
+
+<h3>今晚就可以開始的五件事</h3>
+<div class="two">
+<div class="pane g"><h5>✔ 每天同一時間起床</h5>包括週末。起床時間比上床時間更重要——它是幫生理時鐘對時的錨。</div>
+<div class="pane g"><h5>✔ 早上曬太陽、白天動一動</h5>光線是時鐘最強的校正訊號；活動讓晚上的沙漏更滿。</div>
+<div class="pane g"><h5>✔ 想睡才上床</h5>不是「時間到了」才上床。躺了大約二十分鐘還睡不著（不用看時鐘，感覺就好），就起來到別的地方做點無聊的事，想睡再回來。</div>
+<div class="pane g"><h5>✔ 開始記睡眠日誌</h5>記兩週：幾點上床、多久睡著、醒幾次、幾點起床、白天小睡、喝咖啡喝酒。就醫時非常有用。</div>
+</div>
+<div class="pane r" style="margin-bottom:18px"><h5>✘ 不要用酒精助眠、不要午睡太久</h5>酒讓你比較快睡著，但會打亂下半夜；午睡超過半小時、傍晚打盹，等於把晚上的睡意提前用掉。</div>
+
+<h3>藥物：可以幫忙，但不是主角</h3>
+<p>安眠藥在<b>短期</b>（例如幾週內）可以幫忙度過難關，和行為治療一起用也可以。但長期每晚使用，有兩到五成的人會出現耐受和依賴，突然停藥會「反彈」得更睡不著——這就是很多人「一停就整晚沒睡」的原因。</p>
+<ul>
+<li><b>想減藥：</b>不要自己突然停。和開藥的醫師一起排一個<b>慢慢減量</b>的計畫，再搭配 CBT-I，成功率最高。研究中，有醫師陪著逐步減量的長者，兩年後大約六成五仍然不需要吃藥。</li>
+<li><b>褪黑激素：</b>它比較像「告訴時鐘天黑了」的訊號，適合時差、生理時鐘跑掉的人；對一般失眠，平均只讓人快幾分鐘睡著。在台灣是以藥品管理。</li>
+<li><b>成藥的「助眠」：</b>多半是抗組織胺，會有隔天昏沉、口乾，用久了效果變差，長者尤其要小心。</li>
+</ul>
+<div class="box say"><div class="bt">關於中醫</div>中醫治療失眠在華人地區用得很普遍，有些方子的研究看起來有幫助、副作用也不多，但目前大部分研究品質還不夠好，國際指引還沒有推薦。比較好的做法是：中醫處理體質和伴隨的不舒服，<b>同時</b>做睡眠日誌和調整作息；如果你在吃安眠藥，請讓中醫師和開藥的醫師都知道。</div>
+
+<h3>這些情況，請找醫師</h3>
+<!--PLATE:pp-redflags-->
+<div class="box warn"><div class="bt">情緒很低落的時候</div>如果你有想傷害自己的念頭，請立刻找身邊的人、精神科或身心科醫師，或撥打<b>衛福部安心專線 1925</b>（24 小時）。</div>
+
+<div class="widget" id="selfcheck">
+<div class="wt">自我檢查 · 不是診斷</div>
+<h4>我的狀況，值得去看睡眠門診嗎？</h4>
+<div class="chk">
+<label><input type="checkbox" data-w="1">一週有 3 個晚上以上睡不好</label>
+<label><input type="checkbox" data-w="1">已經持續超過 3 個月</label>
+<label><input type="checkbox" data-w="1">白天的工作、心情或生活明顯受影響</label>
+<label><input type="checkbox" data-w="1">常常一上床就開始擔心睡不著</label>
+<label><input type="checkbox" data-w="2" data-red="1">家人說我打呼很大聲，或看到我停止呼吸</label>
+<label><input type="checkbox" data-w="2" data-red="1">白天開車、開會時會不小心睡著</label>
+<label><input type="checkbox" data-w="2" data-red="1">晚上腿很不舒服，一定要動</label>
+<label><input type="checkbox" data-w="2" data-red="1">睡覺時會把夢演出來、揮拳踢人</label>
+<label><input type="checkbox" data-w="2" data-red="1">長期吃安眠藥，想停又怕</label>
+</div>
+<div class="out" id="sc-out">勾選符合你的項目。</div>
+</div>
+</section>
+
+<!-- ================= CH8 ================= -->
+<section class="ch" id="ch8">
+<div class="ch-head"><div class="no">CHAPTER 8</div><h2>五題小測驗，看看你記住了沒</h2><div class="hook">點問題看答案。</div></div>
+<details class="q"><summary>含羞草放進黑暗的櫃子裡，葉子還會照時間開合。這說明了什麼？</summary><div class="a">生物體內有一個不需要看太陽、自己會走的時鐘。三百年後，科學家找到了它的基因與運作方式，並在 2017 年獲得諾貝爾獎。</div></details>
+<details class="q"><summary>睡不好的時候，早點上床多躺一下，為什麼常常沒用？</summary><div class="a">睡意沙漏還沒裝滿、時鐘的清醒潮汐還很高，躺下也只是醒著；而且大腦會學到「床＝清醒的地方」。</div></details>
+<details class="q"><summary>為什麼早上曬太陽有幫助？</summary><div class="a">人體時鐘一天大約比 24 小時多一點，早上的光是幫它「對時」最強的訊號，讓晚上該想睡的時候想睡。</div></details>
+<details class="q"><summary>「我整晚都沒睡」，是真的嗎？</summary><div class="a">多半實際上有睡，只是淺睡時大腦活動仍像醒著，醒來就記成沒睡。這不是說謊，而是失眠本身的一部分。</div></details>
+<details class="q"><summary>慢性失眠的第一線治療是什麼？</summary><div class="a">失眠認知行為治療（CBT-I）。藥物可以短期輔助，但長期效果不如 CBT-I 持久。</div></details>
+
+<div class="next">
+<h4>下一集，我們可以接著聊……</h4>
+<ul>
+<li>安眠藥到底能不能停？「反彈」和「復發」差在哪裡</li>
+<li>中醫怎麼看失眠：古書裡的「衛氣」和現代的生理時鐘</li>
+<li>更年期、長者、青少年：不同人生階段的睡眠</li>
+<li>做夢、打呼、說夢話：哪些是正常，哪些要注意</li>
+</ul>
+</div>
+
+<h3 style="font-size:19px">參考資料</h3>
+<ol class="refs">
+<li>The Nobel Prize in Physiology or Medicine 2017 — Jeffrey C. Hall, Michael Rosbash, Michael W. Young. nobelprize.org（新聞稿與科學背景說明）</li>
+<li>Czeisler CA, et al. Stability, precision, and near-24-hour period of the human circadian pacemaker. <i>Science</i>. 1999;284:2177–2181.</li>
+<li>Konopka RJ, Benzer S. Clock mutants of <i>Drosophila melanogaster</i>. <i>PNAS</i>. 1971;68:2112–2116.</li>
+<li>Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. <i>Neuron</i>. 2010;68:1023–1042.</li>
+<li>Morin CM, Benca R. Chronic insomnia. <i>Lancet</i>. 2012;379:1129–1141.</li>
+<li>Morin CM, Buysse DJ. Management of insomnia. <i>N Engl J Med</i>. 2024;391:247–258.</li>
+<li>Riemann D, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insomnia 2023. <i>J Sleep Res</i>. 2023;32:e14035.</li>
+<li>Sateia MJ. International Classification of Sleep Disorders—Third Edition: highlights and modifications. <i>Chest</i>. 2014;146:1387–1394.</li>
+<li>Morin CM, et al. Long-term outcome after discontinuation of benzodiazepines for insomnia: a survival analysis of relapse. <i>Behav Res Ther</i>. 2005;43:1–14.</li>
+<li>Harvey AG, Payne S. The management of unwanted pre-sleep thoughts in insomnia: distraction with imagery versus general distraction. <i>Behav Res Ther</i>. 2002;40:267–277.</li>
+<li>Vgontzas AN, et al. Insomnia with objective short sleep duration: the most biologically severe phenotype of the disorder. <i>Sleep Med Rev</i>. 2013;17:241–254.</li>
+</ol>
+<div class="foot">本手冊為衛教用途，不能取代醫師的診斷與治療。圖中人物為示意，非真實人物肖像。內容整理自上列文獻與《重新認識失眠：給中醫師的由淺入深讀本》。</div>
+</section>
+</div>
+
+<script>
+const MYTHS=[
+ ['每個人都要睡滿 8 小時才夠','需要的時數因人而異，成人大多落在 7–9 小時，有少數人天生睡得少也沒事。判斷睡得夠不夠，看的是<b>白天精神好不好</b>，不是時鐘上的數字。一直盯著「8 小時」，反而會增加焦慮。'],
+ ['睡不著就早點上床，多躺一下也算休息','這是讓失眠變慢性最常見的原因之一。睡意還不夠時躺著，只會醒著，大腦還會學到「床＝清醒」。<b>想睡才上床，睡不著就起來</b>，反而睡得比較快。'],
+ ['喝點酒比較好睡','酒精讓人比較快睡著，但當它在半夜被代謝掉，會讓<b>下半夜睡得更淺、更容易醒</b>，也會讓打呼和呼吸中止更嚴重。長期還會需要越喝越多。'],
+ ['平日睡不夠，週末補回來就好','週末睡到中午，等於讓生理時鐘飛到別的時區，週日晚上更睡不著，週一更累（俗稱「社交時差」）。<b>每天同一時間起床</b>比補眠重要。'],
+ ['褪黑激素是天然安眠藥','它比較像<b>告訴時鐘「天黑了」的訊號</b>，對時差、生理時鐘延後的人比較有用；對一般失眠，平均只快幾分鐘入睡。在台灣它以藥品管理，不是保健食品。'],
+ ['安眠藥一吃就會上癮，絕對不能碰','短期、在醫師指導下使用，可以幫你度過難關。真正的問題是<b>長期每晚吃、又突然停</b>。想停藥，請和醫師一起慢慢減量，搭配行為治療，大部分人做得到。'],
+ ['失眠就是想太多，放輕鬆就好','失眠的人常常整個身體都處在「熱機」狀態：心跳、代謝、壓力荷爾蒙都偏高，不是說放鬆就放得下。它需要的是<b>方法</b>，例如放鬆訓練、認知治療、刺激控制。'],
+ ['打呼代表睡得很熟','大聲打呼、偶爾停住，可能是<b>睡眠呼吸中止</b>：呼吸道被堵住，大腦一整晚被迫醒來救命。這種人常覺得怎麼睡都睡不飽，應該就醫檢查。'],
+ ['老人家本來就睡得少，沒辦法','年紀大了深睡會變少、容易醒，這是真的。但很多長者的問題是<b>傍晚就打盹、太早上床</b>，加上時鐘往前移，所以凌晨就醒。調整作息、白天多曬太陽和活動，常常能改善不少。'],
+ ['睡不著就數羊','有研究比較過：請失眠的人睡前<b>想像一個平靜、有細節的畫面</b>（例如海邊、散步的路線），比一般的分心方法更快睡著、擔心的念頭也比較少。數羊太單調，常常擋不住那些念頭。'],
+];
+const box=document.getElementById('myths');
+box.innerHTML=MYTHS.map((m,i)=>`<div class="card"><div class="in"><div class="f"><div class="tag">迷思 ${i+1}</div><div class="t">「${m[0]}」</div><div class="hint">點一下看真相 ↻</div></div><div class="b"><div class="tag">真相</div>${m[1]}</div></div></div>`).join('');
+box.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flip')));
+const sc=document.querySelectorAll('#selfcheck input');
+function upd(){let w=0,red=0,n=0;sc.forEach(x=>{if(x.checked){n++;w+=+x.dataset.w;if(x.dataset.red)red++;}});
+ const o=document.getElementById('sc-out');
+ if(!n){o.innerHTML='勾選符合你的項目。';return;}
+ if(red)o.innerHTML='<b>建議就醫。</b>你勾選的項目裡，有些需要先排除失眠以外的問題（例如睡眠呼吸中止、不寧腿、REM 睡眠行為障礙），或需要醫師陪你規劃減藥。可以先找家醫科、身心科、神經科或睡眠中心。';
+ else if(n>=3)o.innerHTML='<b>可能符合慢性失眠。</b>建議先記兩週睡眠日誌，帶著它去看醫師，詢問失眠認知行為治療（CBT-I）。';
+ else o.innerHTML='目前看起來還不算典型的慢性失眠。先試試第七章「今晚就可以開始的五件事」，如果持續或變嚴重，再找醫師聊聊。';}
+sc.forEach(x=>x.addEventListener('change',upd));
+</script>
+</body>
+</html>
