@@ -80,7 +80,7 @@ def flame_shape(cx, by, w, h, n, seed, lean=0):
 
 
 def fire(cx, by, w, h, seed=1, lean=0):
-    out = ['<ellipse cx="%s" cy="%s" rx="%s" ry="%s" fill="url(#%s-glow)"/>' % (f(cx), f(by - h * .4), f(w * 1.2), f(h * .9), PID)]
+    out = ['<ellipse cx="%s" cy="%s" rx="%s" ry="%s" fill="url(#%s-glow)"/>' % (f(cx), f(by - h * .4), f(w * 1.1), f(h * .7), PID)]
     out.append('<path d="%s" fill="#c8452a" stroke="%s" stroke-width="1"/>' % (flame_shape(cx, by, w, h, 5, seed, lean), INK))
     out.append('<path d="%s" fill="url(#ink-hatch-r)" opacity=".35"/>' % flame_shape(cx, by, w, h, 5, seed, lean))
     out.append('<path d="%s" fill="#ec8c34" stroke="%s" stroke-width=".6"/>' % (flame_shape(cx, by, w * .72, h * .74, 4, seed + 1, lean), INK))
@@ -200,10 +200,10 @@ add(T(AX + 14, GY + 50, '家族有人失眠、年紀漸長', 'ls', size=11.5))
 BX0, BW = 230, 222
 add(panel(BX0, PY0, BW, PH0, 'b', '誘發：火柴', 'precipitating — the match', '#c8452a'))
 add(ground(BX0 + 6, GY, BW - 12))
-pcx = BX0 + 170
-add('<ellipse cx="%s" cy="%s" rx="44" ry="5" fill="%s" opacity=".18"/>' % (pcx, GY + 2, INK))
-add(kindling(pcx, GY, 84, 64, 30, 8))
-add(fire(pcx - 4, GY - 22, 30, 34, seed=4))
+pcx = BX0 + 184
+add('<ellipse cx="%s" cy="%s" rx="30" ry="5" fill="%s" opacity=".18"/>' % (pcx, GY + 2, INK))
+add(kindling(pcx, GY, 48, 48, 22, 8))
+add(fire(pcx - 2, GY - 18, 28, 34, seed=4))
 # falling lit match
 mx, my, ma = pcx - 6, 118, 62
 add('<g transform="translate(%s,%s) rotate(%s)">' % (mx, my, ma) +
@@ -215,7 +215,7 @@ for k in range(3):
     add('<path d="M%s %s l-10 -18" stroke="%s" stroke-width=".8" stroke-opacity=".6"/>' % (mx - 14 + k * 8, my - 24 + k * 3, INK))
 add('<path d="M%s %s Q%s %s %s %s" fill="none" stroke="%s" stroke-width=".9" stroke-dasharray="3 3" marker-end="url(#%s-ak)"/>' % (mx + 14, my + 40, mx + 18, my + 70, pcx + 4, GY - 64, INK, PID))
 # matchbox in front-left
-MBX, MBY, MBW, MBH = BX0 + 10, GY - 42, 150, 52
+MBX, MBY, MBW, MBH = BX0 + 8, GY - 42, 140, 52
 add('<path d="M%s %s l14 -12 h%s l-14 12z" fill="#e7d3a6" stroke="%s" stroke-width=".9"/>' % (MBX, MBY, MBW, INK))
 add('<path d="M%s %s l14 -12 v%s l-14 12z" fill="#7b2f22" stroke="%s" stroke-width=".9"/>' % (MBX + MBW, MBY, MBH, INK))
 add('<path d="M%s %s l14 -12 v%s l-14 12z" fill="url(#ink-hatch-d)" opacity=".5"/>' % (MBX + MBW, MBY, MBH))
@@ -236,7 +236,7 @@ c = cells[2]
 add('<path d="M%s %s l14 -4 q3 -1 3 1 q0 2 -3 2.5 l-14 2 z M%s %s l5 -1 l-4 7 h-2 z M%s %s l3 -.5 l-3 -4 h-2 z" fill="#cfdcef" stroke="%s" stroke-width=".7"/>' % (
     f(c - 9), f(iy + 1), f(c - 1), f(iy - 1), f(c - 6), f(iy - 1), INK))
 for c, t in zip(cells, ('生活壓力', '生病', '時差')):
-    add(T(c, MBY + 40, t, 'lb', 'middle', size=11.5, halo=False))
+    add(T(c, MBY + 40, t, 'lb', 'middle', size=10.5, halo=False))
 add('<path d="M%s %s h%s" stroke="#3a2a1c" stroke-width="3" stroke-opacity=".7"/>' % (MBX + MBW + 2, MBY + MBH - 6, 10))
 add(T(BX0 + 14, GY + 34, '一件事點燃了失眠：', 'ls', size=11.5))
 add(T(BX0 + 14, GY + 50, '考試、失業、生病、搭機⋯', 'ls', size=11.5))
@@ -275,7 +275,8 @@ add('<path d="%s" stroke="#b08a50" stroke-width=".5"/>' % rib)
 add('<ellipse cx="%s" cy="%s" rx="22" ry="28" transform="rotate(26 %s %s)" fill="url(#ink-hatch-l)" opacity=".6"/>' % (fcx, fcy, fcx, fcy))
 add('<ellipse cx="%s" cy="%s" rx="22" ry="28" transform="rotate(26 %s %s)" fill="none" stroke="%s" stroke-width="1.1"/>' % (fcx, fcy, fcx, fcy, INK))
 _ha = math.degrees(math.atan2(hy1 - (fy0 + 14), hx1 - (fx0 + 26)))
-add(grip(fx0 + 30, fy0 + 6, _ha + 180, .95, sleeve='#cfdcef', slen=40))
+D.append('<clipPath id="%s-pc"><rect x="%s" y="%s" width="%s" height="%s"/></clipPath>' % (PID, CX0 + 3, PY0 + 3, CW - 6, PH0 - 6))
+add('<g clip-path="url(#%s-pc)">' % PID + grip(fx0 + 30, fy0 + 6, _ha, .95, sleeve='#cfdcef', slen=40) + '</g>')
 # motion arcs of the fan + wind lines
 add('<path d="M%s %s a40 40 0 0 1 22 -30 M%s %s a46 46 0 0 1 26 -32" fill="none" stroke="%s" stroke-width=".8" stroke-dasharray="3 2"/>' % (fcx - 14, fcy + 40, fcx - 6, fcy + 46, INK))
 for k in range(3):
@@ -289,8 +290,8 @@ for i, hb in enumerate(habits):
 # a hand adding a log (top right) labelled 喝酒助眠
 lx, ly = CX0 + 196, 84
 add(log(lx, ly, 96, 10, 22, '#9c6a3c', label=None))
-add(T(lx - 2, ly + 4, '喝酒助眠', 'lb', 'middle', size=12, extra=' transform="rotate(22 %s %s)"' % (lx, ly)))
-add(grip(lx + 26 * math.cos(math.radians(22)), ly + 26 * math.sin(math.radians(22)), 22, .95, sleeve="#e7d3a6", slen=50))
+add(T(lx - 14, ly + 4, '喝酒助眠', 'lb', 'middle', size=12, extra=' transform="rotate(22 %s %s)"' % (lx, ly)))
+add('<g clip-path="url(#%s-pc)">' % PID + grip(lx + 34 * math.cos(math.radians(22)), ly + 34 * math.sin(math.radians(22)), 22, .95, sleeve="#e7d3a6", slen=50) + '</g>')
 add('<path d="M%s %s Q%s %s %s %s" fill="none" stroke="%s" stroke-width="1.2" marker-end="url(#%s-ar)"/>' % (lx - 30, ly + 34, lx - 50, ly + 54, FX + 34, GY - 128, TCM, PID))
 add(T(CX0 + 150, GY + 32, '這些習慣＝添柴、搧風', 'ls', size=11.5))
 add(T(CX0 + 150, GY + 48, '→ 火一直燒下去', 'lb', size=12, color=TCM))
