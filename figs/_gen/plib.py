@@ -210,3 +210,23 @@ def inline_classes(s):
                 add += ' %s="%s"' % (k, v)
         return re.sub(r'^<(\w+)', lambda mm: '<' + mm.group(1) + add, tag)
     return re.sub(r'<(path|ellipse|circle|rect|line|polyline|polygon)\b[^>]*>', fix, s)
+
+
+def tapered(pts, w0, w1, per=10):
+    """Closed outline of a stroke of varying width along a Catmull-Rom curve."""
+    dense = bez_pts(pts, per=per)
+    L = len(dense)
+    left, right = [], []
+    for i, (x, y) in enumerate(dense):
+        a_, b_ = dense[max(0, i - 1)], dense[min(L - 1, i + 1)]
+        tx, ty = b_[0] - a_[0], b_[1] - a_[1]
+        n = math.hypot(tx, ty) or 1
+        nx, ny = -ty / n, tx / n
+        w = (w0 + (w1 - w0) * i / (L - 1)) / 2
+        left.append((x + nx * w, y + ny * w)); right.append((x - nx * w, y - ny * w))
+    return poly(left + right[::-1], True)
+
+
+def num(x, y, n, col=INK, r=7.5):
+    return ('<circle cx="%s" cy="%s" r="%s" fill="%s" stroke="#fbf6ea" stroke-width="1.4"/>'
+            '<text x="%s" y="%s" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:#fff;font-family:Georgia,serif">%s</text>') % (f(x), f(y), r, col, f(x), f(y + 3.7), n)

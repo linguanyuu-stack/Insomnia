@@ -97,7 +97,7 @@ def bed_scene():
     o.append(f'<g transform="translate({bx+2},{by-24})"><path d="M0 4 L30 0 L34 36 L4 40Z" fill="#fff" stroke="#2a2018" stroke-width=".9"/><path d="M6 4 L36 0 L40 36 L10 40Z" fill="#fff" stroke="#2a2018" stroke-width=".9"/>'
              '<path d="M14 8 L34 6 M14 14 L36 12 M15 20 L36 18 M16 26 L30 25" class="ink2"/><path d="M16 30 L24 34 L36 22" fill="none" stroke="#a8412c" stroke-width="1.2"/></g>')
     o.append(f'<text x="{bx+56}" y="{by-6}" class="lb" style="fill:#a8412c">!?</text>')
-    o.append(f'<text x="{bx}" y="{by+30}" class="ls" text-anchor="middle">「只剩五小時…報告還沒寫…」</text>')
+    o.append(f'<text x="{bx}" y="{by+30}" class="ls" text-anchor="middle">「只剩五小時了…」</text>')
     o.append(f'<rect x=".5" y="40.5" width="{W-1}" height="235" fill="none" stroke="#2a2018" stroke-width="1"/>')
     return "".join(o)
 
