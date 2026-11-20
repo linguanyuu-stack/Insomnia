@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>重新認識失眠：給中醫師的由淺入深讀本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e7; --paper2:#efe8da; --card:#fffdf8;
+  --ink:#1c2740; --ink2:#46506a; --mute:#7a8197; --rule:#d9cfbd;
+  --night:#14203a; --moon:#c9962e; --moon-soft:#f3e6c6;
+  --tcm:#a8412c; --tcm-soft:#f6e1d9;
+  --wm:#2c5d9c; --wm-soft:#dfe8f5;
+  --tip:#4f7f45; --tip-soft:#e6f0e0;
+  --warn:#b2572a; --warn-soft:#fbe9dc;
+  --hyp:#6b4fa0; --hyp-soft:#ece6f6;
+  --rem:#8a5cc2; --n3:#2c5d9c; --n2:#6f93c6; --n1:#b7cbe6; --wake:#c9962e;
+  --serif:"Noto Serif TC","Fraunces",serif;
+  --sans:"Noto Sans TC",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.85;
+  background-image:radial-gradient(rgba(28,39,64,.035) 1px,transparent 1px);background-size:4px 4px}
+a{color:var(--wm)}
+/* ---------- layout ---------- */
+.shell{display:grid;grid-template-columns:270px minmax(0,1fr);max-width:1320px;margin:0 auto}
+nav.toc{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 18px 40px 22px;border-right:1px solid var(--rule);font-size:13.5px;line-height:1.55;background:linear-gradient(180deg,var(--paper) 0,var(--paper2) 100%)}
+nav.toc .brand{font-family:var(--serif);font-weight:900;font-size:19px;line-height:1.3;margin-bottom:4px}
+nav.toc .brand small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--mute);margin-top:4px}
+nav.toc .part{margin:18px 0 6px;font-size:11px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+nav.toc a{display:block;padding:4px 8px;border-radius:6px;color:var(--ink2);text-decoration:none}
+nav.toc a:hover{background:var(--card)}
+nav.toc a.on{background:var(--ink);color:#fff}
+nav.toc a .n{font-family:var(--mono);font-size:11px;opacity:.6;margin-right:6px}
+main{padding:0 56px 120px;min-width:0}
+.col{max-width:780px;margin:0 auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr}nav.toc{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--rule)}main{padding:0 20px 80px}}
+/* ---------- cover ---------- */
+.cover{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:72px 0 56px;position:relative;overflow:hidden}
+.cover:before{content:"";position:absolute;inset:0;background:var(--night);border-radius:0 0 28px 28px;z-index:-1}
+.cover{color:#f2ead7;margin:0 -56px;padding-left:56px;padding-right:56px}
+.cover .moon{position:absolute;right:8%;top:12%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f7e7bd 0,#d9b25d 55%,#9c7428 100%);box-shadow:0 0 120px rgba(201,150,46,.35)}
+.cover .moon:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:var(--night);left:58px;top:-22px}
+.cover .kicker{font-family:var(--mono);letter-spacing:.2em;font-size:12px;color:var(--moon)}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,6vw,74px);line-height:1.12;margin:.2em 0 .25em}
+.cover h1 em{font-style:normal;color:var(--moon)}
+.cover .sub{max-width:640px;font-size:18px;color:#cfd6e6}
+.cover .meta{margin-top:36px;display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:#aab3c8}
+.cover .meta b{display:block;color:#f2ead7;font-size:15px}
+.stars{position:absolute;inset:0;z-index:-1;opacity:.6}
+/* ---------- chapter ---------- */
+section.ch{padding-top:72px}
+.opener{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:end;border-bottom:3px double var(--ink);padding-bottom:18px;margin-bottom:28px}
+.opener .num{font-family:var(--serif);font-weight:900;font-size:110px;line-height:.8;color:var(--moon);-webkit-text-stroke:1px var(--ink)}
+.opener .lab{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--mute)}
+.opener h2{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.25;margin:.15em 0 0}
+.opener .q{font-size:15px;color:var(--ink2);margin-top:6px}
+.partbanner{margin:96px -56px 0;padding:56px;background:var(--ink);color:#f2ead7;border-radius:22px;position:relative;overflow:hidden}
+.partbanner .pk{font-family:var(--mono);color:var(--moon);letter-spacing:.2em;font-size:12px}
+.partbanner h2{font-family:var(--serif);font-size:42px;margin:.2em 0}
+.partbanner p{max-width:680px;color:#cfd6e6;margin:0}
+.partbanner.tcm{background:#3b1a12}
+.partbanner.tcm .pk{color:#f0a58e}
+h3{font-family:var(--serif);font-weight:900;font-size:25px;margin:2.2em 0 .5em;line-height:1.35}
+h3 .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--mute);display:block;font-weight:400}
+h4{font-family:var(--serif);font-size:19px;margin:1.6em 0 .3em}
+p{margin:.7em 0}
+.lead{font-size:19px;color:var(--ink2);font-family:var(--serif)}
+.en{font-family:"Fraunces",serif;font-style:italic;color:var(--ink2)}
+mark{background:linear-gradient(transparent 55%,var(--moon-soft) 55%);color:inherit;padding:0 2px}
+hr.soft{border:0;border-top:1px dashed var(--rule);margin:2em 0}
+/* ---------- boxes ---------- */
+.box{border-radius:14px;padding:18px 22px;margin:22px 0;background:var(--card);border:1px solid var(--rule);position:relative}
+.box > .bt{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.box.tip{background:var(--tip-soft);border-color:#b7d0ab}.box.tip>.bt{color:var(--tip)}
+.box.warn{background:var(--warn-soft);border-color:#ecc1a5}.box.warn>.bt{color:var(--warn)}
+.box.hyp{background:var(--hyp-soft);border-color:#cbbde6}.box.hyp>.bt{color:var(--hyp)}
+.box.say{background:#fff;border-left:6px solid var(--moon);border-radius:4px 14px 14px 4px}.box.say>.bt{color:var(--moon)}
+.box.case{background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.box.case>.bt{color:var(--ink)}
+.box.case .who{font-family:var(--serif);font-weight:900;font-size:20px}
+.box.classic{background:#fbf4ec;border:1px solid #e6c9b9}
+.box.classic>.bt{color:var(--tcm)}
+.box.classic .yuan{font-family:var(--serif);font-size:19px;line-height:1.9;color:#4a2318;border-left:3px solid var(--tcm);padding-left:14px;margin:6px 0 10px}
+.box.classic .yan{font-size:15.5px}
+.box.classic .yan b{color:var(--tcm)}
+.box.plain{background:var(--night);color:#e9e2cf;border:0}
+.box.plain>.bt{color:var(--moon)}
+.box.plain b{color:#fff}
+.box.key{background:var(--ink);color:#fff;border:0}
+.box.key>.bt{color:var(--moon)}
+.box.key sup.r a,.box.plain sup.r a,.box.key a,.box.plain a{color:#f0c96a}
+/* ---------- badges ---------- */
+.ev{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;vertical-align:2px;margin:0 2px;white-space:nowrap}
+.ev.A{background:#1f5f3c;color:#fff}.ev.B{background:#5f8f3c;color:#fff}.ev.C{background:#b08a2e;color:#fff}
+.ev.H{background:var(--hyp);color:#fff}.ev.X{background:#fff;color:var(--warn);border:1px solid var(--warn)}
+.ev.T{background:var(--tcm);color:#fff}
+sup.r{font-family:var(--mono);font-size:10.5px;color:var(--wm)}
+sup.r a{text-decoration:none}
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;background:var(--card)}
+th,td{border-bottom:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--ink);color:#fff;font-weight:500;font-size:13.5px}
+tr:nth-child(even) td{background:#fbf8f1}
+td.num{font-family:var(--mono);text-align:right;white-space:nowrap}
+table.cmp th.tcm{background:var(--tcm)} table.cmp th.wm{background:var(--wm)}
+/* ---------- figures ---------- */
+figure{margin:26px 0;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:16px}
+figure svg,.widget svg{width:100%;height:auto;display:block;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+figcaption{font-size:13.5px;color:var(--ink2);margin-top:8px;border-top:1px dashed var(--rule);padding-top:8px}
+figcaption b{color:var(--ink)}
+/* ---------- interactive ---------- */
+.widget{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:18px 20px;margin:26px 0;box-shadow:0 10px 30px rgba(20,32,58,.08)}
+.widget .wt{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--wm);text-transform:uppercase;font-weight:600}
+.widget .wt:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--wm);box-shadow:0 0 0 4px var(--wm-soft)}
+.widget h4{margin:.3em 0 .6em}
+.btn{font:inherit;font-size:14px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer;margin:3px 4px 3px 0;transition:.15s}
+.btn:hover{background:var(--moon-soft)}
+.btn.on{background:var(--ink);color:#fff}
+.slider{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;font-size:14px;margin:6px 0}
+.slider input{width:100%;accent-color:var(--ink)}
+.slider output{font-family:var(--mono);text-align:right}
+.out{background:var(--paper);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:15px}
+.tree .step{animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tree .path{font-size:12.5px;color:var(--mute);margin-bottom:6px}
+.tree .ans{border-left:5px solid var(--moon);background:var(--paper);padding:12px 16px;border-radius:4px 12px 12px 4px}
+.isi label{display:grid;grid-template-columns:1fr 210px;gap:10px;align-items:center;font-size:14.5px;padding:6px 0;border-bottom:1px dashed var(--rule)}
+.isi select{font:inherit;font-size:14px;padding:4px}
+/* flip cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:20px 0}
+.card{perspective:900px;height:250px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;border:1.5px solid var(--tcm);overflow:auto}
+.card .f{background:#fff}
+.card .f .t{font-family:var(--serif);font-weight:900;font-size:21px;color:var(--tcm)}
+.card .f .s{font-size:13.5px;color:var(--ink2);margin-top:6px}
+.card .f .hint{position:absolute;bottom:10px;right:14px;font-size:11px;color:var(--mute)}
+.card .b{background:var(--tcm-soft);transform:rotateY(180deg);font-size:13.5px;line-height:1.65}
+.card .b b{color:var(--tcm)}
+/* quiz */
+details.q{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:10px 16px;margin:8px 0}
+details.q summary{cursor:pointer;font-weight:500;list-style:none}
+details.q summary:before{content:"Q ";font-family:var(--mono);color:var(--moon);font-weight:700}
+details.q[open] summary{color:var(--wm)}
+details.q .a{border-top:1px dashed var(--rule);margin-top:8px;padding-top:8px;font-size:15px}
+/* timeline */
+.tl{position:relative;margin:24px 0;padding-left:28px}
+.tl:before{content:"";position:absolute;left:9px;top:4px;bottom:4px;width:2px;background:var(--rule)}
+.tl .ev2{position:relative;margin:0 0 16px}
+.tl .ev2:before{content:"";position:absolute;left:-25px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
+.tl .ev2.tcm:before{border-color:var(--tcm)}.tl .ev2.wm:before{border-color:var(--wm)}
+.tl .yr{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--ink2)}
+.tl .ev2.tcm .yr{color:var(--tcm)}.tl .ev2.wm .yr{color:var(--wm)}
+/* two column compare */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.pane{border-radius:14px;padding:16px 18px;background:#fff;border-top:6px solid var(--wm)}
+.pane.tcm{border-top-color:var(--tcm)}
+.pane h5{margin:0 0 6px;font-family:var(--serif);font-size:17px}
+.refs{font-size:13.5px;line-height:1.6}
+.refs li{margin:6px 0}
+.refs .doi{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.endnote{margin-top:48px;padding:22px;border-radius:14px;background:var(--ink);color:#f2ead7;font-family:var(--serif);font-size:18px;text-align:center}
+.small{font-size:13.5px;color:var(--ink2)}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--paper2);font-size:13px;margin:2px}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media print{nav.toc{display:none}.shell{display:block}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" id="toc"><div class="brand">重新認識失眠<small>給中醫師的由淺入深讀本・初稿</small></div>
+<div class="part">開始之前</div>
+<a href="#howto"><span class="n">00</span>怎麼讀這本書</a>
+<div class="part">第一部　睡眠生理</div>
+<a href="#ch1"><span class="n">01</span>兩股力量和一個開關</a>
+<div class="part">第二部　西醫怎麼看</div>
+<a href="#ch2"><span class="n">02</span>失眠到底是什麼</a>
+<a href="#ch3"><span class="n">03</span>分類：每一種分法在回答什麼問題</a>
+<a href="#ch4"><span class="n">04</span>為什麼會失眠：3P 與過度警覺</a>
+<a href="#ch5"><span class="n">05</span>評估：24 小時、日誌與量表</a>
+<a href="#ch6"><span class="n">06</span>CBT-I：專拆維持因子的治療</a>
+<a href="#ch7"><span class="n">07</span>藥物：哪一顆卡在哪個開關上</a>
+<a href="#ch8"><span class="n">08</span>減藥與復發：病人最怕的那件事</a>
+<div class="part">第三部　中醫怎麼看</div>
+<a href="#ch9"><span class="n">09</span>古人怎麼看：讀出言外之意</a>
+<a href="#ch10"><span class="n">10</span>經方眼光：不得眠在方證裡的樣子</a>
+<a href="#ch11"><span class="n">11</span>證型地圖：實、虛，再加一個「滯」</a>
+<a href="#ch12"><span class="n">12</span>難關：高手怎麼想</a>
+<a href="#ch13"><span class="n">13</span>證據：中藥與針灸到底有多少支持</a>
+<div class="part">第四部　放回診間</div>
+<a href="#ch14"><span class="n">14</span>三位病人的完整處置</a>
+<div class="part">附錄</div>
+<a href="#glossary"><span class="n">附</span>名詞對照</a>
+<a href="#pending"><span class="n">附</span>待查證清單</a>
+<a href="#refs"><span class="n">附</span>參考文獻</a></nav>
+<main>
+<div class="col">
+<header class="cover" id="top">
+<svg class="stars" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+<g fill="#f2ead7">
+<circle cx="80" cy="60" r="1.4"/><circle cx="160" cy="140" r="1"/><circle cx="260" cy="40" r="1.6"/><circle cx="340" cy="190" r="1"/><circle cx="420" cy="90" r="1.3"/><circle cx="520" cy="30" r="1"/><circle cx="610" cy="150" r="1.5"/><circle cx="700" cy="70" r="1"/><circle cx="560" cy="250" r="1.1"/><circle cx="120" cy="300" r="1.2"/><circle cx="230" cy="380" r="1"/><circle cx="380" cy="320" r="1.4"/><circle cx="470" cy="420" r="1"/><circle cx="900" cy="420" r="1.3"/><circle cx="940" cy="300" r="1"/><circle cx="860" cy="520" r="1.1"/><circle cx="40" cy="480" r="1"/>
+</g></svg>
+<div class="moon"></div>
+<div class="kicker">SELF-STUDY EDITION · 自學版 · 初稿 v0.9</div>
+<h1>重新認識<em>失眠</em><br><span style="font-size:.62em">給中醫師的由淺入深讀本</span></h1>
+<p class="sub">從「睡眠是怎麼開關的」開始，一路讀到分類為什麼這樣分、藥物各自卡在哪個開關上、為什麼減藥會怕復發，再回到《內經》《傷寒》與經方方證。三位病人陪你從頭走到尾。</p>
+<div class="meta">
+<div><b>讀者</b>中醫師自學（不給民眾看）</div>
+<div><b>主文獻</b>19 篇全文＋2023 歐洲指引等開放全文</div>
+<div><b>互動</b>決策樹・一夜模擬器・藥物機轉圖・計算器</div>
+<div><b>日期</b>2026 年 11 月</div>
+</div>
+</header>
+
+<section class="ch" id="howto" data-n="00" data-t="怎麼讀這本書" data-part="開始之前">
+<div class="opener"><div class="num">0</div><div><div class="lab">BEFORE YOU START</div><h2>怎麼讀這本書</h2><div class="q">這一版跟上一版最大的不同：先建骨架，再掛證據。</div></div></div>
+
+<p class="lead">上一版的問題是什麼都講、每件事都「可以但有限制」，讀完抓不到主線。這一版換個做法：<mark>先把失眠這件事拆成幾個你可以在診間用的判斷</mark>，每個判斷後面才放證據。</p>
+
+<p>全書分三部。第一部像 Osmosis 那樣從生理講起，建立「睡眠是一個被兩股力量推動、由一個開關切換的系統」這個圖像。第二部用這個圖像去理解西醫的分類、評估、行為治療、藥物與減藥。第三部回到中醫：古人怎麼看、經方方證裡的「不得眠」長什麼樣、證型怎麼分，以及高手面對難關時在想什麼。</p>
+
+<h3><span class="tag">LEGEND</span>標籤怎麼讀</h3>
+<div class="tw"><table>
+<tr><th style="width:150px">標籤</th><th>意思</th></tr>
+<tr><td><span class="ev A">A 強</span></td><td>大型 RCT、統合分析，或主要指引的 A 級建議。可以放心當骨架用。</td></tr>
+<tr><td><span class="ev B">B 中</span></td><td>單一或少數 RCT、小樣本、或指引的 B 級建議。方向可信，數字不要背太死。</td></tr>
+<tr><td><span class="ev C">C 弱</span></td><td>觀察性研究、專家意見、病例、中醫經驗與文獻。可以啟發思路，不能當證明。</td></tr>
+<tr><td><span class="ev H">假說</span></td><td>研究者或我（本讀本）提出的解釋，尚未被直接驗證。會特別寫明是誰提的。</td></tr>
+<tr><td><span class="ev T">中醫觀點</span></td><td>中醫理論內的說法（如衛氣出入、神安則寐）。是中醫的解釋框架，不是現代醫學事實。</td></tr>
+<tr><td><span class="ev X">待查證</span></td><td>我查不到可靠出處、或只有二手資料的內容。用之前請再核對。</td></tr>
+</table></div>
+
+<div class="box tip"><div class="bt">小知識 · 數字從哪來</div>文中每個數字右上角的小號碼對應書末參考文獻。標 <b>全文</b> 的是我讀過全文的（你提供的 19 篇加上開放全文）；標 <b>摘要</b> 的是只讀到摘要。</div>
+
+<h3><span class="tag">THE THREE PATIENTS</span>三位病人：這本書的主線</h3>
+<p>這三位是我依照你描述的門診常見情境<b>虛構</b>的教學個案，不是真實病人。每章結尾都會回來看他們一次，讓抽象的東西落地。</p>
+
+<div class="box case" id="caseA"><div class="bt">個案 A</div>
+<div class="who">林小姐，42 歲，行銷主管</div>
+<p>近半年躺下去腦子停不下來，要一個多小時才睡著；睡著後容易被聲音驚醒，心跳快。白天口苦、胸口悶、肩頸緊，脾氣急。偶爾吃同事給的 zolpidem 半顆。舌紅苔薄黃，脈弦。</p>
+<p class="small">你的直覺：實證，柴胡加龍骨牡蠣湯。這本書要問的是：她是哪一種失眠？有沒有東西會讓她慢性化？</p>
+</div>
+
+<div class="box case" id="caseB"><div class="bt">個案 B</div>
+<div class="who">陳伯伯，72 歲，退休</div>
+<p>晚上八點半就上床「養神」，凌晨兩三點醒來就再也睡不著，在床上躺到六點。白天午睡一個半小時，看電視也會打盹。吃 zolpidem 10 mg 五年，想停但「一停就整晚沒睡」。乏力、怕冷、食慾普通。舌淡胖，脈沉細。</p>
+<p class="small">你的直覺：虛證，要補——但你說過虛證怎麼補都效果差。這本書會給你一個可能的原因。</p>
+</div>
+
+<div class="box case" id="caseC"><div class="bt">個案 C</div>
+<div class="who">王太太，54 歲，停經一年</div>
+<p>入睡還可以，但下半夜三四點醒來好幾次，常常是熱醒、流汗。最近說晚上躺著小腿「怪怪的、想動」，起來走一走就好。先生說她會打鼾。夢很多，醒來很累。</p>
+<p class="small">這是「下半夜醒」的典型。她身上至少藏著三個需要先排除的東西。</p>
+</div>
+
+<div class="box say"><div class="bt">先講結論 · 整本書的五句話</div>
+<ol style="margin:.3em 0 0 1.1em;padding:0">
+<li>失眠＝<b>抱怨</b>＋<b>有機會睡卻睡不好</b>＋<b>白天受影響</b>。三者缺一就不是失眠障礙。</li>
+<li>急性失眠多半跟誘因有關、會自己好；<b>變成慢性的關鍵是「維持因子」</b>（在床上躺太久、補眠、怕睡不著），而不是當初的誘因。</li>
+<li>所以慢性失眠的第一線治療是 <b>CBT-I</b>，它專門拆維持因子。藥物主要是把當晚的清醒訊號壓下來；中藥作用在哪一層，目前沒有研究直接回答 <span class="ev H">假說</span>。</li>
+<li>「下半夜醒」要先排除<b>酒精、憂鬱、夜尿、呼吸中止、熱潮紅、不寧腿</b>；「做夢會動手動腳」是另一種病，不是失眠。</li>
+<li>病人怕復發是有道理的：停藥後一部分人真的會再失眠。但研究顯示，<b>有醫師督導、按計畫逐步減量</b>的人，停得掉也停得住的比例明顯較高（第 8 章）。</li>
+</ol></div>
+</section>
+
+<div class="partbanner"><div class="pk">PART I · 第一部</div><h2>睡眠是怎麼開關的</h2><p>先不談病。先搞懂一個正常人為什麼晚上會想睡、早上會醒、半夜為什麼偶爾醒一下又睡回去。後面所有分類、藥物、減藥，都是在這張圖上動手腳。</p></div>
+
+<section class="ch" id="ch1" data-n="01" data-t="兩股力量和一個開關" data-part="第一部　睡眠生理">
+<div class="opener"><div class="num">1</div><div><div class="lab">CHAPTER 1 · PHYSIOLOGY</div><h2>兩股力量和一個開關</h2><div class="q">為什麼累了不一定睡得著？為什麼老人家天沒亮就醒？</div></div></div>
+
+<p class="lead">把睡眠想成一扇門。門後面有兩股力量在推：一股是「醒太久了，累積的睡意」，一股是「生理時鐘說現在是晚上」。門本身是一個開關，平常只有「開」或「關」兩種狀態。</p>
+
+<h3><span class="tag">PROCESS S</span>第一股力量：睡眠壓力（像沙漏）</h3>
+<p>醒著的每一小時，腦內都在累積睡意，睡著後再慢慢清掉，這叫 <span class="en">Homeostatic sleep drive</span>（恆定睡眠驅力，教科書常寫 Process S）。目前最常被討論的分子之一是 <b>adenosine（腺苷）</b>，它隨清醒時間在細胞外累積；咖啡因之所以提神，被認為是擋住了 adenosine A2a 受體 <span class="ev B">動物研究</span><sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。</p>
+<div class="box tip"><div class="bt">小知識 · 午睡為什麼會偷走晚上的睡意</div>沙漏只有一個。白天睡一個半小時，等於提前把沙子漏掉一部分，晚上上床時壓力就不夠。這是後面「睡眠限制治療」能成立的生理基礎。</div>
+
+<h3><span class="tag">PROCESS C</span>第二股力量：生理時鐘（像潮汐）</h3>
+<p>下視丘的 <span class="en">Suprachiasmatic nucleus, SCN</span>（視交叉上核）大約以 24 小時為週期自己振盪，靠眼睛裡含 melanopsin 的感光神經節細胞接收光線來校正 <span class="ev B">基礎研究</span><sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。它不直接讓你睡，而是決定「門檻高低」：傍晚時鐘的清醒訊號最強（這也是為什麼晚飯後反而有精神），清晨四五點最弱。</p>
+<p>年紀大了，這個潮汐常常整個往前移，變成傍晚就想睡、清晨就醒，臨床叫 <span class="en">Advanced sleep phase</span>（睡眠相位前移），在老年人較常見 <span class="ev C">綜述</span><sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。夜間褪黑激素的分泌高峰在長者也明顯較低 <span class="ev C">綜述</span><sup class="r"><a href="#ref-3" title="Auld F, Maschauer EL, Morrison I, Skene DJ, Riha RL. Evidence for the efficacy of melatonin in the treatment of primary ">3</a></sup>。</p>
+
+<h3><span class="tag">ALLOSTATIC DRIVE</span>第三股力量：壓力與警覺</h3>
+<p>Saper 等人在 <i>Neuron</i> 的綜述把第三種影響叫 <span class="en">Allostatic drive</span>：遇到威脅、飢餓、壓力時，大腦會強行把人留在清醒狀態 <sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。這股力量對「失眠」最關鍵，後面會一直出現。</p>
+
+<h3><span class="tag">THE FLIP-FLOP SWITCH</span>開關：兩群互相壓制的神經元</h3>
+<p>清醒那一邊是一整套 <span class="en">Ascending arousal system</span>（上行網狀激活系統）：藍斑核的正腎上腺素、背側縫核的血清素、結節乳頭核的組織胺、還有乙醯膽鹼與麩胺酸神經元。睡眠那一邊主要是前視丘下部的 <b>VLPO</b> 與 <b>MnPO</b>，用 GABA 和 galanin 去抑制清醒中樞。重點是：<mark>清醒中樞也會反過來抑制 VLPO</mark>。兩邊互相壓制，就像電子學的 flip-flop 開關，所以人通常是「睡著」或「醒著」，不太會長時間卡在中間 <span class="ev B">動物與人類病理</span><sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。</p>
+
+<figure id="fig-switch">
+<svg viewBox="0 0 760 330" font-family="Noto Sans TC" font-size="13">
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2c5d9c"/></marker>
+<marker id="bl" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><rect x="3" y="0" width="3" height="10" fill="#a8412c"/></marker></defs>
+<rect x="20" y="40" width="300" height="250" rx="18" fill="#fdf3dc" stroke="#c9962e"/>
+<text x="170" y="66" text-anchor="middle" font-weight="700" fill="#8a6418">清醒中樞（油門）</text>
+<g id="sw-arousal">
+<g data-node="LC"><circle cx="80" cy="120" r="30" fill="#fff" stroke="#c9962e" stroke-width="2"/><text x="80" y="116" text-anchor="middle" font-weight="700">LC</text><text x="80" y="133" text-anchor="middle" font-size="11">正腎上腺素</text></g>
+<g data-node="TMN"><circle cx="170" cy="105" r="30" fill="#fff" stroke="#c9962e" stroke-width="2"/><text x="170" y="101" text-anchor="middle" font-weight="700">TMN</text><text x="170" y="118" text-anchor="middle" font-size="11">組織胺</text></g>
+<g data-node="DR"><circle cx="260" cy="120" r="30" fill="#fff" stroke="#c9962e" stroke-width="2"/><text x="260" y="116" text-anchor="middle" font-weight="700">DR</text><text x="260" y="133" text-anchor="middle" font-size="11">血清素</text></g>
+<g data-node="ACh"><circle cx="110" cy="210" r="30" fill="#fff" stroke="#c9962e" stroke-width="2"/><text x="110" y="206" text-anchor="middle" font-weight="700">LDT/PPT</text><text x="110" y="223" text-anchor="middle" font-size="11">乙醯膽鹼</text></g>
+<g data-node="ORX"><rect x="180" y="180" width="120" height="60" rx="12" fill="#c9962e"/><text x="240" y="205" text-anchor="middle" font-weight="700" fill="#fff">Orexin 神經元</text><text x="240" y="224" text-anchor="middle" font-size="11" fill="#fff">外側下視丘・穩定器</text></g>
+</g>
+<rect x="440" y="40" width="300" height="250" rx="18" fill="#e6eef9" stroke="#2c5d9c"/>
+<text x="590" y="66" text-anchor="middle" font-weight="700" fill="#2c5d9c">睡眠中樞（煞車）</text>
+<g data-node="VLPO"><rect x="500" y="110" width="180" height="70" rx="14" fill="#2c5d9c"/><text x="590" y="140" text-anchor="middle" font-weight="700" fill="#fff">VLPO・MnPO</text><text x="590" y="160" text-anchor="middle" font-size="11" fill="#fff">GABA・galanin</text></g>
+<g data-node="SCN"><rect x="500" y="205" width="180" height="50" rx="12" fill="#fff" stroke="#2c5d9c" stroke-width="2"/><text x="590" y="226" text-anchor="middle" font-weight="700" fill="#2c5d9c">SCN 生理時鐘</text><text x="590" y="243" text-anchor="middle" font-size="11">melatonin 受體 MT1/MT2</text></g>
+<path d="M330 135 C 390 120, 420 125, 495 135" stroke="#a8412c" stroke-width="3" fill="none" marker-end="url(#bl)"/>
+<path d="M495 160 C 420 175, 390 175, 330 165" stroke="#a8412c" stroke-width="3" fill="none" marker-end="url(#bl)"/>
+<text x="410" y="112" text-anchor="middle" font-size="11.5" fill="#a8412c">清醒時壓住煞車</text>
+<text x="410" y="195" text-anchor="middle" font-size="11.5" fill="#a8412c">睡著時壓住油門</text>
+<text x="380" y="315" text-anchor="middle" font-size="11.5" fill="#46506a">紅色 ┤ = 抑制。兩邊互相壓制 → 開關只有「開」與「關」</text>
+</svg>
+<figcaption><b>圖 1-1　睡眠–清醒的 flip-flop 開關。</b>依 Saper 等（2010）的模型自行重繪的簡化示意，省略多數投射。第 7 章會在這張圖上標出每一類安眠藥作用的位置。</figcaption>
+</figure>
+
+<h4>Orexin：開關上的「穩定器」</h4>
+<p>外側下視丘的 <b>orexin</b>（又名 hypocretin）神經元在 1998 年被發現，最初以為只跟食慾有關，後來發現缺乏 orexin 會造成猝睡症（narcolepsy）<sup class="r"><a href="#ref-4" title="Sakurai T. The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness. Nat Rev Neurosci. 2007;8(3):171">4</a></sup>。它的工作是<mark>把清醒中樞維持在穩定的「開」</mark>，讓人白天可以長時間清醒。orexin 神經元同時接收邊緣系統（情緒）與血糖、leptin、ghrelin 等代謝訊號 <sup class="r"><a href="#ref-4" title="Sakurai T. The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness. Nat Rev Neurosci. 2007;8(3):171">4</a></sup>，所以餓、怕、興奮的時候特別難睡。</p>
+<div class="box tip"><div class="bt">小知識 · 為什麼 orexin 藥被禁用於猝睡症</div>猝睡症的人本來就缺 orexin，開關不穩，會在清醒時突然插入 REM 片段（猝倒、睡眠癱瘓、入睡幻覺）<sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。再用藥擋掉剩下的 orexin，等於雪上加霜，所以這類藥禁用於猝睡症 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</div>
+
+<h3><span class="tag">THE STRESS PICTURE</span>壓力性失眠：油門和煞車同時踩</h3>
+<p>Saper 的綜述引用了一個很好懂的大鼠實驗：把公鼠在睡覺時段放進另一隻公鼠剛住過的籠子。牠入睡時間變成兩倍，後面幾個小時只睡了約 50%（平常是 70–80%）。解剖發現，<mark>睡眠中樞 VLPO 和清醒中樞 LC、TMN 同時是活化的</mark>。作者的解讀是：睡眠壓力和生理時鐘照樣在推煞車，但壓力訊號同時在踩油門，兩邊都收到強刺激，誰也壓不過誰 <sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup> <span class="ev B">動物研究</span>。</p>
+<div class="box hyp"><div class="bt">假說 · 這張圖對中醫師的意義</div>這個「兩邊都被推到最大」的畫面，跟你門診看到的實證失眠很像：明明很累（煞車在推），卻睡不著、易驚醒（油門也在推）。<b>這是我的類比，不是研究結論</b>：柴胡加龍骨牡蠣湯一類方證的病人，或許有一部分就是這種油門過強的狀態。第 4 章談 hyperarousal 時會再回來。</div>
+
+<h3><span class="tag">ONE NIGHT</span>一夜的地圖：睡眠結構</h3>
+<p>睡著之後並不是一路平穩。正常成人大約每 90 分鐘走完一個循環：淺睡（N1、N2）→ 深睡（N3，慢波睡眠）→ REM（快速動眼期，多數生動的夢在這裡）。REM 約占睡眠時間 20% <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。深睡集中在前半夜，<mark>REM 越到後半夜越長</mark>。這就是為什麼「下半夜醒」和「夢多」常常一起出現：下半夜本來就是 REM 的主場。</p>
+
+<div class="widget" id="w-hypno">
+<div class="wt">互動 · 一夜睡眠結構</div>
+<h4>切換看看：年輕人、長者、睡前喝酒</h4>
+<div><button class="btn on" data-h="young">健康年輕成人</button><button class="btn" data-h="old">健康長者</button><button class="btn" data-h="alc">睡前喝酒</button></div>
+<svg id="hyp-svg" viewBox="0 0 760 230" font-family="Noto Sans TC" font-size="12"></svg>
+<div class="out" id="hyp-out"></div>
+<p class="small">示意圖，依一般睡眠生理教科書的典型形態繪製，非任何個別研究的數據。喝酒那一條依 Morin &amp; Benca（2012）「血中酒精下降時擾亂後半夜睡眠」的描述畫成 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</p>
+</div>
+
+<h3><span class="tag">SIMULATOR</span>把兩股力量放在一起：一夜模擬器</h3>
+<p>下面這個小模型用沙漏（睡眠壓力）與潮汐（生理時鐘決定的上下門檻）來算：壓力碰到上門檻就睡著，睡著後壓力下降到下門檻就醒。你可以調上床時間、午睡、傍晚咖啡、相位前移，看看陳伯伯那種作息會發生什麼事。</p>
+
+<div class="widget" id="w-sim">
+<div class="wt">互動 · 一夜模擬器（教學用雙歷程模型）</div>
+<div class="slider"><span>起床時間</span><input type="range" id="s-wake" min="5" max="9" step="0.5" value="7"><output id="o-wake"></output></div>
+<div class="slider"><span>上床時間</span><input type="range" id="s-bed" min="20" max="25" step="0.5" value="23"><output id="o-bed"></output></div>
+<div class="slider"><span>下午午睡</span><input type="range" id="s-nap" min="0" max="120" step="10" value="0"><output id="o-nap"></output></div>
+<div class="slider"><span>生理時鐘前移</span><input type="range" id="s-adv" min="0" max="3" step="0.5" value="0"><output id="o-adv"></output></div>
+<div><label class="small"><input type="checkbox" id="s-caf"> 下午四點後喝咖啡</label>
+<span style="margin-left:14px"></span>
+<button class="btn" id="preset-b">陳伯伯的作息</button><button class="btn" id="preset-b2">陳伯伯調整後</button><button class="btn" id="preset-r">重設</button></div>
+<svg id="sim-svg" viewBox="0 0 760 270" font-family="Noto Sans TC" font-size="11.5"></svg>
+<div class="out" id="sim-out"></div>
+<p class="small">模型參數取自經典雙歷程模型的常用設定並為教學微調。它只示範方向，不能預測任何真實病人的分鐘數，入睡時間超過 90 分鐘時會被誇大。</p>
+</div>
+
+<div class="box classic"><div class="bt">中醫觀點 · 對照閱讀</div>
+<div class="yuan">夫衛氣者，晝日常行於陽，夜行於陰，故陽氣盡則臥，陰氣盡則寤。</div>
+<div class="yan">——《靈樞·大惑論》<br>《內經》把寤寐描述成衛氣在陰陽之間的出入，有固定的晝夜節律。拿現代生理來對照，它同時涵蓋了「時鐘」與「壓力」兩種意思，但兩者並不是同一套理論，不要直接畫等號 <span class="ev T">中醫觀點</span>。比較值得注意的是《靈樞·營衛生會》說老人「晝不精，夜不瞑」：白天沒精神、晚上睡不好，兩件事是一起描述的。現代的看法也一樣，<b>白天的狀態和晚上的睡眠互相牽動</b>。第 9 章會細讀。</div></div>
+
+<h3><span class="tag">CASE CHECK</span>回到三位病人</h3>
+<div class="two">
+<div class="pane"><h5>陳伯伯（B）</h5>八點半上床時睡眠壓力還不夠（白天午睡、看電視打盹），生理時鐘又因年紀往前移。在模擬器按「陳伯伯的作息」會看到兩件事：躺很久才睡著、清晨提早醒。再按「調整後」（十點半上床、不午睡），躺著醒的時間幾乎消失。真實的他醒得比模型更早，模型只示範方向。</div>
+<div class="pane"><h5>林小姐（A）</h5>她的沙漏和時鐘可能都正常，問題在第三股力量：壓力持續踩油門。這種人吃安眠藥常覺得「有睡著但不深」，跟油門煞車同時踩的畫面吻合 <span class="ev H">假說</span>。</div>
+</div>
+
+<h3><span class="tag">SELF-CHECK</span>自我檢查</h3>
+<details class="q"><summary>為什麼「早點上床多躺一下」對失眠的人常常有反效果？</summary><div class="a">上床時睡眠壓力還沒碰到門檻，只會躺在床上醒著，而且大腦會學到「床＝清醒的地方」。Spielman 把「在床上待太久」列為讓失眠持續的重要因子之一 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。</div></details>
+<details class="q"><summary>orexin 拮抗劑和傳統安眠藥，在開關圖上作用的位置有什麼根本差別？</summary><div class="a">傳統 BZD／Z-drug 是加強 GABA-A 受體的抑制作用，影響範圍廣；orexin 拮抗劑是把「穩定器」對清醒中樞的推力拿掉。第 7 章的藥物機轉圖會逐一點給你看。</div></details>
+<details class="q"><summary>下半夜醒來的人說「整晚都在做夢」，生理上可能是怎麼回事？</summary><div class="a">REM 本來就集中在後半夜。若 REM 期間反覆微覺醒，夢的內容比較容易被記得，也可能被當成「沒睡」。Riemann 稱之為 REM sleep instability，目前仍是假說 <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。</div></details>
+</section>
+
+<div class="partbanner"><div class="pk">PART II · 第二部</div><h2>西醫怎麼看失眠</h2><p>定義、分類、機轉、評估、行為治療、藥物、減藥。每一章都會先問「這個東西在診間能幫你做什麼決定」，再談證據。</p></div>
+
+<section class="ch" id="ch2" data-n="02" data-t="失眠到底是什麼" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">2</div><div><div class="lab">CHAPTER 2 · DEFINITION</div><h2>失眠到底是什麼</h2><div class="q">睡得少不等於失眠；睡得夠也可能是失眠。</div></div></div>
+
+<p class="lead">現代定義有三根柱子，少一根就不算 <span class="en">Insomnia disorder</span>（失眠障礙）。</p>
+
+<figure>
+<svg viewBox="0 0 760 250" font-family="Noto Sans TC" font-size="14">
+<rect x="40" y="200" width="680" height="22" rx="4" fill="#1c2740"/>
+<text x="380" y="216" fill="#fff" text-anchor="middle" font-size="13">失眠障礙 Insomnia disorder</text>
+<g><rect x="80" y="40" width="160" height="160" fill="#2c5d9c" rx="6"/><text x="160" y="85" fill="#fff" text-anchor="middle" font-weight="700" font-size="16">① 抱怨</text><text x="160" y="112" fill="#fff" text-anchor="middle" font-size="12.5">入睡難・睡不久</text><text x="160" y="130" fill="#fff" text-anchor="middle" font-size="12.5">太早醒・睡不飽</text><text x="160" y="160" fill="#dfe8f5" text-anchor="middle" font-size="11.5">病人主觀不滿意</text></g>
+<g><rect x="300" y="40" width="160" height="160" fill="#c9962e" rx="6"/><text x="380" y="85" fill="#fff" text-anchor="middle" font-weight="700" font-size="16">② 有機會睡</text><text x="380" y="112" fill="#fff" text-anchor="middle" font-size="12.5">環境與時間都允許</text><text x="380" y="130" fill="#fff" text-anchor="middle" font-size="12.5">卻還是睡不好</text><text x="380" y="160" fill="#fff6e0" text-anchor="middle" font-size="11.5">排除「沒時間睡」</text></g>
+<g><rect x="520" y="40" width="160" height="160" fill="#a8412c" rx="6"/><text x="600" y="85" fill="#fff" text-anchor="middle" font-weight="700" font-size="16">③ 白天受影響</text><text x="600" y="112" fill="#fff" text-anchor="middle" font-size="12.5">疲倦・專注差</text><text x="600" y="130" fill="#fff" text-anchor="middle" font-size="12.5">情緒・工作表現</text><text x="600" y="160" fill="#f6e1d9" text-anchor="middle" font-size="11.5">功能受損或困擾</text></g>
+</svg>
+<figcaption><b>圖 2-1　三根柱子。</b>依 ICSD-3 的核心條件整理 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。慢性型再加上「每週至少 3 次、持續至少 3 個月」<sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a>,<a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</figcaption>
+</figure>
+
+<p>這三個條件各自排除一群人：</p>
+<ul>
+<li><b>沒有抱怨</b>：天生睡五小時、白天精神很好的人，不是失眠。</li>
+<li><b>沒有機會睡</b>：輪班、照顧嬰兒、工作到半夜的人睡不夠，是「睡眠不足」，處理方式完全不同。</li>
+<li><b>白天沒受影響</b>：偶爾睡不好但白天正常，也還不需要一個疾病診斷。</li>
+</ul>
+<p>Sateia 在介紹 ICSD-3 時特別寫到：不是每個睡不好的人都需要一個獨立的失眠診斷。很多內科與精神疾病本來就會伴隨失眠，只有當失眠<mark>特別突出、或拖得比預期久，而且成為治療的焦點</mark>時，才另外下慢性失眠障礙這個診斷 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</p>
+
+<div class="box tip"><div class="bt">小知識 · 疲倦 ≠ 想睡</div>失眠的人幾乎都說累（fatigue），但多半<b>白天躺下也睡不著</b>。如果白天開會、開車會打瞌睡（sleepiness），反而要想到睡眠呼吸中止、猝睡症或藥物殘留 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。這個問題問一句就能分流。</div>
+
+<h3><span class="tag">HOW COMMON</span>有多常見</h3>
+<figure>
+<svg viewBox="0 0 760 210" font-family="Noto Sans TC" font-size="13">
+<rect x="40" y="30" width="680" height="44" fill="#efe8da" rx="6"/><text x="56" y="58">對自己的睡眠不滿意</text><text x="700" y="58" text-anchor="end" font-family="JetBrains Mono" font-weight="600">≈ 25%</text>
+<rect x="40" y="86" width="420" height="44" fill="#c9962e" rx="6"/><text x="56" y="114" fill="#fff">有失眠症狀＋白天受影響</text><text x="450" y="114" text-anchor="end" fill="#fff" font-family="JetBrains Mono" font-weight="600">10–15%</text>
+<rect x="40" y="142" width="240" height="44" fill="#1c2740" rx="6"/><text x="56" y="170" fill="#fff">符合失眠障礙</text><text x="270" y="170" text-anchor="end" fill="#fff" font-family="JetBrains Mono" font-weight="600">6–10%</text>
+</svg>
+<figcaption><b>圖 2-2　成人失眠的三層盛行率。</b>數字來自 Morin &amp; Benca 2012 的整理 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup> <span class="ev A">多項流行病學</span>。NEJM 2024 的版本是約 10% 符合診斷、另有 15–20% 偶發症狀 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。台灣一篇文獻回顧引用 2017 年調查的慢性失眠盛行率為 11.3% <sup class="r"><a href="#ref-9" title="〈柴胡加龍骨牡蠣湯在失眠之應用文獻回顧〉，華藝線上圖書館摘要（引用台灣慢性失眠盛行率 11.3% 與 2002 年健保資料 12.4%）。">9</a></sup> <span class="ev C">二手引用</span>。女性約為男性的兩倍，並隨年齡上升 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</figcaption>
+</figure>
+
+<h3><span class="tag">SUBJECTIVE vs OBJECTIVE</span>病人說的睡眠，和儀器量的睡眠不一樣</h3>
+<p>這一點會一直影響你怎麼解讀病人的話。自從有 PSG（多導睡眠檢查）以來，研究一再發現：慢性失眠的人跟好睡的人比，客觀總睡眠時間大約只少 30–60 分鐘，入睡稍慢、夜醒稍多；但病人主觀常覺得比正常少了兩三個小時 <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。失眠的人傾向<b>高估</b>入睡時間與夜醒時間、<b>低估</b>總睡眠時間 <sup class="r"><a href="#ref-10" title="Vgontzas AN, Fernandez-Mendoza J, Liao D, Bixler EO. Insomnia with objective short sleep duration: the most biologically">10</a></sup>。</p>
+<p>這不是病人誇大。Vgontzas 等人提出可以把慢性失眠分成兩種表型 <span class="ev B">多項觀察性研究</span><sup class="r"><a href="#ref-10" title="Vgontzas AN, Fernandez-Mendoza J, Liao D, Bixler EO. Insomnia with objective short sleep duration: the most biologically">10</a></sup>：</p>
+<div class="two">
+<div class="pane"><h5>客觀睡眠也短（PSG &lt; 6 小時）</h5>壓力系統兩條路（HPA 軸、交感神經）都活化；與高血壓、糖尿病、認知受損、死亡率上升相關；病程比較不會自己好。作者稱為「生物學上最嚴重的表型」。</div>
+<div class="pane"><h5>客觀睡眠正常</h5>有認知情緒層面的過度警覺與「睡眠知覺錯誤」，但沒有壓力系統活化或心血管代謝併發症；比較容易緩解。</div>
+</div>
+<div class="box hyp"><div class="bt">假說 · 作者自己的推測</div>Vgontzas 等人推測：客觀短睡型可能以生物因素為主，對「生物性治療」反應較好；客觀睡眠正常型以心理因素為主，單靠心理治療就可能有效。他們明說這需要對照試驗驗證 <sup class="r"><a href="#ref-10" title="Vgontzas AN, Fernandez-Mendoza J, Liao D, Bixler EO. Insomnia with objective short sleep duration: the most biologically">10</a></sup>。我把這個假說記下來，第 12 章談「虛證補不動」時會用到。</div>
+
+<div class="box say"><div class="bt">在診間怎麼用</div>病人說「整晚沒睡」時，不必跟他爭。可以說：「很多失眠的人其實有睡著一部分，只是睡得很淺、腦子還在轉，所以醒來覺得沒睡。」這句話同時承認了他的痛苦，也為之後的睡眠日誌與行為治療鋪路。</div>
+</section>
+
+<section class="ch" id="ch3" data-n="03" data-t="分類：每一種分法在回答什麼問題" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">3</div><div><div class="lab">CHAPTER 3 · CLASSIFICATION</div><h2>分類：每一種分法在回答什麼問題</h2><div class="q">為什麼失眠要分「慢性」？「REM 失眠」到底存不存在？不寧腿算不算失眠？</div></div></div>
+
+<p class="lead">你上次說，分類看起來很重要，但不知道價值在哪。這章換個角度：<mark>每一種分類，都是為了回答一個臨床問題而發明的。</mark>知道它在回答什麼，就知道什麼時候該用它。</p>
+
+<div class="tw"><table>
+<tr><th>分類軸</th><th>分成什麼</th><th>它在回答的問題</th><th>臨床用途</th></tr>
+<tr><td><b>時間</b></td><td>短期 vs 慢性（3 個月、每週 3 次）</td><td>這會自己好嗎？是誘因在作怪，還是已經自己會轉了？</td><td>決定是先處理誘因、短期用藥，還是要啟動 CBT-I</td></tr>
+<tr><td><b>原因</b></td><td>原發 vs 次發 → 已被廢棄，改稱「共病」</td><td>把另一個病治好，失眠會不會跟著好？</td><td>答案常是「不會完全好」，所以兩邊都要治</td></tr>
+<tr><td><b>症狀型態</b></td><td>入睡困難／睡眠維持困難／早醒／睡不飽</td><td>卡在晚上的哪一段？</td><td>選藥（半衰期）、鑑別其他睡眠疾病</td></tr>
+<tr><td><b>客觀表型</b></td><td>客觀短睡 vs 客觀睡眠正常</td><td>這個人的失眠有多「生物性」？</td><td>預後與共病風險（研究階段）</td></tr>
+<tr><td><b>人格情緒亞型</b></td><td>Blanken 的五型</td><td>能不能找到對不同治療反應不同的人？</td><td>個人化治療（研究階段）</td></tr>
+<tr><td><b>中醫證型</b></td><td>肝鬱化火、心脾兩虛、心腎不交…</td><td>這個人的整體失衡是哪一種？</td><td>選方用藥</td></tr>
+</table></div>
+
+<h3><span class="tag">AXIS 1 · TIME</span>為什麼失眠要分「慢性」？</h3>
+<p>這是你問得最好的一個問題。答案藏在<b>失眠的自然病程</b>裡。</p>
+<ul>
+<li>急性失眠通常跟生活事件、時差、輪班有關，<mark>誘因消失後多半會自己好</mark> <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</li>
+<li>但有一部分人，誘因已經不在了，失眠還在。追蹤研究發現，基線有失眠的人約 70% 一年後仍失眠，約 50% 三年後仍失眠 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup> <span class="ev A">多個世代研究</span>。NEJM 2024 的綜述說超過一半的病人病程是持續的 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</li>
+<li>Ellis 等人追蹤急性失眠的人，看誰會轉成慢性，結果支持 Spielman 的 3P 模型：決定會不會慢性化的，除了體質，還有「維持因子」，例如對睡眠的過度擔心、睡前的激動 <sup class="r"><a href="#ref-11" title="Ellis JG, Perlis ML, Espie CA, et al. The natural history of insomnia: predisposing, precipitating, coping, and perpetua">11</a></sup> <span class="ev B">前瞻世代</span>。</li>
+</ul>
+<p>所以「慢性」這個詞想表達的不是「很久」，而是：<mark>到了這個階段，失眠已經有自己的引擎</mark>。ICSD-3 的說法是，幾乎所有慢性失眠不論「原發」或「共病」，都伴隨會讓失眠持續下去的錯誤想法和行為，這些維持因子必須被處理，長期效果才會好 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</p>
+
+<div class="box key"><div class="bt">「慢性」這個標籤在臨床上的三個用途</div>
+<ol style="margin:.2em 0 0 1.1em;padding:0">
+<li><b>告訴你：只處理誘因不夠了。</b>壓力解決了、更年期過了，失眠不一定會走。</li>
+<li><b>告訴你：第一線換成 CBT-I。</b>各大指引都把 CBT-I 列為慢性失眠的第一線治療 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a>,<a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>；藥物則以短期為原則 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。</li>
+<li><b>給研究與保險一個共同語言。</b>3 個月與每週 3 次是共識切點，不是生物學上的斷崖。ICSD-3 在 3 個月之外另外加上了「每週至少 3 次」的頻率條件 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</li>
+</ol></div>
+
+<p>不到 3 個月的，ICSD-3 叫 <span class="en">Short-term insomnia disorder</span>（短期失眠障礙）；不符合前兩者的叫 <span class="en">Other insomnia disorder</span> <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</p>
+
+<h3><span class="tag">AXIS 2 · CAUSE</span>「原發 vs 次發」為什麼被廢掉</h3>
+<p>以前的分類很重視「原因」：ICD-10 把失眠分成「器質性」與「非器質性（心因性）」，ICSD-3 的作者直接稱這是「已經過時的區分」；ICSD-1、ICSD-2 與 DSM-IV 則用「原發 vs 次發」，原發型再細分為心理生理性、特發性、矛盾性（睡眠狀態知覺錯誤）<sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</p>
+<p>2014 年 ICSD-3 把這些全部合併成一個「慢性失眠障礙」，理由有四 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>：</p>
+<ol>
+<li>2005 年美國 NIH 共識會議指出，失眠與共病之間「誰導致誰」其實很不確定。</li>
+<li>把失眠叫「次發」，容易讓醫師以為治好主病就夠了，導致失眠<b>治療不足</b>。</li>
+<li>不論原發或共病，慢性失眠都有相同的維持因子，治療方式基本上一樣（CBT-I 和／或藥物）。</li>
+<li>「原發性失眠」這個診斷的信度與效度本身就受到質疑。</li>
+</ol>
+<p>作者也強調，合併不代表失眠沒有不同亞型，而是<mark>目前還沒有辦法可靠地區分，也還無法依此設計不同治療</mark> <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。DSM-5（2013）也走了同樣的方向，改用「insomnia disorder」一個名稱 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>，不再要求區分原發與次發 <span class="ev X">未逐字核對 DSM-5 原文</span>。</p>
+<div class="box tip"><div class="bt">小知識 · 這跟中醫有什麼關係</div>NEJM 2024 提到：治療共病（如憂鬱、慢性疼痛）可能減輕失眠，但通常不會讓失眠完全消失；反過來，治療失眠能減少憂鬱的發生與復發，對疼痛的效果則較小 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。所以你在處理更年期、憂鬱、疼痛病人的失眠時，<b>失眠本身值得單獨列為一個治療目標</b>。</div>
+
+<h3><span class="tag">AXIS 3 · SYMPTOM PATTERN</span>入睡難、睡不久、太早醒</h3>
+<p>這是最貼近病人語言的分法，用途有兩個：</p>
+<ul>
+<li><b>選藥</b>：短半衰期藥物主要縮短入睡時間；長半衰期藥物能減少夜醒但容易隔天殘留 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。NEJM 2024 建議入睡困難為主、年輕、短期使用時偏向 BZRA；睡眠維持困難或早醒為主、長者、有物質使用問題或睡眠呼吸中止時，偏向低劑量 doxepin 一類或 orexin 拮抗劑 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。第 7 章細講。</li>
+<li><b>提醒你鑑別</b>：同樣是「凌晨醒」，可能是相位前移、酒精、憂鬱、夜尿、呼吸中止、熱潮紅。下面的決策樹會帶你走一遍。</li>
+</ul>
+<p>但要知道它的限制：很多人是混合型，而且型態會隨時間改變。Spielman 1987 年的 35 位病人中，入睡加維持混合型最多（18 位），單純入睡困難最少（4 位）<sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。</p>
+
+<h3><span class="tag">AXIS 4–5 · RESEARCH</span>表型與亞型：未來的方向</h3>
+<p>Blanken 等人 2019 年在荷蘭睡眠登錄資料中，不用睡眠症狀、改用人格、情緒與生命史特質，找出五個穩定亞型，4.8 年後仍有 87% 維持同一型 <span class="ev B">大型觀察＋複製樣本</span><sup class="r"><a href="#ref-13" title="Blanken TF, Benjamins JS, Borsboom D, et al. Insomnia disorder subtypes derived from life history and traits of affect a">13</a></sup>：</p>
+<div class="tw"><table>
+<tr><th>亞型</th><th>特徵</th><th>研究中觀察到的差異</th></tr>
+<tr><td>1 高度苦惱</td><td>負面情緒、神經質、睡前激動都高</td><td>憂鬱與惡夢最多，精神共病最多</td></tr>
+<tr><td>2 中度苦惱、獎賞敏感</td><td>還能感受快樂</td><td>目前憂鬱 6%；CBT-I 的 ISI 改善約 −5.5 分</td></tr>
+<tr><td>3 中度苦惱、獎賞不敏感</td><td>快樂感變少</td><td>目前憂鬱 19%；BZD 對睡眠維持的幫助不明顯</td></tr>
+<tr><td>4 輕度苦惱、高反應性</td><td>對環境與生活事件反應大</td><td>CBT-I 的 ISI 改善只有約 −3.1 分，入睡項目無改善</td></tr>
+<tr><td>5 輕度苦惱、低反應性</td><td>情緒穩、反應低</td><td>—</td></tr>
+</table></div>
+<p class="small">作者建議：高睡前激動的 1、2、3 型可考慮加強放鬆；正向情緒低的 3、5 型可試增進正向情緒的介入；童年逆境較多的 1、4 型可能需要創傷治療而不只是 CBT-I <sup class="r"><a href="#ref-13" title="Blanken TF, Benjamins JS, Borsboom D, et al. Insomnia disorder subtypes derived from life history and traits of affect a">13</a></sup>。CBT-I 那段的樣本小且經過篩選，數字僅供參考。</p>
+<div class="box hyp"><div class="bt">假說 · 對中醫師的啟發</div>Blanken 的亞型是用「這個人是什麼樣的人」來分，而不是「他怎麼睡不好」。這跟中醫辨證看整體、看體質的邏輯比較接近。這是我的觀察，<b>目前沒有研究把中醫證型和這五型對應起來</b>。</div>
+
+<h3><span class="tag">WHAT IS NOT INSOMNIA</span>「REM 失眠」、不寧腿、做夢會打人：哪些不是失眠</h3>
+<p>你之前查到「REM 失眠」和「下半夜失眠」，又牽扯到不寧腿。這一段把它們理清楚。</p>
+<div class="box warn"><div class="bt">先說清楚</div><b>ICSD-3 與 DSM-5 裡沒有「REM 失眠」這個診斷。</b>你在 Osmosis 截圖看到的是 <span class="en">REM-related parasomnia</span>（REM 相關異睡症），屬於「異睡症」大類，跟失眠是不同章節的疾病 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。網路上說的「REM 失眠」，比較接近 Riemann 提出的「REM 睡眠不穩定」假說，用來解釋為什麼失眠的人覺得沒睡 <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。</div>
+
+<div class="tw"><table>
+<tr><th>名稱</th><th>ICSD-3 歸在哪</th><th>病人會怎麼說</th><th>關鍵線索</th><th>為什麼重要</th></tr>
+<tr><td><b>REM 睡眠行為障礙</b>（RBD）</td><td>異睡症 → REM 相關</td><td>「我老公睡覺會揮拳、踢腳、大叫」</td><td>把夢演出來；多見於長者；PSG 見 REM 期肌肉沒有放鬆</td><td>Sateia 指出 RBD 常源於嚴重的神經病理 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>；SSRI/SNRI 也可能誘發。<b>要轉神經科／睡眠中心</b></td></tr>
+<tr><td><b>惡夢障礙</b></td><td>異睡症 → REM 相關</td><td>「一直做惡夢嚇醒」</td><td>內容清楚可回憶的惡夢反覆出現</td><td>常與精神病理有關 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>；Blanken 第 1 型惡夢最多 <sup class="r"><a href="#ref-13" title="Blanken TF, Benjamins JS, Borsboom D, et al. Insomnia disorder subtypes derived from life history and traits of affect a">13</a></sup></td></tr>
+<tr><td><b>不寧腿症候群</b>（RLS）</td><td>睡眠相關動作障礙</td><td>「腳怪怪的、想動，起來走就好」</td><td>想動腳的衝動、休息時加重、活動緩解、傍晚夜間明顯</td><td>ICSD-3 要求必須造成困擾或睡眠障礙才下診斷 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>；抗組織胺會讓它惡化 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；gabapentinoid 是第一線用藥之一 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td></tr>
+<tr><td><b>睡眠呼吸中止</b>（OSA）</td><td>睡眠相關呼吸障礙</td><td>「我太太說我打呼很大聲、會停」</td><td>打鼾、目擊停止呼吸、白天想睡；STOP-Bang 篩檢</td><td>許多安眠藥會讓呼吸中止惡化 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup></td></tr>
+<tr><td><b>睡眠相位前移</b></td><td>晝夜節律障礙</td><td>「晚上八九點就撐不住，三四點就醒」</td><td>睡眠總長正常，只是整段往前</td><td>長者較常見 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；用藥逼他晚睡效果差，要調整光照與作息</td></tr>
+</table></div>
+
+<p>還有幾個常讓人在下半夜醒的原因，嚴格說是「失眠的原因」而不是另一種病，但必須先問：</p>
+<ul>
+<li><b>酒精</b>：睡前喝酒容易入睡，但血中濃度下降時會擾亂後半夜；長期飲酒造成的失眠，戒酒後也未必完全恢復 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</li>
+<li><b>藥物</b>：興奮劑、抗憂鬱劑、茶鹼類、鼻塞藥、利尿劑、類固醇、降壓藥都可能 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。利尿劑早上吃還是晚上吃，問一句就知道。</li>
+<li><b>更年期熱潮紅</b>：在圍停經期婦女，血管舒縮症狀可以同時是誘發因子和維持因子 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</li>
+<li><b>疼痛、胃食道逆流、頻尿</b>：NEJM 的評估表把它們列為要問的其他醫療症狀 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a>,<a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</li>
+<li><b>憂鬱</b>：失眠與焦慮憂鬱是雙向關係；失眠和疲倦也是憂鬱治療後最常殘留的症狀，且會提高憂鬱復發風險 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</li>
+</ul>
+
+<div class="widget tree" id="w-tree">
+<div class="wt">互動 · 主訴決策樹</div>
+<h4>病人說「睡不好」，從這裡開始</h4>
+<div id="tree-box"></div>
+<p class="small">教學用的思考順序，整理自 ICSD-3、Morin &amp; Benca 2012 與 NEJM 2024 的評估要點 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a>,<a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a>,<a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。它不是診斷工具，紅旗症狀請轉介。</p>
+</div>
+
+<h3><span class="tag">CASE CHECK</span>回到三位病人</h3>
+<div class="two">
+<div class="pane"><h5>王太太（C）</h5>她不能直接當成「下半夜醒的失眠」處理。至少要先問：熱潮紅頻率、腿的感覺（RLS 四個條件是否都符合）、打鼾與白天嗜睡（STOP-Bang）。這三樣若有，處理順序會完全不同。</div>
+<div class="pane"><h5>陳伯伯（B）</h5>總睡眠時間其實不算太短（約 8:30 睡到 2:30，再加上白天打盹），型態符合相位前移加上在床上待太久。這不是「腎虛睡不久」一句話能交代的。</div>
+</div>
+
+<details class="q"><summary>病人說「我做夢會動來動去，太太說我會打人」，你會怎麼分類？</summary><div class="a">這是 RBD 的典型描述，屬於 REM 相關異睡症，不是失眠。ICSD-3 指出 RBD 常與嚴重的神經病理有關，應轉介做 PSG 評估 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</div></details>
+<details class="q"><summary>為什麼 ICSD-3 要把「原發性失眠」和「次發性失眠」合併？</summary><div class="a">因果方向不確定；「次發」標籤容易造成治療不足；兩者的維持因子與治療方式相同；原發診斷的信效度不佳 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</div></details>
+<details class="q"><summary>「慢性失眠」的 3 個月切點是生物學上的界線嗎？</summary><div class="a">不是。它是共識切點，用來標示「誘因已不是主角、維持因子在推動」的階段，並讓臨床與研究有共同語言 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a>,<a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</div></details>
+</section>
+
+<section class="ch" id="ch4" data-n="04" data-t="為什麼會失眠：3P 與過度警覺" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">4</div><div><div class="lab">CHAPTER 4 · MECHANISMS</div><h2>為什麼會失眠：3P 與過度警覺</h2><div class="q">當初讓他睡不著的原因，往往不是現在讓他繼續睡不著的原因。</div></div></div>
+
+<p class="lead">如果整本書只能記一張圖，就是這一張。它是 Spielman 在 1980 年代提出的 3P 模型，到今天仍是理解慢性失眠最常用的框架 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a>,<a href="#ref-11" title="Ellis JG, Perlis ML, Espie CA, et al. The natural history of insomnia: predisposing, precipitating, coping, and perpetua">11</a></sup>。</p>
+
+<figure>
+<svg viewBox="0 0 760 330" font-family="Noto Sans TC" font-size="12.5">
+<line x1="60" y1="270" x2="740" y2="270" stroke="#1c2740"/>
+<line x1="60" y1="270" x2="60" y2="30" stroke="#1c2740"/>
+<text x="20" y="150" transform="rotate(-90 20 150)" text-anchor="middle" fill="#46506a">讓人睡不著的總力量</text>
+<line x1="60" y1="140" x2="740" y2="140" stroke="#a8412c" stroke-dasharray="6 5"/>
+<text x="736" y="132" text-anchor="end" fill="#a8412c" font-weight="700">失眠門檻</text>
+<!-- columns: pre, acute, early chronic, chronic -->
+<g>
+<rect x="100" y="210" width="100" height="60" fill="#c9962e"/>
+<text x="150" y="292" text-anchor="middle">發病前</text>
+</g>
+<g>
+<rect x="260" y="210" width="100" height="60" fill="#c9962e"/>
+<rect x="260" y="100" width="100" height="110" fill="#a8412c"/>
+<text x="310" y="292" text-anchor="middle">急性期</text>
+</g>
+<g>
+<rect x="420" y="210" width="100" height="60" fill="#c9962e"/>
+<rect x="420" y="170" width="100" height="40" fill="#a8412c"/>
+<rect x="420" y="105" width="100" height="65" fill="#2c5d9c"/>
+<text x="470" y="292" text-anchor="middle">早期慢性</text>
+</g>
+<g>
+<rect x="580" y="210" width="100" height="60" fill="#c9962e"/>
+<rect x="580" y="90" width="100" height="120" fill="#2c5d9c"/>
+<text x="630" y="292" text-anchor="middle">慢性期</text>
+</g>
+<g font-size="12">
+<rect x="100" y="306" width="14" height="12" fill="#c9962e"/><text x="120" y="317">素質因子 Predisposing</text>
+<rect x="290" y="306" width="14" height="12" fill="#a8412c"/><text x="310" y="317">誘發因子 Precipitating</text>
+<rect x="480" y="306" width="14" height="12" fill="#2c5d9c"/><text x="500" y="317">維持因子 Perpetuating</text>
+</g>
+</svg>
+<figcaption><b>圖 4-1　Spielman 3P 模型（概念示意，自行重繪）。</b>慢性期時，誘發因子可能已經消失，但維持因子自己就足以把人推過門檻。依 Morin &amp; Benca 2012 與 Ellis 等 2021 的描述繪製 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a>,<a href="#ref-11" title="Ellis JG, Perlis ML, Espie CA, et al. The natural history of insomnia: predisposing, precipitating, coping, and perpetua">11</a></sup>。柱高沒有數值意義。</figcaption>
+</figure>
+
+<div class="tw"><table class="cmp">
+<tr><th>層次</th><th>例子</th><th>誰在處理它</th></tr>
+<tr><td><b>素質</b><br><span class="small">讓人比較容易失眠的底子</span></td><td>年齡、女性、天生容易警覺、焦慮型人格、家族或個人失眠史、血清素轉運體基因短型等位基因 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup></td><td>難以改變；中醫的「體質調理」可能落在這層 <span class="ev H">假說</span></td></tr>
+<tr><td><b>誘發</b><br><span class="small">點燃的那根火柴</span></td><td>生病、分離、工作壓力、時差、輪班 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；圍停經的熱潮紅 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>處理誘因；短期用藥；中醫的祛邪</td></tr>
+<tr><td><b>維持</b><br><span class="small">火柴熄了，火還在燒</span></td><td>不規律作息、怕睡不著 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；早上補眠、白天小睡 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>；在床上待太久 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>；睡前過度激動、對睡眠的錯誤信念 <sup class="r"><a href="#ref-11" title="Ellis JG, Perlis ML, Espie CA, et al. The natural history of insomnia: predisposing, precipitating, coping, and perpetua">11</a></sup></td><td><b>CBT-I 的主戰場</b></td></tr>
+</table></div>
+
+<div class="box say"><div class="bt">最反直覺的一點</div>維持因子幾乎都是<b>病人為了應付失眠而做的事</b>。NEJM 的綜述說得很直接：早上睡晚一點、白天補個覺，一開始確實幫助病人撐過去，但時間一久就讓失眠更嚴重，變成需要治療的目標 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。Spielman 稱提早上床、晚起、午睡為「短視的策略」<sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。</div>
+
+<h3><span class="tag">HYPERAROUSAL</span>過度警覺：失眠的人腦子其實「熱機」中</h3>
+<p>NEJM 2024 把心理與生理上的過度警覺列為失眠障礙的核心特徵 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。支持它的發現包括 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>：</p>
+<ul>
+<li>自律神經較活躍：心跳、代謝率、體溫、HPA 軸活性、正腎上腺素分泌都較高；有研究發現夜間血壓也較高。</li>
+<li>睡眠中的腦波，快波（beta、gamma）功率較高，被認為反映較多的認知活動。</li>
+<li>PET 顯示睡眠與清醒時腦部葡萄糖代謝都較高，且入睡時清醒相關腦區的代謝下降幅度較小。</li>
+</ul>
+<div class="box warn"><div class="bt">注意 · 因果方向</div>Morin &amp; Benca 提醒，這些研究多為相關性，觀察到的異常可能是失眠、睡眠不足或共病（如憂鬱）的<b>結果</b>，而不一定是原因 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</div>
+
+<p>把第 1 章的開關圖拿來看：過度警覺就是油門一直被踩著。Saper 的綜述提到，壓力會透過 CRF 去刺激 orexin 神經元 <span class="ev B">小鼠</span>，杏仁核等邊緣區域也會投射到清醒中樞 <sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。這也是 orexin 拮抗劑的設計思路：<mark>不去加強煞車，而是把一部分油門拿掉</mark>。</p>
+
+<h3><span class="tag">CONDITIONING</span>床變成了「清醒的地方」</h3>
+<p>反覆在床上翻來覆去、看手機、擔心明天，大腦就會學會「上床＝開始焦慮」。很多病人在沙發上看電視會打瞌睡，一走進臥室就清醒，就是這個原因。刺激控制法（只在想睡時上床、睡不著就離床、床只用來睡覺）就是要把這個連結重新訓練回來 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a>,<a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</p>
+
+<h3><span class="tag">REM INSTABILITY</span>為什麼覺得「整晚沒睡」：REM 不穩定假說</h3>
+<p>Riemann 等人在 2012 年提出：REM 是睡眠中腦部最「醒」的狀態，在本來就過度警覺的人身上特別容易被微覺醒打斷。再加上睡前的擔心會延續到 REM 期的心智活動裡，病人醒來時會把這段記成「我一直在想事情，沒睡」<span class="ev H">假說</span> <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。因為 REM 集中在後半夜，作者說這個假說主要適用於<b>睡眠維持型</b>失眠，而不是入睡困難 <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。2024 年同一團隊的更新仍用「可能可以解釋」的語氣 <sup class="r"><a href="#ref-14" title="Riemann D, Dressle RJ, Benz F, Spiegelhalder K. Chronic insomnia, REM sleep instability and emotional dysregulation: a p">14</a></sup>。</p>
+<div class="box tip"><div class="bt">小知識 · 這可能解釋了某些藥的受歡迎程度</div>Riemann 推測，trazodone、trimipramine、mirtazapine 這類不太壓抑 REM 的鎮靜性抗憂鬱劑之所以在臨床上被廣泛使用，可能跟它們「穩定 REM」有關 <sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。這只是推測，但它讓你理解：同樣叫「助眠」，各類藥物動的地方不一樣。</div>
+
+<div class="box hyp" id="hyp-layers"><div class="bt">假說 · 這一章最重要的推論（本讀本提出）</div>
+<p>把 3P 模型和你的臨床經驗疊在一起，可以得到一個可以檢驗的猜想：</p>
+<ul style="margin:.2em 0 0 1.1em;padding:0">
+<li>實證病人（如林小姐）的主問題常在<b>誘發層</b>與<b>過度警覺</b>：清熱、疏肝、重鎮的方子去處理正在燒的那團火，所以「下去有機會中獎」。</li>
+<li>虛證病人（如陳伯伯）往往病程長、年紀大、白天沒力而在床上躺更久，<b>維持層</b>很厚。補法若作用在素質層，維持因子沒被拆掉，就會出現「補了，人比較有精神，但睡眠沒改善」。</li>
+</ul>
+<p style="margin-top:.5em">目前沒有任何研究直接檢驗這件事。它的用處是告訴你：<b>虛證補不動時，不一定是方子不對，可能是要補的不只是方子。</b>第 12 章展開。</p></div>
+
+<h3><span class="tag">CASE CHECK</span>回到三位病人</h3>
+<div class="two">
+<div class="pane"><h5>林小姐（A）</h5>素質：焦慮型、主管職。誘發：近半年工作壓力。維持：還不多，但開始「怕睡不著」並偶爾吃 zolpidem。<b>她正站在急性轉慢性的路口</b>，這是最值得積極處理的時機。</div>
+<div class="pane"><h5>陳伯伯（B）</h5>誘發因子早已模糊，維持因子一大堆：太早上床、醒了躺著不起、白天午睡加打盹、對藥物的依賴與對停藥的恐懼。</div>
+</div>
+</section>
+
+<section class="ch" id="ch5" data-n="05" data-t="評估：24 小時、日誌與量表" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">5</div><div><div class="lab">CHAPTER 5 · ASSESSMENT</div><h2>評估：24 小時、日誌與量表</h2><div class="q">問診只問晚上，會漏掉一半的答案。</div></div></div>
+
+<p class="lead">失眠的診斷主要靠臨床症狀而不是檢查 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。NEJM 2024 建議用「24 小時病史」來問：失眠表現在晚上，但會影響白天，也會被白天影響 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</p>
+
+<figure>
+<svg viewBox="0 0 760 360" font-family="Noto Sans TC" font-size="12">
+<circle cx="380" cy="180" r="140" fill="none" stroke="#d9cfbd" stroke-width="28"/>
+<path d="M380 40 A140 140 0 0 1 520 180" fill="none" stroke="#1c2740" stroke-width="28"/>
+<path d="M520 180 A140 140 0 0 1 380 320" fill="none" stroke="#1c2740" stroke-width="28" opacity=".8"/>
+<path d="M380 320 A140 140 0 0 1 240 180" fill="none" stroke="#c9962e" stroke-width="28"/>
+<path d="M240 180 A140 140 0 0 1 380 40" fill="none" stroke="#c9962e" stroke-width="28" opacity=".8"/>
+<text x="380" y="176" text-anchor="middle" font-family="Noto Serif TC" font-weight="900" font-size="20">24 小時</text>
+<text x="380" y="198" text-anchor="middle" fill="#46506a">問一整天，不只問晚上</text>
+<g font-size="12.5">
+<text x="540" y="70">上床時間、睡意程度</text><text x="540" y="88">睡前活動與心情</text>
+<text x="580" y="170">入睡要多久</text><text x="580" y="188">夜醒：幾次、多久、何時</text><text x="580" y="206">醒了做什麼</text>
+<text x="520" y="290">最後醒來的時間</text><text x="520" y="308">起床時間、起床難易</text><text x="520" y="326">早晨光照與活動</text>
+<text x="40" y="290">午睡、打瞌睡（次數、長短、情境）</text><text x="40" y="308">三餐與運動時間</text>
+<text x="40" y="160">工作、家庭、學校活動</text><text x="40" y="178">傍晚活動、光線、激動程度</text>
+</g>
+</svg>
+<figcaption><b>圖 5-1　24 小時評估。</b>依 NEJM 2024 Figure 1 的項目重新排版繪製 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</figcaption>
+</figure>
+
+<h3><span class="tag">CHECKLIST</span>問診清單</h3>
+<div class="tw"><table>
+<tr><th>要問的</th><th>為什麼</th></tr>
+<tr><td>上床、起床、午睡時間；週末差多少</td><td>找出在床上待太久與不規律作息（維持因子）</td></tr>
+<tr><td>入睡困難／夜醒／早醒／睡不飽；頻率、病程、誘因</td><td>分型與判斷急性或慢性</td></tr>
+<tr><td>白天受影響：因為沒睡好而取消或避免的活動</td><td>確認是否符合「白天受影響」這根柱子</td></tr>
+<tr><td>打鼾、白天嗜睡；晚上腿不舒服想動；睡覺時異常動作</td><td>篩檢 OSA、RLS、RBD <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td></tr>
+<tr><td>內科與精神病史</td><td>找共病（疼痛、逆流、頻尿、焦慮憂鬱）</td></tr>
+<tr><td>臥室環境：噪音、光線、溫度</td><td>環境因素</td></tr>
+<tr><td>酒、茶、咖啡、菸；運動</td><td>睡眠衛生</td></tr>
+<tr><td>處方藥、成藥、保健品；以前試過什麼、效果如何</td><td>藥物造成或加重失眠、依賴情形 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td></tr>
+</table></div>
+
+<h3><span class="tag">SLEEP DIARY</span>睡眠日誌：最便宜也最有用的工具</h3>
+<p>Morin &amp; Benca 建議至少記兩週 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；2023 歐洲指引把「臨床會談＋問卷＋睡眠日誌」列為 A 級建議 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。日誌記：上床時間、熄燈時間、估計多久睡著、夜醒次數與總時間、最後醒來時間、起床時間、白天小睡、用藥。</p>
+<p>有了日誌就能算 <b>睡眠效率</b>（Sleep efficiency, SE）＝ 實際睡著時間 ÷ 在床上的時間 × 100%。這個數字是第 6 章睡眠限制治療的方向盤。</p>
+<div class="box tip"><div class="bt">小知識 · 手環與 PSG 要不要做</div>2023 歐洲指引：腕動計（actigraphy）不建議例行用於失眠評估（C），但在鑑別診斷時有用（A）；PSG 用於懷疑其他睡眠疾病或治療無效的失眠（A）<sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。Morin &amp; Benca 也說 PSG 只在懷疑呼吸中止、動作障礙或異睡症時才需要 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</div>
+
+<div class="widget isi" id="w-isi">
+<div class="wt">互動 · 失眠嚴重度自評（ISI 概念版）</div>
+<h4>七個面向，各 0–4 分</h4>
+<div id="isi-items"></div>
+<div class="out" id="isi-out">請逐項選擇。</div>
+<p class="small">ISI（Insomnia Severity Index）由 Morin 發展，七個項目評估入睡、維持、早醒的嚴重度，以及對白天功能的干擾、旁人看得出來的程度、對睡眠的擔心與滿意度 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。分數解讀：0–7 無臨床意義的失眠、8–14 閾下、15–21 中度、22–28 重度；治療後下降 7 分算「反應」，總分低於 8 算「緩解」<sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。<b>本工具的題目為概念改寫，不是正式量表文字</b>，正式使用請取得授權版本。</p>
+</div>
+
+<h3><span class="tag">SCREENING</span>其他常用量表</h3>
+<ul>
+<li><b>PSQI</b>（匹茲堡睡眠品質指標）：19 題，評估整體睡眠品質，也可篩檢其他睡眠疾病 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</li>
+<li><b>STOP-Bang</b>：8 題，篩檢睡眠呼吸中止風險（打鼾、白天疲倦、目擊停止呼吸、高血壓、BMI、年齡、頸圍、男性）<sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</li>
+<li><b>IRLS</b>：10 題，評估不寧腿嚴重度，0–40 分 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</li>
+</ul>
+
+<div class="box warn"><div class="bt">什麼時候要轉介</div>
+<ul style="margin:.2em 0 0 1.1em;padding:0">
+<li>懷疑睡眠呼吸中止（大聲打鼾、目擊停止呼吸、白天開車會打瞌睡）</li>
+<li>睡覺時把夢演出來、會傷到自己或床伴（RBD）</li>
+<li>合併明顯憂鬱、有自傷或輕生念頭</li>
+<li>長期使用鎮靜安眠藥、想減藥：要與處方醫師共同規劃（第 8 章）</li>
+<li>孕婦、哺乳中、兒童與青少年、慢性病患者（心、肝、腎、呼吸疾病）：用藥與用中藥都要特別小心，請與主治醫師討論</li>
+<li>規則治療數月仍無改善：2023 歐洲指引建議此時考慮 PSG <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup></li>
+</ul></div>
+</section>
+
+<section class="ch" id="ch6" data-n="06" data-t="CBT-I：專拆維持因子的治療" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">6</div><div><div class="lab">CHAPTER 6 · BEHAVIOURAL TREATMENT</div><h2>CBT-I：專拆維持因子的治療</h2><div class="q">為什麼一個「不吃藥」的方法，會被所有指引排在第一位？</div></div></div>
+
+<p class="lead">CBT-I（Cognitive behavioral therapy for insomnia，失眠認知行為治療）通常由心理師在 4–8 次門診內完成 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。它被列為慢性失眠第一線治療，適用於各年齡成人，包括有共病的人，面對面或數位形式都可以（A）<sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。</p>
+
+<h3><span class="tag">COMPONENTS</span>五個零件，各拆一個維持因子</h3>
+<div class="tw"><table>
+<tr><th>零件</th><th>做法</th><th>拆的是哪個維持因子</th></tr>
+<tr><td><b>睡眠限制</b></td><td>把在床上的時間縮到接近實際睡著的時間，依睡眠效率每週調整 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>在床上待太久；增強睡眠壓力</td></tr>
+<tr><td><b>刺激控制</b></td><td>想睡才上床；睡不著就離床；床只用來睡覺（和性行為）；每天同一時間起床；不午睡 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>床與清醒的錯誤連結；作息不規律</td></tr>
+<tr><td><b>放鬆訓練</b></td><td>漸進式肌肉放鬆、意象訓練，需每天練幾週 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>生理過度警覺</td></tr>
+<tr><td><b>認知治療</b></td><td>用蘇格拉底式提問與行為實驗修正對睡眠的錯誤信念；矛盾意向法（故意試著保持清醒）<sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>怕睡不著、災難化想像</td></tr>
+<tr><td><b>睡眠衛生</b></td><td>飲食、運動、物質使用、環境的一般建議 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>單獨使用效果很小，是最低限度的介入 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup></td></tr>
+</table></div>
+<p class="small">Morin &amp; Benca 指出，縮短臥床時間的行為介入對改善睡眠連續性特別有效，認知策略則對減少心理困擾與錯誤信念較重要 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</p>
+
+<h3><span class="tag">EVIDENCE</span>效果有多大</h3>
+<div class="tw"><table>
+<tr><th>來源</th><th>結果</th><th>證據</th></tr>
+<tr><td>NEJM 2024 引用的統合分析</td><td>效果量：ISI 0.98、入睡時間 0.57、入睡後清醒時間 0.63、睡眠效率 0.71、總睡眠時間只有 0.16。約 60–70% 有反應，6–8 週後約 50% 緩解，40–45% 緩解維持 12 個月 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td><span class="ev A">A</span></td></tr>
+<tr><td>Trauer 2015 統合分析（20 篇 RCT，1162 人）</td><td>入睡時間少 19 分鐘、入睡後清醒時間少 26 分鐘、睡眠效率增加 9.9%；總睡眠時間增加 7.6 分鐘但未達統計顯著；效果在後續時間點維持 <sup class="r"><a href="#ref-16" title="Trauer JM, Qian MY, Doyle JS, Rajaratnam SMW, Cunnington D. Cognitive behavioral therapy for chronic insomnia: a systema">16</a></sup></td><td><span class="ev A">A</span></td></tr>
+<tr><td>Sivertsen 2006（長者，46 人）</td><td>CBT 在 6 週與 6 個月時，4 項指標中有 3 項優於 zopiclone；zopiclone 多數指標與安慰劑無差。PSG 睡眠效率 CBT 從 81.4% 升到 90.1%，zopiclone 從 82.3% 到 81.9% <sup class="r"><a href="#ref-17" title="Sivertsen B, Omvik S, Pallesen S, et al. Cognitive behavioral therapy vs zopiclone for treatment of chronic primary inso">17</a></sup></td><td><span class="ev B">B 小樣本</span></td></tr>
+</table></div>
+
+<div class="box tip"><div class="bt">小知識 · 為什麼總睡眠時間增加得最少</div>睡眠限制一開始會讓總睡眠時間持平甚至略減，等睡眠鞏固後才慢慢往上加；Morin &amp; Benca 提到 6 個月追蹤時總睡眠時間常超過 6.5 小時 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。對病人要先講清楚：<b>先睡得「紮實」，再睡得「久」</b>。早期的白天嗜睡是可預期的副作用，通常隨睡眠時間增加而緩解 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</div>
+
+<h3><span class="tag">SLEEP RESTRICTION</span>睡眠限制：Spielman 1987 的原始規則</h3>
+<p>Spielman 的前提是：在床上的時間過長，是讓慢性失眠持續的重要因子之一 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。他的做法 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>：</p>
+<ol>
+<li>用兩週睡眠日誌的平均睡著時間，當作一開始允許在床上的時間（最少不低於 4.5 小時）。</li>
+<li>每天算睡眠效率，取最近 5 天平均：<b>≥ 90%</b> → 提早 15 分鐘上床；<b>&lt; 85%</b> → 縮短到最近 5 天平均睡著時間；<b>85–90%</b> → 不變。</li>
+<li>除了規定的臥床時段，任何時間都不能躺下或小睡。</li>
+</ol>
+<p>35 位平均失眠 15.4 年的病人在 8 週後，入睡時間、總清醒時間、睡眠效率與主觀評估都顯著改善，平均 36 週追蹤時仍維持；作者也承認部分病人很難遵守 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。</p>
+
+<div class="widget" id="w-sr">
+<div class="wt">互動 · 睡眠效率與臥床窗口計算</div>
+<h4>輸入病人一週睡眠日誌的平均值</h4>
+<div class="slider"><span>平均在床上時間</span><input type="range" id="sr-tib" min="5" max="11" step="0.25" value="9.5"><output id="sr-tib-o"></output></div>
+<div class="slider"><span>平均實際睡著</span><input type="range" id="sr-tst" min="3" max="9" step="0.25" value="5.5"><output id="sr-tst-o"></output></div>
+<div class="slider"><span>想固定的起床時間</span><input type="range" id="sr-wake" min="5" max="8" step="0.5" value="6"><output id="sr-wake-o"></output></div>
+<div class="out" id="sr-out"></div>
+<p class="small">依 Spielman 1987 的規則計算 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。這是教學示範，實際執行需由受過訓練的人員評估與追蹤；需要開車或操作機械的人，在初期嗜睡階段要特別小心。</p>
+</div>
+
+<h3><span class="tag">IN YOUR CLINIC</span>中醫門診能做到哪裡</h3>
+<p>完整 CBT-I 需要時間與訓練。NEJM 2024 提到兩個務實的選項 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>：</p>
+<ul>
+<li><b>簡短行為治療（Brief behavioral treatment for insomnia）</b>：1–4 次，以睡眠調節的衛教加上刺激控制與睡眠限制為主。</li>
+<li><b>數位 CBT-I</b>：11 篇 RCT（1460 人）的統合分析顯示效果量 0.21–1.09，與面對面相近，追蹤 4–48 週仍維持；SHUTi 與 Sleepio 的證據最多。</li>
+</ul>
+<p>還有階梯式照護：第一層衛教、監測與自助；第二層數位或團體治療；第三層個別治療；藥物在每一層都只當短期輔助 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。2023 歐洲指引另外建議光照與運動可作為 CBT-I 的輔助（B）<sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。</p>
+
+<div class="box say"><div class="bt">本讀本建議 · 診間 10 分鐘版（非研究驗證的流程）</div>
+<ol style="margin:.2em 0 0 1.1em;padding:0">
+<li>第一次：發睡眠日誌，講沙漏與潮汐（第 1 章的圖可以直接給病人看）。</li>
+<li>第二次（1–2 週後）：一起算睡眠效率，訂起床時間與臥床窗口；交代「睡不著就離床」。</li>
+<li>之後每 1–2 週：依睡眠效率調整窗口 15 分鐘；同時開你的方子。</li>
+</ol>
+<p style="margin:.4em 0 0">這樣做的好處是，你的中藥和行為處方作用在不同的層次（第 4 章的假說），而且你會開始有日誌數據來判斷方子到底有沒有效。</p></div>
+
+<details class="q"><summary>病人說「我已經睡不夠了，你還叫我少躺」，你怎麼回答？</summary><div class="a">可以說：「你現在躺 9 個小時只睡 5 個半，等於每晚有 3 個多小時在床上醒著，床變成了練習清醒的地方。我們先把睡眠變紮實，再一點一點把時間加回來。」</div></details>
+</section>
+
+<section class="ch" id="ch7" data-n="07" data-t="藥物：哪一顆卡在哪個開關上" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">7</div><div><div class="lab">CHAPTER 7 · PHARMACOLOGY</div><h2>藥物：哪一顆卡在哪個開關上</h2><div class="q">哪一種比較強？orexin 新藥差在哪？GABA、褪黑激素到底扮演什麼角色？</div></div></div>
+
+<p class="lead">中醫師不開這些藥，但你的病人幾乎都在吃，或吃過。看懂它們，你才能跟病人談減藥、判斷副作用、跟處方醫師溝通。</p>
+
+<div class="widget" id="w-drug">
+<div class="wt">互動 · 藥物機轉探索器</div>
+<h4>點一類藥，看它卡在開關的哪裡</h4>
+<div id="drug-btns"></div>
+<svg id="drug-svg" viewBox="0 0 760 300" font-family="Noto Sans TC" font-size="12.5"></svg>
+<div class="out" id="drug-out">點上面的按鈕。</div>
+<p class="small">機轉、半衰期與效果量取自 NEJM 2024 Table 4（效果量為短期 &lt;4 週、病人自評量表，引自 De Crescenzo 2022 網絡統合分析）<sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a>,<a href="#ref-18" title="De Crescenzo F, D’Alò GL, Ostinelli EG, et al. Comparative effects of pharmacological interventions for the acute and lo">18</a></sup>。開關圖為示意 <sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。</p>
+</div>
+
+<h3><span class="tag">HOW STRONG</span>「哪一種比較強」：先看效果量</h3>
+<p>效果量（standardized mean difference）0.2 算小、0.5 中、0.8 大 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。下圖是各藥物<b>短期使用</b>時相對於安慰劑、在病人自評睡眠品質上的效果量。</p>
+<figure>
+<svg id="es-chart" viewBox="0 0 760 470" font-family="Noto Sans TC" font-size="12"></svg>
+<figcaption><b>圖 7-1　短期效果量排行。</b>數據來自 NEJM 2024 Table 4 引用的 De Crescenzo 2022 網絡統合分析（154 篇雙盲 RCT、44,089 人）<sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a>,<a href="#ref-18" title="De Crescenzo F, D’Alò GL, Ostinelli EG, et al. Comparative effects of pharmacological interventions for the acute and lo">18</a></sup>。灰線為 95% 信賴區間；跨過 0 代表未確定優於安慰劑。</figcaption>
+</figure>
+<div class="box warn"><div class="bt">讀這張圖的三個陷阱</div>
+<ol style="margin:.2em 0 0 1.1em;padding:0">
+<li><b>這是短期效果。</b>同一篇統合分析中，長期使用時只有 eszopiclone 與 lemborexant 優於安慰劑，且證據確定性很低 <sup class="r"><a href="#ref-18" title="De Crescenzo F, D’Alò GL, Ostinelli EG, et al. Comparative effects of pharmacological interventions for the acute and lo">18</a></sup>。</li>
+<li><b>強的通常副作用也多。</b>BZD、eszopiclone、zolpidem、zopiclone 的副作用人數比安慰劑、doxepin、seltorexant、zaleplon 多 <sup class="r"><a href="#ref-18" title="De Crescenzo F, D’Alò GL, Ostinelli EG, et al. Comparative effects of pharmacological interventions for the acute and lo">18</a></sup>。</li>
+<li><b>跟 CBT-I 不能直接比。</b>測量方式、時間點、族群都不同。</li>
+</ol></div>
+
+<h3><span class="tag">CLASS BY CLASS</span>各類藥物一覽</h3>
+<div class="tw"><table>
+<tr><th>類別</th><th>例子（約略半衰期）</th><th>優點</th><th>主要風險</th></tr>
+<tr><td><b>BZD</b></td><td>triazolam（4 h）、temazepam（10 h）、clonazepam（30 h）</td><td>入睡與睡眠維持都有一致的證據；半衰期範圍廣，可配合症狀型態</td><td>鎮靜、順行性失憶、認知與動作受損、反彈性失眠、複雜睡眠行為；長期：跌倒、髖骨骨折、生理依賴、失智</td></tr>
+<tr><td><b>Z-drug</b></td><td>zolpidem（2.5 h）、zaleplon（1 h）、eszopiclone（6 h）</td><td>同上</td><td>同上；zolpidem、zaleplon、eszopiclone 有複雜睡眠行為的黑框警語</td></tr>
+<tr><td><b>Orexin 拮抗劑</b></td><td>suvorexant（12 h）、lemborexant（18 h）、daridorexant（8 h）</td><td>入睡與維持都有一致證據；認知與動作受損較 BZRA 少；濫用與生理依賴潛力低</td><td>鎮靜、疲倦、異常夢境、惡夢、睡眠癱瘓、複雜睡眠行為、憂鬱加重；<b>禁用於猝睡症</b></td></tr>
+<tr><td><b>鎮靜性抗憂鬱劑</b></td><td>doxepin（15 h）、trazodone（9 h）、mirtazapine（30 h）、amitriptyline（30 h）</td><td>睡眠維持有資料；濫用潛力低</td><td>僅低劑量 doxepin 3–6 mg 有 FDA 失眠適應症；其他證據不一致；抗膽鹼、心臟傳導延遲；mirtazapine 體重與代謝</td></tr>
+<tr><td><b>褪黑激素類</b></td><td>melatonin（1 h）、ramelteon（2 h）</td><td>入睡有資料；副作用少</td><td>對睡眠維持無效</td></tr>
+<tr><td><b>鎮靜性抗組織胺</b></td><td>diphenhydramine（6 h）、doxylamine（10 h）、hydroxyzine（20 h）</td><td>容易取得</td><td>失眠證據有限；抗膽鹼；長期失智風險</td></tr>
+<tr><td><b>Gabapentinoid</b></td><td>gabapentin（7 h）、pregabalin（6 h）</td><td>合併慢性疼痛時；不寧腿第一線用藥之一</td><td>失眠證據少而不一致；頭暈、呼吸抑制；長期依賴</td></tr>
+<tr><td><b>鎮靜性抗精神病藥</b></td><td>quetiapine（6 h）、olanzapine（30 h）</td><td>—</td><td>失眠證據有限；代謝與體重；除非有相關精神疾病，否則風險大於好處</td></tr>
+</table></div>
+<p class="small">整理自 NEJM 2024 Table 4 與內文 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。台灣門診常見的 estazolam、alprazolam、lorazepam、flunitrazepam，本讀本使用的文獻沒有列出其參數，請以仿單為準 <span class="ev X">待查證</span>。</p>
+
+<h4>BZRA：為什麼「藥效差不多，選擇看半衰期」</h4>
+<p>BZD 和 Z-drug 化學結構不同，但都作用在 GABA-A 受體上同一個結合位，所以作用與副作用相似。zolpidem 對負責催眠的受體亞型較有選擇性，但實務上，<mark>藥動學（尤其半衰期）的差異比藥效學差異更重要</mark> <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。短半衰期的主要縮短入睡時間；長半衰期的能減少夜醒，但規律使用容易隔天昏沉 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</p>
+<p>NEJM 2024 整理的病人自述副作用：順行性失憶（&lt;5%）、隔天鎮靜（5–10%）、夢遊、夢食、夢駕等複雜行為（3–5%）。<mark>每晚規律使用者有 20–50% 會出現耐受性與生理依賴</mark>，表現為反彈性失眠與戒斷症狀。濫用（未經處方或超量超時）相對常見，但真正的物質使用障礙並不常見。流行病學顯示，長期使用與髖骨骨折、失智風險呈劑量與時間相關，但「因病用藥」的干擾可能貢獻了部分關聯 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</p>
+
+<h3><span class="tag">OREXIN ANTAGONISTS</span>Orexin 拮抗劑：新藥差在哪裡</h3>
+<p>你聽說的「orexin suppressor」正式名稱是 <span class="en">Dual orexin receptor antagonist, DORA</span>（雙重食慾素受體拮抗劑）。它同時擋 OX1R 與 OX2R。Sakurai 的綜述指出，orexin 促進清醒的效果主要經 OX2R 與組織胺系統，OX2R 剔除小鼠會出現類似猝睡症的表現 <sup class="r"><a href="#ref-4" title="Sakurai T. The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness. Nat Rev Neurosci. 2007;8(3):171">4</a></sup>。</p>
+<div class="two">
+<div class="pane"><h5>傳統安眠藥（BZRA）</h5>加強 GABA-A 的抑制，等於<b>全面踩煞車</b>。作用面廣，所以也影響記憶、平衡、呼吸。</div>
+<div class="pane"><h5>DORA</h5>拿掉 orexin 對清醒中樞的推力，等於<b>鬆開一部分油門</b>。Daridorexant 的試驗作者認為這是它保留睡眠結構的原因（作者推論）<sup class="r"><a href="#ref-19" title="Mignot E, Mayleben D, Fietze I, et al. Safety and efficacy of daridorexant in patients with insomnia disorder: results f">19</a></sup>。</div>
+</div>
+
+<h4>兩個關鍵試驗</h4>
+<div class="tw"><table>
+<tr><th></th><th>Suvorexant 一年試驗（Michelson 2014）</th><th>Daridorexant 第三期（Mignot 2022）</th></tr>
+<tr><td>設計</td><td>DSM-IV-TR 原發性失眠；40 mg（&lt;65 歲）／30 mg（≥65 歲）vs 安慰劑 2:1，每晚吃 1 年；之後隨機分配繼續吃或突然換安慰劑 2 個月 <sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup></td><td>兩個試驗共 1854 人；50／25／10 mg vs 安慰劑，每晚吃 3 個月；主要指標用 PSG 測 <sup class="r"><a href="#ref-19" title="Mignot E, Mayleben D, Fietze I, et al. Safety and efficacy of daridorexant in patients with insomnia disorder: results f">19</a></sup></td></tr>
+<tr><td>療效</td><td>第 1 個月：主觀總睡眠時間多 22.7 分鐘、入睡時間少 9.5 分鐘（相對安慰劑）<sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup></td><td>50 mg：入睡後清醒時間第 1 月少 22.8 分、第 3 月少 18.3 分；入睡時間約少 11–12 分；主觀總睡眠多 20–22 分；白天嗜睡分數改善。10 mg 無效 <sup class="r"><a href="#ref-19" title="Mignot E, Mayleben D, Fietze I, et al. Safety and efficacy of daridorexant in patients with insomnia disorder: results f">19</a></sup></td></tr>
+<tr><td>安全</td><td>最常見副作用為嗜睡（13% vs 3%）；少數睡眠相關幻覺、睡眠癱瘓、複雜行為 <sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup></td><td>副作用整體與安慰劑相近（約 38% vs 34%）；7 天停藥期無戒斷症狀，數值上無反彈（未做統計檢定）<sup class="r"><a href="#ref-19" title="Mignot E, Mayleben D, Fietze I, et al. Safety and efficacy of daridorexant in patients with insomnia disorder: results f">19</a></sup></td></tr>
+<tr><td>停藥</td><td>突然停藥沒有明顯戒斷或反彈；但<b>失眠復發</b>較繼續吃的人多（例如以總睡眠時間定義：57% vs 34%）<sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup></td><td>—</td></tr>
+<tr><td>贊助</td><td>Merck</td><td>Idorsia</td></tr>
+</table></div>
+<div class="box key"><div class="bt">從 suvorexant 停藥資料學到的事</div>就算是不太會成癮的藥，停掉之後失眠還是可能回來。作者自己也說，無法確定停藥後症狀回來是「原本的失眠重新出現」、「反彈或戒斷」還是兩者混合；安慰劑組也有人症狀回升，可能與預期心理有關 <sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup>。<b>這代表：藥物把症狀壓住，但不一定改變了讓失眠持續的東西。</b>第 8 章會用這點跟病人談。</div>
+
+<h4>指引怎麼說使用多久</h4>
+<div class="tw"><table>
+<tr><th>藥物</th><th>2023 歐洲指引 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup></th></tr>
+<tr><td>BZD、BZRA</td><td>可用於短期治療（≤ 4 週）（A）；某些情況可權衡利弊後較長期使用（B）</td></tr>
+<tr><td>低劑量鎮靜性抗憂鬱劑</td><td>短期（≤ 4 週）（B）</td></tr>
+<tr><td>Orexin 拮抗劑</td><td>可用到 3 個月，某些情況更久（A）；內文提到個別情況可延長到 1 年</td></tr>
+<tr><td>緩釋褪黑激素</td><td>55 歲以上可用到 3 個月（B）</td></tr>
+<tr><td>速效褪黑激素、ramelteon、植物藥</td><td>不建議（A）</td></tr>
+<tr><td>抗組織胺、抗精神病藥</td><td>不建議（A）</td></tr>
+</table></div>
+<p>NEJM 2024 的用法建議：先每晚用 2–4 週再評估；若需長期，鼓勵每週間歇使用 2–4 次；睡前 15–30 分鐘服用 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。美國 Beers 準則（65 歲以上應避免的藥）包含 BZRA 與多數鎮靜性抗憂鬱劑，但不包含 doxepin、trazodone 與 orexin 拮抗劑 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</p>
+
+<div class="box tip"><div class="bt">台灣現況（2026 年 11 月查詢）</div>
+<ul style="margin:.2em 0 0 1.1em;padding:0">
+<li>Daridorexant（QUVIVIQ）：2026 年 4 月，Nxera 宣布其台灣合作夥伴健喬（Holling Bio-Pharma）取得台灣食藥署核准，25 與 50 mg，預計 2026 年上市 <sup class="r"><a href="#ref-21" title="衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxer">21</a></sup>。</li>
+<li>Suvorexant、lemborexant 在台灣的核准與給付狀態：我查不到可靠的官方資料 <span class="ev X">待查證</span>。</li>
+<li>中國大陸：lemborexant 2025 年 5 月、daridorexant 2025 年 6 月獲批 <sup class="r"><a href="#ref-21" title="衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxer">21</a></sup>。</li>
+</ul></div>
+
+<h3><span class="tag">SUPPLEMENTS</span>保健品與成藥：褪黑激素、GABA、抗組織胺</h3>
+<div class="tw"><table>
+<tr><th>產品</th><th>它扮演的角色</th><th>證據</th><th>台灣法規</th></tr>
+<tr><td><b>褪黑激素</b></td><td>不是安眠藥，比較像<b>調時鐘的訊號</b>：松果體夜間分泌，強化晝夜節律 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup></td><td>原發性失眠：5 篇 RCT 合併，入睡時間只快約 5 分鐘 <sup class="r"><a href="#ref-3" title="Auld F, Maschauer EL, Morrison I, Skene DJ, Riha RL. Evidence for the efficacy of melatonin in the treatment of primary ">3</a></sup>；較早的統合分析為 7.2 分鐘 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。睡眠相位後移：入睡快約 22 分鐘 <sup class="r"><a href="#ref-3" title="Auld F, Maschauer EL, Morrison I, Skene DJ, Riha RL. Evidence for the efficacy of melatonin in the treatment of primary ">3</a></sup>。對睡眠維持效果很小 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。<span class="ev A">對失眠效果小</span></td><td>1996 年起以藥品管理，不能當食品販售 <sup class="r"><a href="#ref-21" title="衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxer">21</a></sup>；目前有須處方的藥品級產品（品名待查證）</td></tr>
+<tr><td><b>GABA（γ-胺基丁酸）</b></td><td>大腦主要的抑制性神經傳導物質；安眠藥就是去加強它的受體</td><td>本讀本的文獻中沒有口服 GABA 改善失眠的高品質試驗 <span class="ev X">待查證</span>。口服 GABA 能否大量進入腦部，學界有爭議 <span class="ev X">待查證</span></td><td>食藥署 2024 年預告草案：每日限量 100 mg，並須標示避免與酒精、降壓藥、鎮靜劑、抗癲癇藥併用 <sup class="r"><a href="#ref-21" title="衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxer">21</a></sup>（正式公告狀態待查證）</td></tr>
+<tr><td><b>抗組織胺</b>（成藥「睡眠輔助」常見成分）</td><td>擋住 TMN 的組織胺清醒訊號</td><td>證據弱；會產生耐受，突然停用會反彈；加重不寧腿 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a>,<a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>—</td></tr>
+<tr><td><b>纈草等植物藥</b></td><td>纈草可增強 GABA-A 受體反應 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup></td><td>主觀睡眠品質有改善，客觀睡眠無改善 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；歐洲指引不建議（A）<sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup></td><td>—</td></tr>
+<tr><td><b>大麻、CBD</b></td><td>—</td><td>證據品質低；長期使用可能產生耐受 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td><td>台灣受管制</td></tr>
+</table></div>
+
+<div class="box say"><div class="bt">跟病人怎麼說</div>「褪黑激素比較像是告訴身體『天黑了』的訊號，適合時差或生理時鐘跑掉的人。對一般失眠，研究上大概讓人早幾分鐘睡著而已，在台灣也是藥品，要醫師開。」</div>
+
+<h3><span class="tag">CASE CHECK</span>回到三位病人</h3>
+<div class="two">
+<div class="pane"><h5>林小姐（A）</h5>偶爾吃同事給的 zolpidem：不是她的處方、可能沒人教她不要吃完就做別的事（複雜睡眠行為）。這是一個衛教點，也是轉介給處方醫師的理由。</div>
+<div class="pane"><h5>陳伯伯（B）</h5>72 歲、zolpidem 10 mg 吃 5 年，屬 Beers 準則建議避免的情境 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。若要調整，NEJM 提到長者與睡眠維持型可考慮低劑量 doxepin 或 orexin 拮抗劑 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>——這是處方醫師的決定，但你可以知道有這條路。</div>
+</div>
+</section>
+
+<section class="ch" id="ch8" data-n="08" data-t="減藥與復發：病人最怕的那件事" data-part="第二部　西醫怎麼看">
+<div class="opener"><div class="num">8</div><div><div class="lab">CHAPTER 8 · TAPERING &amp; RELAPSE</div><h2>減藥與復發：病人最怕的那件事</h2><div class="q">「每個都說想減西藥，但又很怕復發。」這一章專門回答這句話。</div></div></div>
+
+<p class="lead">病人說「一停就整晚沒睡」，裡面其實混了三件不同的事。分開來看，你才知道該怎麼談、怎麼陪。</p>
+
+<div class="tw"><table>
+<tr><th style="width:120px"></th><th>反彈性失眠<br><span class="en">Rebound insomnia</span></th><th>戒斷症狀<br><span class="en">Withdrawal</span></th><th>復發<br><span class="en">Relapse / recurrence</span></th></tr>
+<tr><td><b>是什麼</b></td><td>停藥後頭幾晚，睡得比<b>用藥前</b>還差</td><td>停藥後出現的身體與情緒症狀（焦躁、心悸、顫抖、出汗等）</td><td>原本的失眠回來了，而且持續</td></tr>
+<tr><td><b>時間</b></td><td>短暫，通常幾天</td><td>依藥物半衰期與用量而定</td><td>持續數週以上</td></tr>
+<tr><td><b>原因</b></td><td>身體已適應藥物（生理依賴）</td><td>同左</td><td>讓失眠持續的因子沒有被處理</td></tr>
+<tr><td><b>對策</b></td><td>不要突然停；逐步減量</td><td>逐步減量；必要時放慢</td><td>CBT-I；處理維持因子；追蹤</td></tr>
+</table></div>
+<p class="small">概念整理自 NEJM 2024（BZRA 規律使用者 20–50% 出現耐受與生理依賴，表現為反彈性失眠與戒斷）與 suvorexant 一年試驗作者對停藥後症狀回升的討論 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a>,<a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup>。</p>
+
+<div class="box tip"><div class="bt">小知識 · 為什麼病人的經驗會強化恐懼</div>病人多半是「某天突然沒吃」，結果碰上反彈性失眠，就得到「我沒有藥不行」的結論。這一晚的經驗會變成最強的維持因子之一：對睡不著的恐懼。Suvorexant 試驗中，連<b>一直吃安慰劑</b>的人在進入停藥期後也有一部分症狀回升，作者推測可能與預期心理有關 <sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup>。</div>
+
+<h3><span class="tag">THE KEY STUDY</span>最直接的證據：Morin 的長者減藥試驗</h3>
+<p>Morin 團隊找了 76 位慢性失眠、平均使用 BZD 近 20 年（每週約 6.8 晚）的長者，隨機分成三組，各 10 週 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>：</p>
+<ul>
+<li><b>醫師督導減量</b>（Taper）：先換成單一種 BZD；大約每兩週減原劑量的 25%，直到最低劑量；逐步增加「不吃藥的夜晚」；固定排程吃而不是睡不著才吃。目標錨點：第 2 週減 25%、中期減 50%、第 8 週完全停 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</li>
+<li><b>CBT-I</b>（沒有減藥計畫，想停藥請自己找家庭醫師）。</li>
+<li><b>兩者合併</b>。</li>
+</ul>
+
+<div class="tw"><table>
+<tr><th>組別</th><th>治療結束時完全停藥</th><th>2 年內又吃回去</th><th>3／12／24 個月仍未用藥</th></tr>
+<tr><td>CBT-I 單獨</td><td class="num">54%</td><td class="num">69.2%</td><td class="num">61.5／38.5／28.9%</td></tr>
+<tr><td>督導減量</td><td class="num">48%</td><td class="num">30.8%</td><td class="num">100／83.3／64.8%</td></tr>
+<tr><td>合併</td><td class="num">85%</td><td class="num">33.3%</td><td class="num">80.9／70.8／64.9%</td></tr>
+</table></div>
+<p class="small">治療結束時停藥率來自原始試驗（Morin 2004，經 2005 追蹤論文轉述）；後三欄為 47 位成功停藥者的 2 年存活分析 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup> <span class="ev B">RCT＋追蹤</span>。原始試驗中，三組都沒有明顯的戒斷症狀或反彈性失眠 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</p>
+
+<figure>
+<svg id="surv-chart" viewBox="0 0 760 320" font-family="Noto Sans TC" font-size="12"></svg>
+<figcaption><b>圖 8-1　停藥後仍維持不用藥的比例。</b>依 Morin 等 2005 報告的 0、3、12、24 個月數值重繪（點與點之間以直線連接，非原始階梯曲線）<sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</figcaption>
+</figure>
+
+<div class="box key"><div class="bt">這份資料告訴你的四件事</div>
+<ol style="margin:.2em 0 0 1.1em;padding:0">
+<li><b>有計畫的減量是必要成分。</b>只上 CBT-I、沒有減藥計畫的那組，兩年內有七成又吃回去。作者認為督導減量不只幫助停藥，也幫助「停得住」<sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</li>
+<li><b>合併 CBT-I 讓更多人停得掉</b>（85%），Lancet 綜述也說加上 CBT 能減少反彈性失眠 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</li>
+<li><b>復發的預測因子</b>：治療結束時失眠還有多嚴重（ISI）、心理困擾程度、停藥前用過幾種藥、花了幾週才停掉 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</li>
+<li><b>前 3 個月是關鍵期。</b>作者建議在停藥後 3 個月內安排加強回診 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</li>
+</ol></div>
+
+<h3><span class="tag">COMBINATION</span>先合併、後撤藥：JAMA 2009</h3>
+<p>Morin 2009 年的試驗：160 位持續性失眠者先接受 6 週 CBT-I 單獨或 CBT-I 加每晚 zolpidem 10 mg，之後 6 個月再分組延續 <sup class="r"><a href="#ref-22" title="Morin CM, Vallières A, Guay B, et al. Cognitive behavioral therapy, singly and combined with medication, for persistent ">22</a></sup> <span class="ev B">RCT</span>。</p>
+<ul>
+<li>急性期兩組反應率（60% vs 61%）與緩解率（39% vs 44%）相近；合併組總睡眠時間增加較多。</li>
+<li>長期來看，<mark>一開始合併、後來把 zolpidem 停掉只留 CBT-I 的那組結果最好</mark>：6 個月追蹤緩解率 68%，繼續間歇吃 zolpidem 的只有 42% <sup class="r"><a href="#ref-22" title="Morin CM, Vallières A, Guay B, et al. Cognitive behavioral therapy, singly and combined with medication, for persistent ">22</a></sup>。</li>
+</ul>
+<p>NEJM 2024 的總結：合併治療起效較快，但優勢在第 4–5 週後縮小；CBT-I 單獨的效果較持久；而有藥可吃時，病人對行為建議的遵從可能變差 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</p>
+
+<h3><span class="tag">WHAT DOESN'T WORK (YET)</span>用另一種藥幫忙減藥？證據不足</h3>
+<p>Cochrane 2018 回顧了 38 篇 RCT（2543 人），想知道有沒有藥能幫助長期 BZD 使用者減藥。結論是：<mark>證據品質低到極低，無法下任何確定的結論</mark>；每種藥最多只有 4 篇研究，除一篇外風險偏誤都高 <sup class="r"><a href="#ref-23" title="Baandrup L, Ebdrup BH, Rasmussen JØ, Lindschou J, Gluud C, Glenthøj BY. Pharmacological interventions for benzodiazepine">23</a></sup> <span class="ev A">系統性回顧</span>。其中褪黑激素 4 篇（219 人）合併後，停藥成功率與安慰劑沒有差異 <sup class="r"><a href="#ref-23" title="Baandrup L, Ebdrup BH, Rasmussen JØ, Lindschou J, Gluud C, Glenthøj BY. Pharmacological interventions for benzodiazepine">23</a></sup>。</p>
+<p>2023 歐洲指引也把「減藥策略需要被發展，並與 CBT-I 整合」列為未來研究需求 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。</p>
+<div class="box hyp"><div class="bt">假說 · 中藥在減藥過程中的位置</div>這本讀本找不到任何把中藥當作減藥輔助的高品質試驗。所以<b>不能跟病人說「吃中藥就能把西藥停掉」</b>。比較誠實的定位是：減藥由處方醫師主導、按計畫走；你處理他在這段期間的焦慮、身體不適與整體狀態，並用睡眠日誌與 ISI 一起追蹤。若要把中藥與安眠藥同時使用，請留意兩者都有鎮靜作用時可能相加，並與處方醫師溝通。</div>
+
+<div class="widget" id="w-taper">
+<div class="wt">互動 · 減量計畫示範（依 Morin 試驗的原則）</div>
+<h4>用來跟病人和處方醫師「對話」，不是處方</h4>
+<div class="slider"><span>目前每晚劑量（顆）</span><input type="range" id="tp-dose" min="0.5" max="3" step="0.25" value="1"><output id="tp-dose-o"></output></div>
+<div class="slider"><span>每步減少</span><input type="range" id="tp-step" min="10" max="25" step="5" value="25"><output id="tp-step-o"></output></div>
+<div class="slider"><span>每步間隔（週）</span><input type="range" id="tp-int" min="1" max="4" step="1" value="2"><output id="tp-int-o"></output></div>
+<div class="out" id="tp-out"></div>
+<p class="small">原則取自 Morin 試驗：先換成單一藥物、約每兩週減原劑量的 25%、逐步增加不吃藥的夜晚、固定排程而非睡不著才吃 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>；NEJM 2024 舉例「每週減 25%」<sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。實際減量速度須依藥物種類、半衰期、劑量、使用年數、共病與戒斷反應由處方醫師調整；長期高劑量、合併其他精神科用藥、有癲癇或酒精問題者，不可自行嘗試。</p>
+</div>
+
+<h3><span class="tag">SCRIPT</span>病人說「我怕停了又睡不著」，你可以這樣說</h3>
+<div class="box say"><div class="bt">對話範例（本讀本建議）</div>
+<p>「你怕的其實是三件不同的事。突然停藥那幾晚特別難睡，是身體還沒適應，叫反彈，慢慢減就能避開。第二是停藥時的心慌手抖，也是要靠慢慢減。第三才是失眠真的回來，研究發現，成功停藥的長者裡，有醫師陪著照計畫減量的，兩年後大約六成五還是不用吃藥；只上課、沒有減藥計畫的，七成又吃回去。所以重點不是『敢不敢停』，而是『有沒有計畫』。」</p>
+<p style="margin:.4em 0 0">「我們先記兩週睡眠日誌，看看你真正睡了多少，再跟開藥的醫師一起排時間表。前三個月我會比較常請你回來。」</p></div>
+
+<h3><span class="tag">CASE CHECK</span>回到陳伯伯</h3>
+<p>他吃 zolpidem 10 mg 五年，「一停就整晚沒睡」最可能是突然停藥的反彈，加上對失眠的恐懼。比較合理的順序是：(1) 先做睡眠日誌，處理太早上床與午睡（第 6 章）；(2) 與處方醫師商量逐步減量的時間表；(3) 停藥後 3 個月內密集追蹤。你的方子在這段期間處理他的乏力、怕冷與焦慮，而不是被期待成「取代 zolpidem」。</p>
+</section>
+
+<div class="partbanner tcm"><div class="pk">PART III · 第三部</div><h2>中醫怎麼看失眠</h2><p>先讀古人原文和言外之意，再用經方的方證眼光重新看「不得眠」，然後是證型地圖、難關處理，最後誠實地看證據。這一部所有中醫理論都標為「中醫觀點」，它是中醫的解釋框架，不是現代醫學事實。</p></div>
+
+<section class="ch" id="ch9" data-n="09" data-t="古人怎麼看：讀出言外之意" data-part="第三部　中醫怎麼看">
+<div class="opener"><div class="num">9</div><div><div class="lab">CHAPTER 9 · CLASSICS</div><h2>古人怎麼看：讀出言外之意</h2><div class="q">《內經》第一個治失眠的方子，既不是安神藥，也不是補藥。</div></div></div>
+
+<p class="lead">每一段我分三層讀：<b>原文</b>、<b>字面意思</b>、<b>言外之意</b>。前兩層是文獻，第三層是我的解讀，你可以不同意。</p>
+
+<h3><span class="tag">TIMELINE</span>兩條時間線</h3>
+<div class="two">
+<div>
+<div class="tl">
+<div class="ev2 tcm"><div class="yr">先秦</div>《詩經·關雎》「寤寐求之……輾轉反側」：最早被引用來描述難以入睡的文字之一 <sup class="r"><a href="#ref-24" title="彰化基督教醫院〈內科核心課程：失眠（中醫）〉講義，2018。">24</a></sup>。</div>
+<div class="ev2 tcm"><div class="yr">戰國–漢</div>《黃帝內經》：衛氣晝行於陽、夜行於陰；〈邪客〉的「目不瞑」與半夏湯；〈營衛生會〉論老人夜不瞑 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。</div>
+<div class="ev2 tcm"><div class="yr">東漢</div>張仲景《傷寒論》《金匱要略》：「不得眠」「不得臥」出現在多個方證裡，梔子豉湯、黃連阿膠湯、柴胡加龍骨牡蠣湯、酸棗仁湯等 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。</div>
+<div class="ev2 tcm"><div class="yr">唐</div>孫思邈《千金方》載溫膽湯（原條文本讀本未核對 <span class="ev X">待查證</span>）。</div>
+<div class="ev2 tcm"><div class="yr">明</div>張景岳《景岳全書·不寐》：「惟知邪正二字則盡之矣」。李中梓《醫宗必讀》列不寐五因，首次把「胃不和」與失眠治療連結 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。</div>
+<div class="ev2 tcm"><div class="yr">現代</div>教科書整理出肝鬱化火、陰虛火旺、痰熱內擾、心腎不交、心脾兩虛、心膽氣虛等證型 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。</div>
+<div class="ev2 tcm"><div class="yr">台灣健保</div>失眠的中藥處方以酸棗仁湯、加味逍遙散、天王補心丹、柴胡加龍骨牡蠣湯最常見 <sup class="r"><a href="#ref-26" title="楊曜旭、陳保中、賴榮年等。〈睡眠障礙治療藥物與安神類科學中藥處方併用之副作用流行病學研究〉。衛生福利部《中醫藥年報》第 29 期第 9 冊。">26</a></sup>。</div>
+</div></div>
+<div>
+<div class="tl">
+<div class="ev2 wm"><div class="yr">1900 年代初</div>巴比妥類安眠藥問世 <span class="ev C">通行醫學史</span>。</div>
+<div class="ev2 wm"><div class="yr">1930</div>Von Economo 觀察腦炎病人，發現前下視丘病變造成嚴重失眠 <sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">1949</div>Moruzzi 與 Magoun 刺激腦幹網狀結構引起清醒腦波 <sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">1950 年代</div>REM 睡眠被發現（Aserinsky 與 Kleitman）<sup class="r"><a href="#ref-1" title="Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. Neuron. 2010;68(6):1023–1042.">1</a></sup>；1958 年褪黑激素被描述 <sup class="r"><a href="#ref-3" title="Auld F, Maschauer EL, Morrison I, Skene DJ, Riha RL. Evidence for the efficacy of melatonin in the treatment of primary ">3</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">1960 年代起</div>BZD 取代巴比妥類 <span class="ev C">通行醫學史</span>。</div>
+<div class="ev2 wm"><div class="yr">1987</div>Spielman 發表睡眠限制治療 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">1990 年代</div>Z-drug 普及 <span class="ev C">通行醫學史</span>；1998 年 orexin 被發現 <sup class="r"><a href="#ref-4" title="Sakurai T. The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness. Nat Rev Neurosci. 2007;8(3):171">4</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">2005</div>美國 NIH 慢性失眠共識會議，質疑「次發性失眠」概念 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">2013–2014</div>DSM-5、ICSD-3 合併原發與次發 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>；第一個 orexin 拮抗劑上市 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">2022–2024</div>藥物網絡統合分析 <sup class="r"><a href="#ref-18" title="De Crescenzo F, D’Alò GL, Ostinelli EG, et al. Comparative effects of pharmacological interventions for the acute and lo">18</a></sup>；daridorexant 第三期 <sup class="r"><a href="#ref-19" title="Mignot E, Mayleben D, Fietze I, et al. Safety and efficacy of daridorexant in patients with insomnia disorder: results f">19</a></sup>；歐洲指引更新 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>；NEJM 臨床綜述 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</div>
+<div class="ev2 wm"><div class="yr">2026</div>Daridorexant 獲台灣核准 <sup class="r"><a href="#ref-21" title="衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxer">21</a></sup>。</div>
+</div></div>
+</div>
+<p class="small">西醫時間線中標「通行醫學史」者，本讀本未逐一回到原始文獻核對年份。</p>
+
+<h3><span class="tag">READING 1</span>〈邪客〉：最早的失眠方，重點在「通」</h3>
+<div class="box classic"><div class="bt">原文 · 《靈樞·邪客》</div>
+<div class="yuan">今厥氣客於五藏六府，則衛氣獨衛其外，行於陽，不得入于陰。行於陽則陽氣盛，陽氣盛則陽蹻陷，不得入于陰，陰虛，故目不瞑。</div>
+<div class="yan"><b>字面：</b>逆亂之氣停留在臟腑，衛氣只能在外面（陽分）運行，進不去陰分；陽分偏盛、陰分相對空虛，所以閉不上眼睛。後文治以半夏湯：半夏配秫米 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。<br>
+<b>言外之意（本讀本解讀）：</b>這段話的病機不是「陽太多」，也不是「陰太少」，而是<b>路被堵住，陽進不去</b>。所以《內經》第一個失眠方用的是半夏與秫米，一個降逆化痰、一個和胃，目的是把路打通，而不是安神或補陰。後世那麼多重鎮安神、滋陰養血的方子，都是在這個原型之後發展出來的。對你來說最實用的提醒是：<b>看到「陰虛」的表象，先問路通不通</b>。<span class="ev T">中醫觀點</span></div></div>
+
+<h3><span class="tag">READING 2</span>〈營衛生會〉：老人的失眠是白天和晚上一起壞</h3>
+<div class="box classic"><div class="bt">原文 · 《靈樞·營衛生會》</div>
+<div class="yuan">老者之氣血衰，其肌肉枯，氣道澀，五藏之氣相搏，其營氣衰少而衛氣內伐，故晝不精，夜不瞑。</div>
+<div class="yan"><b>字面：</b>老人氣血衰、氣道澀，營氣少而衛氣內擾，所以白天沒精神，晚上睡不著 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。<br>
+<b>言外之意（本讀本解讀）：</b>古人把「晝不精」放在「夜不瞑」前面。這不只是描述，也暗示了治療的方向：<b>老人的睡眠問題要從白天一起處理</b>。對照第 1 章，長者白天打盹、活動少、光照少，會讓晚上的睡眠壓力不足；相位前移讓他太早醒。這兩件事都發生在白天。所以陳伯伯除了補，還需要白天的活動與作息安排。<span class="ev T">中醫觀點</span> <span class="ev H">與現代生理的對照為假說</span></div></div>
+
+<h3><span class="tag">READING 3</span>「胃不和則臥不安」：名句的原本脈絡</h3>
+<div class="box classic"><div class="bt">原文 · 《素問·逆調論》</div>
+<div class="yuan">胃不和則臥不安。</div>
+<div class="yan"><b>字面與脈絡：</b>這句在〈逆調論〉中原本談的是氣逆、呼吸不利而「不得臥」（不能平躺），一般認為與喘有關；明代李中梓《醫宗必讀》才把它明確用在不寐的治療上，列出橘紅、甘草、石斛、茯苓、半夏、神曲、山楂一類藥 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。2024 年甚至有文章主張這句可能是後人的評語誤植進經文 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup> <span class="ev X">學界爭議</span>。<br>
+<b>言外之意（本讀本解讀）：</b>名句被後世擴大使用並不是錯，但讀原文脈絡能讓你分清楚：病人是「睡不著」，還是「躺不平」（逆流、喘、心衰竭端坐呼吸）。後者要先排除內科問題。現代研究也發現，orexin 神經元會接收血糖、leptin、ghrelin 等代謝訊號，飢餓會讓人更清醒 <sup class="r"><a href="#ref-4" title="Sakurai T. The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness. Nat Rev Neurosci. 2007;8(3):171">4</a></sup>，這只是有趣的平行，不是「胃不和」的證明。</div></div>
+
+<h3><span class="tag">READING 4</span>張景岳：「邪正」兩個字</h3>
+<div class="box classic"><div class="bt">原文 · 《景岳全書·不寐》</div>
+<div class="yuan">寐本乎陰，神其主也，神安則寐，神不安則不寐。……惟知邪正二字則盡之矣。</div>
+<div class="yan"><b>字面：</b>睡眠根本在陰，由神主宰；神不安就睡不著。不安的原因不外兩類：邪氣擾動，或營氣不足。有邪多屬實，無邪都屬虛 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。<br>
+<b>言外之意（本讀本解讀）：</b>景岳這個分法其實是<b>治療導向的分類</b>：分出「該祛邪」還是「該補虛」。這正是你門診先分實證虛證的根據。但它隱含一個前提：<b>邪去了、虛補了，神就會安</b>。第 4 章的 3P 模型提醒我們，慢性化之後，「怕睡不著」「在床上躺太久」本身也會讓神不安，而它們既不是邪、也不是虛。景岳的二分法在這裡留下一個空格。<span class="ev T">中醫觀點</span> <span class="ev H">與 3P 的對照為假說</span></div></div>
+
+<h3><span class="tag">READING 5</span>李中梓：五個原因</h3>
+<div class="box classic"><div class="bt">《醫宗必讀·不得臥》</div>
+<div class="yan">李中梓把不寐的原因歸為五類：氣虛、陰虛、痰滯、水停、胃不和 <span class="ev X">五因名稱依二手引用，原文待核對</span><sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。<br>
+<b>言外之意（本讀本解讀）：</b>五因裡有三個（痰滯、水停、胃不和）跟「中焦通不通」有關，和〈邪客〉半夏湯一脈相承。明代醫家已經在提醒：失眠不是只有心神和虛的問題。</div></div>
+
+<div class="box say"><div class="bt">本章一句話</div>古人對失眠至少有三種思路：<b>通</b>（邪客、胃不和、痰滯水停）、<b>清</b>（祛邪、清熱、重鎮）、<b>補</b>（營氣不足、虛勞）。你門診的實證虛證二分，其實少了一個「通」。</div>
+</section>
+
+<section class="ch" id="ch10" data-n="10" data-t="經方眼光：不得眠在方證裡的樣子" data-part="第三部　中醫怎麼看">
+<div class="opener"><div class="num">10</div><div><div class="lab">CHAPTER 10 · CLASSICAL FORMULAS</div><h2>經方眼光：不得眠在方證裡的樣子</h2><div class="q">仲景從來不治「失眠」，他治的是帶著不得眠的那個證。</div></div></div>
+
+<p class="lead">在《傷寒》《金匱》裡，「不得眠」「不得臥」從來不是一個獨立的病名，而是夾在一組症狀裡出現。所以經方家看失眠，不是問「哪個方安神」，而是問「這個睡不著，是哪個證的一部分」。</p>
+
+<div class="tw"><table class="cmp">
+<tr><th class="tcm">方</th><th class="tcm">原文（宋本條文號）</th><th class="tcm">睡不著的樣子</th><th class="tcm">一起出現的鑑別點</th></tr>
+<tr><td><b>柴胡加龍骨牡蠣湯</b></td><td>傷寒八九日，下之，胸滿煩驚，小便不利，譫語，一身盡重，不可轉側者（107）</td><td>煩而易<b>驚</b></td><td>胸滿、身重、小便不利、神志不寧</td></tr>
+<tr><td><b>梔子豉湯</b></td><td>發汗吐下後，虛煩不得眠，若劇者，必反覆顛倒，心中懊憹（76）</td><td>翻來覆去、心中悶亂說不出</td><td>汗吐下之後；胸中窒悶</td></tr>
+<tr><td><b>黃連阿膠湯</b></td><td>少陰病，得之二三日以上，心中煩，不得臥（303）</td><td>心煩躺不住</td><td>少陰病背景</td></tr>
+<tr><td><b>豬苓湯</b></td><td>少陰病，下利六七日，咳而嘔渴，心煩不得眠者（319）</td><td>心煩不得眠</td><td>渴、下利、咳、嘔；小便不利</td></tr>
+<tr><td><b>乾薑附子湯</b></td><td>下之後，復發汗，晝日煩躁不得眠，夜而安靜，不嘔，不渴，無表證，脈沉微，身無大熱者（61）</td><td><b>白天</b>煩躁，<b>晚上反而安靜</b></td><td>脈沉微、不渴、無表證</td></tr>
+<tr><td><b>酸棗仁湯</b></td><td>虛勞虛煩不得眠（《金匱·血痹虛勞》）</td><td>虛勞而煩、睡不著</td><td>虛勞背景</td></tr>
+<tr><td><b>桂枝加龍骨牡蠣湯</b></td><td>夫失精家，少腹弦急，陰頭寒，目眩髮落，脈極虛芤遲……男子失精，女子夢交（《金匱·血痹虛勞》）</td><td>夢多、夢交</td><td>失精、脈虛芤、少腹弦急</td></tr>
+</table></div>
+<p class="small">條文依通行宋本 398 條編號，不同版本編號可能不同（例如梔子豉湯在部分版本為 84 條）<sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。本表為原文摘錄，臨床方證以你熟悉的注家為準。</p>
+
+<h3><span class="tag">BETWEEN THE LINES</span>三個言外之意</h3>
+<div class="box classic"><div class="bt">言外之意 1 · 同一個「虛煩」，兩種意思</div>
+<div class="yan">梔子豉湯的「虛煩」是在汗吐下之後出現，一般解讀為<b>胸中有熱而無有形實邪</b>，這個「虛」是相對於「實結」說的，不是虛證；酸棗仁湯的「虛勞虛煩」前面多了「虛勞」，才是真正的虛 <span class="ev T">中醫觀點（通行注解）</span>。看到病人「煩到睡不著但沒什麼實證可抓」，不要直接往補的方向走。</div></div>
+
+<div class="box classic"><div class="bt">言外之意 2 · 乾薑附子湯告訴你：陽虛的人晚上反而安靜</div>
+<div class="yan">61 條特別寫「晝日煩躁不得眠，夜而安靜」。白天陽氣用事時煩躁，夜裡陰盛時反而安靜 <span class="ev T">中醫觀點</span>。這給你一個反向的提醒：<b>如果一個「陽虛」病人是晚上睡不著、白天反而沒事</b>，那他的失眠可能不是陽虛本身造成的，要找別的原因（維持因子、相位前移、合併的實邪）。</div></div>
+
+<div class="box classic"><div class="bt">言外之意 3 · 柴胡加龍骨牡蠣湯的「驚」</div>
+<div class="yan">107 條的關鍵字是「煩驚」。林小姐那種「被聲音驚醒、心跳快」的描述，就是「驚」。黃煌把這張方的方證提要寫成：胸滿，臍部動悸、煩、驚，睡眠障礙、小便不利，譫語，身重難以轉側、苔黃膩、脈弦硬或滑而有力者；並提醒有些患者會腹瀉腹痛，停藥後可緩解 <sup class="r"><a href="#ref-27" title="黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。">27</a></sup> <span class="ev C">名家經驗</span>。把它和第 1 章「油門與煞車同時踩」的圖放在一起看，這個方證可能剛好對應過度警覺偏強的那一群 <span class="ev H">假說</span>。</div></div>
+
+<h3><span class="tag">HUANG HUANG</span>給虛證的一張經方：桂枝加龍骨牡蠣湯</h3>
+<div class="box classic"><div class="bt">名家經驗 · 黃煌《腦病常用經方》</div>
+<div class="yan"><b>方證提要：</b>虛弱體質，見精神亢奮、胸腹動悸、易驚、失眠、多夢、自汗盜汗、夢交失精、脈浮大而無力者。<b>注意：</b>本方宜湯劑不宜散劑，散劑可能導致腹脹、食慾不振 <sup class="r"><a href="#ref-27" title="黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。">27</a></sup> <span class="ev C">名家經驗</span>。<br><br>
+<b>為什麼要特別拿出來講（本讀本解讀）：</b>它描述的是一種<b>「虛而亢奮」</b>的人：底子虛，但神經是繃緊的。你說虛證都補不動，有一個可能是：有些看起來虛的病人，其實是「虛的底子加上亢奮的狀態」，單純補氣補血碰不到那個亢奮。柴胡加龍骨牡蠣湯和桂枝加龍骨牡蠣湯都有龍骨牡蠣，一個用於偏實的「煩驚」，一個用於偏虛的「動悸易驚」。這是方證上的分界，不是研究結論。</div></div>
+
+<div class="box say"><div class="bt">本讀本觀點 · 經方與 ICSD-3 其實在說同一件事的兩面</div>仲景說：<b>不要只看「不得眠」這個症狀，要看它屬於哪個證</b>。ICSD-3 說：<b>慢性化以後，失眠本身有自己的引擎，必須單獨處理</b>。合起來就是一個可操作的原則：用方證去處理證，用行為處方去拆引擎，兩邊各做各的事。</div>
+
+<h3><span class="tag">EVIDENCE PEEK</span>這兩張方的研究證據</h3>
+<ul>
+<li><b>柴胡加龍骨牡蠣湯</b>：2020 年系統回顧納入 22 篇研究、2029 人；單用時相較常規西藥，PSQI 多降約 2.8 分、有效率較高，但納入研究有明顯偏誤風險，作者要求雙盲 RCT 確認 <sup class="r"><a href="#ref-28" title="Wang X, Ju J, Li J, Fan Y, Xu H. Chaihu Longgu Muli decoction, a Chinese herbal formula, for the treatment of insomnia: ">28</a></sup> <span class="ev C">低品質 RCT 合併</span>。2023 歐洲指引有引用這篇，但整體結論仍是草藥因證據不足不建議 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。台灣 2002 年健保資料中，它占失眠中藥處方的 12.4% <sup class="r"><a href="#ref-9" title="〈柴胡加龍骨牡蠣湯在失眠之應用文獻回顧〉，華藝線上圖書館摘要（引用台灣慢性失眠盛行率 11.3% 與 2002 年健保資料 12.4%）。">9</a></sup>。</li>
+<li><b>酸棗仁湯</b>：兩篇系統回顧各納入 12 篇 RCT（約 1300 多人），都指出研究品質參差、樣本小、選擇性報告，需要更大型的試驗 <sup class="r"><a href="#ref-29" title="（溫州醫學院團隊）Efficacy and safety of Suanzaoren decoction for primary insomnia: a systematic review of randomized controlled ">29</a></sup> <span class="ev C">低品質</span>。</li>
+</ul>
+<p>詳細的證據整理在第 13 章。</p>
+</section>
+
+<section class="ch" id="ch11" data-n="11" data-t="證型地圖：實、虛，再加一個「滯」" data-part="第三部　中醫怎麼看">
+<div class="opener"><div class="num">11</div><div><div class="lab">CHAPTER 11 · PATTERNS</div><h2>證型地圖：實、虛，再加一個「滯」</h2><div class="q">教科書的九個證型，放回你門診的實虛判斷裡。</div></div></div>
+
+<p class="lead">中文文獻常把失眠整理成九個證型：肝鬱化火、陰虛火旺、痰熱內擾、心腎不交、心脾兩虛、心膽氣虛、胃氣不和、心火熾盛、瘀血內阻 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。不同書分法不一，但大致都在這九個範圍內。</p>
+
+<p>第 9 章讀完古籍，我建議在你原本的「實／虛」之外，多加一個<b>「滯」</b>（路不通：痰、水、食、瘀）。下面的卡片點一下會翻面。</p>
+
+<div class="cards" id="cards"></div>
+<p class="small">證型名稱與病機依中文綜述整理 <sup class="r"><a href="#ref-25" title="古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC109">25</a></sup>。<b>常用方</b>為通行教材的典型選擇 <span class="ev C">未逐一核對教材版本</span>；<b>經方對照</b>與<b>現代對照</b>為本讀本的建議與假說，不是研究結論。心火熾盛常見的朱砂安神丸含朱砂（汞化合物），現代使用有安全疑慮，卡片中不列。</p>
+
+<h3><span class="tag">QUICK SORT</span>三軸快速分流</h3>
+<div class="tw"><table class="cmp">
+<tr><th class="tcm">軸</th><th class="tcm">病人常見的樣子</th><th class="tcm">治則方向</th><th class="tcm">現代對照（假說）</th></tr>
+<tr><td><b>實（清）</b></td><td>煩、急、易驚、口苦、脈弦滑有力、病程較短</td><td>清熱、疏肝、重鎮</td><td>誘發因子正在作用；過度警覺偏強</td></tr>
+<tr><td><b>虛（補）</b></td><td>乏力、心悸、健忘、脈細弱、病程長、年紀大</td><td>補氣血、養心脾、滋陰</td><td>素質層；常合併厚的維持層</td></tr>
+<tr><td><b>滯（通）</b></td><td>胸悶脘痞、噯氣、苔膩、食後更難睡、痰多、刺痛</td><td>化痰、和胃、利水、活血</td><td>常被忽略；要先排除逆流、OSA 等內科因素</td></tr>
+</table></div>
+<p class="small">三軸常常同時存在。虛證病人身上若帶著「滯」，單純補可能更不舒服。</p>
+</section>
+
+<section class="ch" id="ch12" data-n="12" data-t="難關：高手怎麼想" data-part="第三部　中醫怎麼看">
+<div class="opener"><div class="num">12</div><div><div class="lab">CHAPTER 12 · HARD CASES</div><h2>難關：高手怎麼想</h2><div class="q">虛證補不動、吃西藥多年、老人早醒、更年期、夢多。</div></div></div>
+
+<div class="box warn"><div class="bt">先講清楚這一章的證據等級</div>這一章是本讀本把前面各章的知識整合起來的<b>臨床推理</b>，大多屬於 <span class="ev H">假說</span> 或 <span class="ev C">經驗</span>。可查證出處的名家心得，本版只收錄黃煌的方證提要 <sup class="r"><a href="#ref-27" title="黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。">27</a></sup>。我沒有捏造任何名老中醫的話；你若提供劉渡舟、胡希恕等人的著作或醫案，下一版再補上原文。</div>
+
+<h3><span class="tag">HARD CASE 1</span>虛證補不動：五個可能的原因</h3>
+<p>你說虛證「知道要從補下手，但效果都很差」。把前面十一章疊起來，至少有五個可能，可以逐一排查：</p>
+
+<div class="tw"><table>
+<tr><th style="width:24%">可能原因</th><th>怎麼看出來</th><th>怎麼處理</th></tr>
+<tr><td><b>① 維持層太厚</b><br><span class="ev H">假說</span></td><td>病程長；在床上的時間比實際睡著多很多（睡眠效率 &lt; 85%）；白天午睡、打盹；很早上床「養神」</td><td>補照開，<b>同時</b>給睡眠限制與刺激控制（第 6 章）。補法處理底子，行為處方拆引擎 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a>,<a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup></td></tr>
+<tr><td><b>② 虛中夾亢</b><br><span class="ev C">經驗</span></td><td>底子虛，但易驚、心悸、夢多、自汗盜汗，脈浮大無力</td><td>黃煌的桂枝加龍骨牡蠣湯方證可參考 <sup class="r"><a href="#ref-27" title="黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。">27</a></sup>；單純補氣補血碰不到亢奮的那一半</td></tr>
+<tr><td><b>③ 虛中夾滯</b><br><span class="ev T">中醫觀點</span></td><td>苔膩、脘痞、食後更難睡、痰多</td><td>先通後補，或通補兼施（第 9 章〈邪客〉半夏湯、李中梓五因）</td></tr>
+<tr><td><b>④ 根本不是失眠</b></td><td>傍晚就睏、清晨醒但總時數不少（相位前移）；打鼾、白天嗜睡（OSA）；腿想動（RLS）；早醒伴情緒低落（憂鬱）；藥物或飲酒</td><td>回到第 3 章的決策樹；需要時轉介</td></tr>
+<tr><td><b>⑤ 量錯了東西</b><br><span class="ev H">假說</span></td><td>病人說「精神好一點但還是睡不好」</td><td>用睡眠日誌與 ISI 追蹤。主觀睡眠常低估實際睡眠 <sup class="r"><a href="#ref-10" title="Vgontzas AN, Fernandez-Mendoza J, Liao D, Bixler EO. Insomnia with objective short sleep duration: the most biologically">10</a>,<a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>；精神改善可能是真的進步，只是睡眠指標還沒跟上</td></tr>
+</table></div>
+
+<div class="box hyp"><div class="bt">假說 · 為什麼「虛」的人維持層特別厚</div>這是本讀本的推論：虛證病人白天沒力，傾向多躺、多睡午覺、早上床；年紀大的又常合併相位前移。這些剛好都是維持因子 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a>,<a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a>,<a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。也就是說，<b>「虛」這個狀態本身會製造維持因子</b>。若只補不拆，可能補到人有精神了，睡眠模式卻沒變。這個假說可以用你自己的病人驗證：補法加上睡眠限制的病人，日誌上的睡眠效率是否比只補的病人進步多。</div>
+
+<h3><span class="tag">HARD CASE 2</span>吃安眠藥多年，想停又怕</h3>
+<p>見第 8 章。重點三句：反彈、戒斷、復發要分開談；有醫師督導的逐步減量是必要成分 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>；前三個月密集追蹤。沒有證據顯示任何藥物（包括褪黑激素）能幫助減藥 <sup class="r"><a href="#ref-23" title="Baandrup L, Ebdrup BH, Rasmussen JØ, Lindschou J, Gluud C, Glenthøj BY. Pharmacological interventions for benzodiazepine">23</a></sup>，中藥也沒有這方面的高品質研究。</p>
+
+<h3><span class="tag">HARD CASE 3</span>老人家天沒亮就醒</h3>
+<ul>
+<li>先確認是不是<b>相位前移</b>：傍晚就想睡、總睡眠時數其實不少 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。如果是，叫他更早睡只會更早醒。</li>
+<li>傍晚安排活動、避免太早上床；2023 歐洲指引認為光照與運動可作為 CBT-I 的輔助（B）<sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。</li>
+<li>長者的睡眠結構本來就會變（深睡變少、夜醒變多），要調整期待。〈營衛生會〉說老人「晝不精，夜不瞑」，白天的狀態要一起處理（第 9 章）。</li>
+<li>長者用 BZRA 屬 Beers 準則建議避免；跌倒與骨折風險要放在心上 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</li>
+</ul>
+
+<h3><span class="tag">HARD CASE 4</span>更年期的下半夜醒</h3>
+<ul>
+<li>熱潮紅在圍停經期可以同時是誘發與維持因子 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>，處理它本身就是治療失眠的一部分；需要時與婦產科討論選項。</li>
+<li>先篩打鼾（停經後 OSA 風險上升 <span class="ev X">本讀本文獻未涵蓋，待查證</span>）與不寧腿。</li>
+<li>台灣健保資料中加味逍遙散是失眠最常用的中藥處方之一 <sup class="r"><a href="#ref-26" title="楊曜旭、陳保中、賴榮年等。〈睡眠障礙治療藥物與安神類科學中藥處方併用之副作用流行病學研究〉。衛生福利部《中醫藥年報》第 29 期第 9 冊。">26</a>,<a href="#ref-30" title="Yeung WF, Chung KF, Poon MMK, et al. Chinese herbal medicine for insomnia: a systematic review of randomized controlled ">30</a></sup>，但沒有針對更年期失眠的高品質試驗被本讀本納入。</li>
+</ul>
+
+<h3><span class="tag">HARD CASE 5</span>夢多、惡夢</h3>
+<ul>
+<li>夢多常是下半夜 REM 期間反覆醒來的結果，下半夜本來就是 REM 的主場（第 1 章）<sup class="r"><a href="#ref-6" title="Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomni">6</a></sup>。</li>
+<li>反覆惡夢嚇醒要想到<b>惡夢障礙</b>；把夢演出來要想到 <b>RBD</b>，後者要轉介 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</li>
+<li>SSRI/SNRI 等藥物可能誘發夢境演出 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>；問用藥。</li>
+<li>方證上，桂枝加龍骨牡蠣湯的「夢交」、柴胡加龍骨牡蠣湯的「煩驚」是兩個不同的方向 <sup class="r"><a href="#ref-27" title="黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。">27</a></sup>。</li>
+</ul>
+
+<h3><span class="tag">HARD CASE 6</span>合併焦慮憂鬱</h3>
+<ul>
+<li>失眠與焦慮憂鬱是雙向的；失眠會提高新發憂鬱的風險，也是憂鬱治療後最常殘留的症狀 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>。</li>
+<li>治療失眠可以減少憂鬱的發生與復發 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>，所以失眠值得單獨當作治療目標。</li>
+<li>有自傷或輕生念頭、明顯功能下降時，請轉介精神科或身心科。</li>
+</ul>
+</section>
+
+<section class="ch" id="ch13" data-n="13" data-t="證據：中藥與針灸到底有多少支持" data-part="第三部　中醫怎麼看">
+<div class="opener"><div class="num">13</div><div><div class="lab">CHAPTER 13 · EVIDENCE</div><h2>證據：中藥與針灸到底有多少支持</h2><div class="q">誠實地看，才知道哪些話可以對病人說。</div></div></div>
+
+<div class="tw"><table>
+<tr><th>主題</th><th>研究</th><th>發現</th><th>等級</th></tr>
+<tr><td>中藥整體</td><td>Yeung 2012 系統回顧（中英文 217 篇 RCT）<sup class="r"><a href="#ref-30" title="Yeung WF, Chung KF, Poon MMK, et al. Chinese herbal medicine for insomnia: a systematic review of randomized controlled ">30</a></sup></td><td>只有 8 篇 Jadad ≥ 3，其中 7 篇至少一項高偏誤風險；高品質研究合併後，中藥與西藥（3 篇）、與安慰劑（3 篇）效果相近；不良事件頻率與安慰劑相近、低於西藥。最常用單味藥是酸棗仁（87.6% 的研究）</td><td><span class="ev C">低品質</span></td></tr>
+<tr><td>柴胡加龍骨牡蠣湯</td><td>Wang 2020 系統回顧（22 篇、2029 人）<sup class="r"><a href="#ref-28" title="Wang X, Ju J, Li J, Fan Y, Xu H. Chaihu Longgu Muli decoction, a Chinese herbal formula, for the treatment of insomnia: ">28</a></sup></td><td>單用相較常規西藥，PSQI 多降約 2.8 分；偏誤風險明顯</td><td><span class="ev C">低品質</span></td></tr>
+<tr><td>酸棗仁湯</td><td>兩篇系統回顧（各 12 篇 RCT）<sup class="r"><a href="#ref-29" title="（溫州醫學院團隊）Efficacy and safety of Suanzaoren decoction for primary insomnia: a systematic review of randomized controlled ">29</a></sup></td><td>品質參差、樣本小、選擇性報告</td><td><span class="ev C">低品質</span></td></tr>
+<tr><td>針灸（客觀指標）</td><td>Zhao 2021 統合分析（11 篇、775 人）<sup class="r"><a href="#ref-31" title="Zhao FY, Fu QQ, Kennedy GA, et al. Can acupuncture improve objective sleep indices in patients with primary insomnia? A ">31</a></sup></td><td>總睡眠時間多 55 分鐘、睡眠效率多 9%、入睡後清醒少 50 分鐘；但異質性極高（I² 85–94%），有發表偏誤（Egger p = 0.001），而且把假針與等候組合在一起比</td><td><span class="ev C">低品質</span></td></tr>
+<tr><td>針灸 vs 假針</td><td>Yu 2025 統合分析＋試驗序列分析 <sup class="r"><a href="#ref-32" title="Yu Y, Li X, Zhu Z, et al. Acupuncture for chronic insomnia disorder: a systematic review with meta-analysis and trial se">32</a></sup></td><td>與假針相比，總睡眠時間沒有顯著差異（11.9 分，p = 0.47）；睡眠效率與入睡後清醒較好；樣本量仍不足</td><td><span class="ev C">低–中</span></td></tr>
+<tr><td>針灸單一試驗</td><td>Wang 2021，神門＋復溜 vs 假針，82 人 <sup class="r"><a href="#ref-33" title="Wang C, Xu WL, Li GW, et al. Impact of acupuncture on sleep and comorbid symptoms for chronic insomnia: a randomized cli">33</a></sup></td><td>治療結束時 PSQI、ISI 優於假針；兩次追蹤時差異消失；焦慮憂鬱症狀兩組無差</td><td><span class="ev B">單一 RCT</span></td></tr>
+<tr><td>指引立場</td><td>2023 歐洲失眠指引 <sup class="r"><a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup></td><td>中藥複方「可能有低度效果」，證據品質低；草藥不建議（A）。針灸只在表格中出現，未見分級建議</td><td><span class="ev A">指引</span></td></tr>
+</table></div>
+
+<div class="box warn"><div class="bt">一個數字的警訊</div>針灸統合分析的總睡眠時間 +55 分鐘，比 CBT-I（+7.6 分鐘，Trauer 2015）<sup class="r"><a href="#ref-16" title="Trauer JM, Qian MY, Doyle JS, Rajaratnam SMW, Cunnington D. Cognitive behavioral therapy for chronic insomnia: a systema">16</a></sup> 和任何安眠藥都大很多。這麼大的效果出現在異質性極高、有發表偏誤的資料裡，比較可能反映小型研究的偏誤，而不是針灸真的比所有療法都強 <span class="ev H">本讀本判斷</span>。更嚴謹地只和假針比的分析，總睡眠時間就沒有差異了 <sup class="r"><a href="#ref-32" title="Yu Y, Li X, Zhu Z, et al. Acupuncture for chronic insomnia disorder: a systematic review with meta-analysis and trial se">32</a></sup>。</div>
+
+<div class="box say"><div class="bt">可以對病人說的話</div>
+<p>「中藥治失眠在華人地區用了很久，台灣也很多人用。研究上，有些方子看起來有幫助、副作用也不多，但大部分研究的品質還不夠好，所以國際指引還沒有推薦。針灸有些研究顯示短期有幫助，但效果能維持多久還不清楚。</p>
+<p style="margin:.4em 0 0">我會用中藥處理你的體質和伴隨的不舒服，同時請你一起做睡眠日誌和調整作息，這部分是國際上證據最強的方法。如果你在吃安眠藥，要減藥的話我們跟開藥的醫師一起規劃。」</p></div>
+
+<div class="box tip"><div class="bt">小知識 · 你可以自己產生證據</div>如果每位失眠病人都在初診與第 4、8 週填 ISI、記兩週日誌，一年後你就有自己的資料，可以回答「我開的柴胡加龍骨牡蠣湯對哪一種人比較有效」。這比任何一篇低品質的統合分析都更貼近你的病人。</div>
+</section>
+
+<div class="partbanner"><div class="pk">PART IV · 第四部</div><h2>放回診間</h2><p>把三位病人從頭走一遍，最後是一張可以貼在診間的流程圖。</p></div>
+
+<section class="ch" id="ch14" data-n="14" data-t="三位病人的完整處置" data-part="第四部　放回診間">
+<div class="opener"><div class="num">14</div><div><div class="lab">CHAPTER 14 · PUTTING IT TOGETHER</div><h2>三位病人的完整處置</h2><div class="q">同樣叫「失眠」，三個人的第一步完全不同。</div></div></div>
+
+<div class="box case"><div class="bt">個案 A · 林小姐 · 42 歲</div>
+<p><b>分類：</b>可能符合慢性失眠障礙（約半年、每週多晚、白天受影響），入睡困難為主，夾帶易驚醒。站在急性轉慢性的路口。</p>
+<p><b>先排除：</b>白天會不會打瞌睡（多半不會，是累而不是睏）；焦慮憂鬱程度；咖啡與酒。</p>
+<p><b>中醫：</b>實證，胸滿、煩、易驚、脈弦，符合柴胡加龍骨牡蠣湯的方證 <sup class="r"><a href="#ref-27" title="黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。">27</a></sup>；留意可能腹瀉腹痛。</p>
+<p><b>行為：</b>趁維持因子還不厚，先教刺激控制與固定起床時間；開始記日誌。</p>
+<p><b>藥物衛教：</b>同事給的 zolpidem 不是她的處方，告知複雜睡眠行為的風險 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>，若需要藥物請找處方醫師。</p>
+<p><b>追蹤：</b>ISI 初診、第 4 週、第 8 週。</p></div>
+
+<div class="box case"><div class="bt">個案 B · 陳伯伯 · 72 歲</div>
+<p><b>分類：</b>慢性失眠，早醒為主，合併相位前移、在床上時間過長、白天打盹；長期 zolpidem。</p>
+<p><b>先排除：</b>打鼾與白天嗜睡（OSA）；夜尿；情緒；其他藥物。</p>
+<p><b>行為：</b>兩週日誌 → 算睡眠效率（他大約 9.5 小時臥床、5.5 小時睡著，效率約 58%）→ 訂固定起床時間、縮短臥床窗口、取消長午睡、傍晚安排散步與光照 <sup class="r"><a href="#ref-7" title="Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. Sleep. 1987;10(1):45–56.">7</a>,<a href="#ref-12" title="Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insom">12</a></sup>。</p>
+<p><b>中醫：</b>虛證，但要檢查有沒有夾「滯」（苔膩、脘痞）或夾「亢」（易驚、心悸、盜汗）。若只是虛，補法照開，但跟病人講好：<b>補是補底子，睡眠要靠作息一起改</b>（第 12 章五個原因）。</p>
+<p><b>減藥：</b>和處方醫師商量逐步減量，停藥後 3 個月內密集追蹤 <sup class="r"><a href="#ref-15" title="Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a">15</a></sup>。</p></div>
+
+<div class="box case"><div class="bt">個案 C · 王太太 · 54 歲</div>
+<p><b>分類：</b>先不急著叫它失眠。下半夜醒的原因至少有三個要先排除。</p>
+<p><b>先排除：</b>(1) 熱潮紅：是熱醒還是醒了才熱；(2) 不寧腿：想動腳的衝動、休息時加重、活動緩解、傍晚夜間明顯，四項是否都有 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>；(3) OSA：打鼾、目擊停止呼吸、白天嗜睡，用 STOP-Bang 篩 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a></sup>。</p>
+<p><b>分流：</b>疑 OSA → 轉睡眠中心；疑 RLS → 避免抗組織胺類成藥 <sup class="r"><a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>，與醫師討論；熱潮紅明顯 → 可與婦產科討論。</p>
+<p><b>中醫：</b>排除後若仍是失眠，再依證處理；夢多與下半夜醒可放在 REM 生理的脈絡下理解。</p></div>
+
+<h3><span class="tag">CLINIC FLOW</span>診間流程圖</h3>
+<figure>
+<svg viewBox="0 0 760 560" font-family="Noto Sans TC" font-size="12.5">
+<defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9z" fill="#1c2740"/></marker></defs>
+<g stroke="#1c2740" stroke-width="1.5" fill="none" marker-end="url(#a2)">
+<path d="M380 62 V88"/><path d="M380 142 V168"/><path d="M380 222 V248"/><path d="M380 302 V328"/><path d="M380 382 V408"/>
+<path d="M560 115 H610"/><path d="M560 195 H610"/><path d="M560 275 H610"/>
+<path d="M290 435 H230"/><path d="M470 435 H530"/>
+</g>
+<rect x="250" y="20" width="260" height="42" rx="10" fill="#1c2740"/><text x="380" y="46" fill="#fff" text-anchor="middle" font-weight="700">病人說「睡不好」</text>
+<rect x="200" y="88" width="360" height="54" rx="10" fill="#fff" stroke="#1c2740"/><text x="380" y="110" text-anchor="middle" font-weight="700">三根柱子都有嗎？</text><text x="380" y="128" text-anchor="middle" font-size="11.5">抱怨・有機會睡・白天受影響</text>
+<rect x="610" y="92" width="140" height="46" rx="8" fill="#efe8da"/><text x="680" y="112" text-anchor="middle" font-size="11.5">沒有：睡眠不足</text><text x="680" y="128" text-anchor="middle" font-size="11.5">或正常短睡者</text>
+<rect x="200" y="168" width="360" height="54" rx="10" fill="#fff" stroke="#a8412c"/><text x="380" y="190" text-anchor="middle" font-weight="700">紅旗？</text><text x="380" y="208" text-anchor="middle" font-size="11.5">打鼾嗜睡・夢境演出・輕生念頭・腿動</text>
+<rect x="610" y="172" width="140" height="46" rx="8" fill="#f6e1d9"/><text x="680" y="192" text-anchor="middle" font-size="11.5">轉介：睡眠中心</text><text x="680" y="208" text-anchor="middle" font-size="11.5">神經科・精神科</text>
+<rect x="200" y="248" width="360" height="54" rx="10" fill="#fff" stroke="#1c2740"/><text x="380" y="270" text-anchor="middle" font-weight="700">可逆因素？</text><text x="380" y="288" text-anchor="middle" font-size="11.5">酒・咖啡・藥物・疼痛・夜尿・熱潮紅</text>
+<rect x="610" y="252" width="140" height="46" rx="8" fill="#efe8da"/><text x="680" y="272" text-anchor="middle" font-size="11.5">先處理</text><text x="680" y="288" text-anchor="middle" font-size="11.5">（同時仍可治失眠）</text>
+<rect x="200" y="328" width="360" height="54" rx="10" fill="#fff" stroke="#1c2740"/><text x="380" y="350" text-anchor="middle" font-weight="700">急性 or 慢性（3 個月・每週 3 次）</text><text x="380" y="368" text-anchor="middle" font-size="11.5">日誌兩週＋ISI</text>
+<rect x="290" y="408" width="180" height="54" rx="10" fill="#c9962e"/><text x="380" y="430" text-anchor="middle" font-weight="700" fill="#fff">中醫辨證</text><text x="380" y="448" text-anchor="middle" font-size="11.5" fill="#fff">實（清）・虛（補）・滯（通）</text>
+<rect x="30" y="408" width="200" height="74" rx="10" fill="#2c5d9c"/><text x="130" y="432" text-anchor="middle" font-weight="700" fill="#fff">急性</text><text x="130" y="450" text-anchor="middle" font-size="11.5" fill="#fff">處理誘因・方證祛邪</text><text x="130" y="466" text-anchor="middle" font-size="11.5" fill="#fff">預防慢性化（刺激控制）</text>
+<rect x="530" y="408" width="210" height="74" rx="10" fill="#1c2740"/><text x="635" y="432" text-anchor="middle" font-weight="700" fill="#fff">慢性</text><text x="635" y="450" text-anchor="middle" font-size="11.5" fill="#fff">方證＋行為處方（拆引擎）</text><text x="635" y="466" text-anchor="middle" font-size="11.5" fill="#fff">用藥者：計畫性減量</text>
+<rect x="200" y="500" width="360" height="42" rx="10" fill="#4f7f45"/><text x="380" y="526" text-anchor="middle" font-weight="700" fill="#fff">第 4、8 週：ISI＋日誌，判斷有沒有效</text>
+<path d="M380 462 V500" stroke="#1c2740" stroke-width="1.5" marker-end="url(#a2)"/>
+</svg>
+<figcaption><b>圖 14-1　本讀本整理的診間流程。</b>依前面各章的文獻整合而成，為教學建議，不是指引。</figcaption>
+</figure>
+
+<h3><span class="tag">FINAL QUIZ</span>總複習</h3>
+<details class="q"><summary>一位病人每晚睡 5 小時，白天精神很好，也不覺得睡眠有問題。他有失眠障礙嗎？</summary><div class="a">沒有。缺「抱怨」和「白天受影響」兩根柱子 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</div></details>
+<details class="q"><summary>CBT-I 與安眠藥短期效果相近，為什麼長期建議 CBT-I？</summary><div class="a">CBT-I 處理維持因子，效果較持久；合併治療的優勢在第 4–5 週後縮小；先合併、後撤藥只留 CBT-I 的長期緩解率最好 <sup class="r"><a href="#ref-5" title="Morin CM, Buysse DJ. Management of insomnia. N Engl J Med. 2024;391(3):247–258.">5</a>,<a href="#ref-22" title="Morin CM, Vallières A, Guay B, et al. Cognitive behavioral therapy, singly and combined with medication, for persistent ">22</a></sup>。</div></details>
+<details class="q"><summary>Orexin 拮抗劑停藥後沒有戒斷或反彈，所以停藥就不會再失眠？</summary><div class="a">不對。Suvorexant 一年試驗中，突然換成安慰劑的人失眠復發比繼續吃的人多 <sup class="r"><a href="#ref-20" title="Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subs">20</a></sup>。藥物壓住症狀，不一定改變維持因子。</div></details>
+<details class="q"><summary>褪黑激素對一般失眠能讓人早多久睡著？台灣可以當保健食品賣嗎？</summary><div class="a">約 5–7 分鐘 <sup class="r"><a href="#ref-3" title="Auld F, Maschauer EL, Morrison I, Skene DJ, Riha RL. Evidence for the efficacy of melatonin in the treatment of primary ">3</a>,<a href="#ref-2" title="Morin CM, Benca R. Chronic insomnia. Lancet. 2012;379(9821):1129–1141.">2</a></sup>；對睡眠相位後移較有用。台灣自 1996 年起以藥品管理 <sup class="r"><a href="#ref-21" title="衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxer">21</a></sup>。</div></details>
+<details class="q"><summary>虛證病人補了之後「精神好了，但睡眠沒變」，第一個要檢查什麼？</summary><div class="a">睡眠日誌：在床上的時間是不是遠多於睡著的時間、有沒有午睡打盹。若是，維持層很厚，需要加上行為處方（第 12 章原因①）<span class="ev H">假說</span>。</div></details>
+<details class="q"><summary>「做夢會揮拳踢人」的長者，屬於哪一類？</summary><div class="a">REM 睡眠行為障礙（RBD），屬異睡症，不是失眠，應轉介 <sup class="r"><a href="#ref-8" title="Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. Chest. 2014;146(">8</a></sup>。</div></details>
+
+<div class="box plain"><div class="bt">白話總整理 · 如果只帶走一頁</div>
+<p><b>失眠</b>要有三個條件：自己覺得睡不好、明明有機會睡、白天受影響。</p>
+<p><b>慢性化的關鍵</b>不是當初的壓力，而是後來為了應付失眠而養成的習慣：太早上床、在床上躺很久、白天補眠、越來越怕睡不著。</p>
+<p><b>最有證據的治療</b>是 CBT-I，專門把這些習慣拆掉。安眠藥短期有效，但長期證據少、停藥時要有計畫。Orexin 拮抗劑是比較新的一類，依賴性低，但停藥後失眠仍可能回來。</p>
+<p><b>褪黑激素</b>像是「天黑了」的訊號，對一般失眠效果很小。<b>GABA 保健品</b>缺乏好的研究。</p>
+<p><b>下半夜醒</b>要先排除酒、熱潮紅、不寧腿、打鼾、憂鬱、夜尿。<b>做夢會打人</b>是另一種病，要轉介。</p>
+<p><b>中醫</b>看失眠是看整個證；古人有清、補、通三種思路。中藥與針灸有一些研究支持，但品質還不夠好。把方證處理和行為處方放在一起，各做各的事。</p>
+</div>
+</section>
+
+<section class="ch" id="glossary" data-n="附" data-t="名詞對照" data-part="附錄">
+<div class="opener"><div class="num">A</div><div><div class="lab">APPENDIX A</div><h2>名詞對照</h2></div></div>
+<div class="tw"><table>
+<tr><th>英文</th><th>中文</th><th>一句話</th></tr>
+<tr><td>Insomnia disorder</td><td>失眠障礙</td><td>抱怨＋有機會睡＋白天受影響</td></tr>
+<tr><td>Chronic / Short-term insomnia disorder</td><td>慢性／短期失眠障礙</td><td>以 3 個月、每週 3 次為界</td></tr>
+<tr><td>Sleep onset latency (SOL)</td><td>入睡潛伏期</td><td>上床到睡著的時間</td></tr>
+<tr><td>Wake after sleep onset (WASO)</td><td>入睡後清醒時間</td><td>睡著後醒來的總時間</td></tr>
+<tr><td>Total sleep time (TST)</td><td>總睡眠時間</td><td></td></tr>
+<tr><td>Sleep efficiency (SE)</td><td>睡眠效率</td><td>總睡眠時間 ÷ 臥床時間</td></tr>
+<tr><td>Hyperarousal</td><td>過度警覺</td><td>心理與生理都處於「熱機」狀態</td></tr>
+<tr><td>Predisposing / Precipitating / Perpetuating</td><td>素質／誘發／維持因子</td><td>Spielman 3P 模型</td></tr>
+<tr><td>CBT-I</td><td>失眠認知行為治療</td><td>慢性失眠第一線</td></tr>
+<tr><td>Sleep restriction / Stimulus control</td><td>睡眠限制／刺激控制</td><td>CBT-I 的兩個核心行為零件</td></tr>
+<tr><td>BZRA</td><td>苯二氮平受體促效劑</td><td>BZD 與 Z-drug 的總稱</td></tr>
+<tr><td>DORA</td><td>雙重食慾素受體拮抗劑</td><td>suvorexant、lemborexant、daridorexant</td></tr>
+<tr><td>Rebound insomnia</td><td>反彈性失眠</td><td>停藥後短暫比用藥前更差</td></tr>
+<tr><td>REM sleep behavior disorder (RBD)</td><td>REM 睡眠行為障礙</td><td>把夢演出來；異睡症</td></tr>
+<tr><td>Restless legs syndrome (RLS)</td><td>不寧腿症候群</td><td>睡眠相關動作障礙</td></tr>
+<tr><td>Advanced sleep phase</td><td>睡眠相位前移</td><td>早睡早醒，長者常見</td></tr>
+<tr><td>Paradoxical insomnia</td><td>矛盾性失眠</td><td>舊稱睡眠狀態知覺錯誤</td></tr>
+</table></div>
+</section>
+
+<section class="ch" id="pending" data-n="附" data-t="待查證清單" data-part="附錄">
+<div class="opener"><div class="num">B</div><div><div class="lab">APPENDIX B</div><h2>待查證清單</h2><div class="q">下一版要補的東西。</div></div></div>
+<ul>
+<li>Suvorexant、lemborexant 在台灣的核准與健保給付狀態。</li>
+<li>台灣藥品級褪黑激素的品名與適應症；GABA 食品原料規定是否已正式公告。</li>
+<li>台灣常用的 estazolam、alprazolam、lorazepam、flunitrazepam 的半衰期與減量建議（請以仿單與處方醫師為準）。</li>
+<li>《千金方》溫膽湯原條文；《醫宗必讀·不得臥》五因的原文用字。</li>
+<li>《靈樞·邪客》半夏湯完整條文（含煎服法）。</li>
+<li>DSM-5 原文對「原發／次發」的處理；ICD-11 失眠分類。</li>
+<li>停經後 OSA 風險的流行病學數據。</li>
+<li>口服 GABA 改善失眠的人體試驗與血腦屏障通透性。</li>
+<li>名老中醫（劉渡舟、胡希恕等）失眠醫案原文：需要你提供著作。</li>
+<li>De Crescenzo 2022 對 lemborexant 的整體評價原文（本讀本僅讀到摘要）。</li>
+</ul>
+</section>
+
+<section class="ch" id="refs" data-n="附" data-t="參考文獻" data-part="附錄">
+<div class="opener"><div class="num">C</div><div><div class="lab">APPENDIX C · REFERENCES</div><h2>參考文獻</h2><div class="q">依文中首次出現順序編號。<b>全文</b>＝讀過全文；<b>摘要</b>＝只讀到摘要或二手轉述。</div></div></div>
+<ol class="refs"><li id="ref-1">Saper CB, Fuller PM, Pedersen NP, Lu J, Scammell TE. Sleep state switching. <i>Neuron</i>. 2010;68(6):1023–1042. <span class="doi"><a href="https://doi.org/10.1016/j.neuron.2010.11.032">doi:10.1016/j.neuron.2010.11.032</a></span> <span class="pill">全文</span></li>
+<li id="ref-2">Morin CM, Benca R. Chronic insomnia. <i>Lancet</i>. 2012;379(9821):1129–1141. <span class="doi"><a href="https://doi.org/10.1016/S0140-6736(11)60750-2">doi:10.1016/S0140-6736(11)60750-2</a></span> <span class="pill">全文</span></li>
+<li id="ref-3">Auld F, Maschauer EL, Morrison I, Skene DJ, Riha RL. Evidence for the efficacy of melatonin in the treatment of primary adult sleep disorders. <i>Sleep Med Rev</i>. 2017;34:10–22. <span class="doi"><a href="https://doi.org/10.1016/j.smrv.2016.06.005">doi:10.1016/j.smrv.2016.06.005</a></span> <span class="pill">全文</span></li>
+<li id="ref-4">Sakurai T. The neural circuit of orexin (hypocretin): maintaining sleep and wakefulness. <i>Nat Rev Neurosci</i>. 2007;8(3):171–181. <span class="doi"><a href="https://doi.org/10.1038/nrn2092">doi:10.1038/nrn2092</a></span> <span class="pill">全文</span></li>
+<li id="ref-5">Morin CM, Buysse DJ. Management of insomnia. <i>N Engl J Med</i>. 2024;391(3):247–258. <span class="doi"><a href="https://doi.org/10.1056/NEJMcp2305655">doi:10.1056/NEJMcp2305655</a></span> <span class="pill">全文</span></li>
+<li id="ref-6">Riemann D, Spiegelhalder K, Nissen C, Hirscher V, Baglioni C, Feige B. REM sleep instability – a new pathway for insomnia? <i>Pharmacopsychiatry</i>. 2012;45(5):167–176. <span class="doi"><a href="https://doi.org/10.1055/s-0031-1299721">doi:10.1055/s-0031-1299721</a></span> <span class="pill">全文</span></li>
+<li id="ref-7">Spielman AJ, Saskin P, Thorpy MJ. Treatment of chronic insomnia by restriction of time in bed. <i>Sleep</i>. 1987;10(1):45–56. <span class="doi"><a href="https://doi.org/10.1093/sleep/10.1.45">doi:10.1093/sleep/10.1.45</a></span> <span class="pill">全文</span></li>
+<li id="ref-8">Sateia MJ. International classification of sleep disorders–third edition: highlights and modifications. <i>Chest</i>. 2014;146(5):1387–1394. <span class="doi"><a href="https://doi.org/10.1378/chest.14-0970">doi:10.1378/chest.14-0970</a></span> <span class="pill">全文</span></li>
+<li id="ref-9">〈柴胡加龍骨牡蠣湯在失眠之應用文獻回顧〉，華藝線上圖書館摘要（引用台灣慢性失眠盛行率 11.3% 與 2002 年健保資料 12.4%）。 <span class="doi"></span> <span class="pill">摘要</span></li>
+<li id="ref-10">Vgontzas AN, Fernandez-Mendoza J, Liao D, Bixler EO. Insomnia with objective short sleep duration: the most biologically severe phenotype of the disorder. <i>Sleep Med Rev</i>. 2013;17(4):241–254. <span class="doi"><a href="https://doi.org/10.1016/j.smrv.2012.09.005">doi:10.1016/j.smrv.2012.09.005</a></span> <span class="pill">全文</span></li>
+<li id="ref-11">Ellis JG, Perlis ML, Espie CA, et al. The natural history of insomnia: predisposing, precipitating, coping, and perpetuating factors over the early developmental course of insomnia. <i>Sleep</i>. 2021;44(9):zsab095. <span class="doi"><a href="https://doi.org/10.1093/sleep/zsab095">doi:10.1093/sleep/zsab095</a></span> <span class="pill">摘要</span></li>
+<li id="ref-12">Riemann D, Espie CA, Altena E, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insomnia 2023. <i>J Sleep Res</i>. 2023;32(6):e14035. <span class="doi"><a href="https://doi.org/10.1111/jsr.14035">doi:10.1111/jsr.14035</a></span> <span class="pill">全文（經網頁摘取）</span></li>
+<li id="ref-13">Blanken TF, Benjamins JS, Borsboom D, et al. Insomnia disorder subtypes derived from life history and traits of affect and personality. <i>Lancet Psychiatry</i>. 2019;6(2):151–163. <span class="doi"><a href="https://doi.org/10.1016/S2215-0366(18)30464-4">doi:10.1016/S2215-0366(18)30464-4</a></span> <span class="pill">全文</span></li>
+<li id="ref-14">Riemann D, Dressle RJ, Benz F, Spiegelhalder K. Chronic insomnia, REM sleep instability and emotional dysregulation: a pathway to anxiety and depression? <i>J Sleep Res</i>. 2024;e14252. <span class="doi"><a href="https://doi.org/10.1111/jsr.14252">doi:10.1111/jsr.14252</a></span> <span class="pill">摘要</span></li>
+<li id="ref-15">Morin CM, Bélanger L, Bastien C, Vallières A. Long-term outcome after discontinuation of benzodiazepines for insomnia: a survival analysis of relapse. <i>Behav Res Ther</i>. 2005;43(1):1–14.（原始試驗：Morin CM, et al. <i>Am J Psychiatry</i>. 2004;161(2):332–342.） <span class="doi"><a href="https://doi.org/10.1016/j.brat.2003.12.002">doi:10.1016/j.brat.2003.12.002</a></span> <span class="pill">全文</span></li>
+<li id="ref-16">Trauer JM, Qian MY, Doyle JS, Rajaratnam SMW, Cunnington D. Cognitive behavioral therapy for chronic insomnia: a systematic review and meta-analysis. <i>Ann Intern Med</i>. 2015;163(3):191–204. <span class="doi"><a href="https://doi.org/10.7326/M14-2841">doi:10.7326/M14-2841</a></span> <span class="pill">全文</span></li>
+<li id="ref-17">Sivertsen B, Omvik S, Pallesen S, et al. Cognitive behavioral therapy vs zopiclone for treatment of chronic primary insomnia in older adults: a randomized controlled trial. <i>JAMA</i>. 2006;295(24):2851–2858. <span class="doi"><a href="https://doi.org/10.1001/jama.295.24.2851">doi:10.1001/jama.295.24.2851</a></span> <span class="pill">全文</span></li>
+<li id="ref-18">De Crescenzo F, D’Alò GL, Ostinelli EG, et al. Comparative effects of pharmacological interventions for the acute and long-term management of insomnia disorder in adults: a systematic review and network meta-analysis. <i>Lancet</i>. 2022;400(10347):170–184. <span class="doi"><a href="https://doi.org/10.1016/S0140-6736(22)00878-9">doi:10.1016/S0140-6736(22)00878-9</a></span> <span class="pill">摘要＋NEJM 轉載數據</span></li>
+<li id="ref-19">Mignot E, Mayleben D, Fietze I, et al. Safety and efficacy of daridorexant in patients with insomnia disorder: results from two multicentre, randomised, double-blind, placebo-controlled, phase 3 trials. <i>Lancet Neurol</i>. 2022;21(2):125–139. <span class="doi"><a href="https://doi.org/10.1016/S1474-4422(21)00436-1">doi:10.1016/S1474-4422(21)00436-1</a></span> <span class="pill">全文</span></li>
+<li id="ref-20">Michelson D, Snyder E, Paradis E, et al. Safety and efficacy of suvorexant during 1-year treatment of insomnia with subsequent abrupt treatment discontinuation: a phase 3 randomised, double-blind, placebo-controlled trial. <i>Lancet Neurol</i>. 2014;13(5):461–471. <span class="doi"><a href="https://doi.org/10.1016/S1474-4422(14)70053-5">doi:10.1016/S1474-4422(14)70053-5</a></span> <span class="pill">全文</span></li>
+<li id="ref-21">衛生福利部食品藥物管理署〈含 melatonin 成分產品之管理原則〉（2012）；食藥署 2024-08-22 預告「以微生物發酵製取之食品原料 γ-胺基丁酸之使用限制及標示規定」草案；Pharma Now（2026-04-15）Nxera 合作夥伴健喬取得台灣 QUVIVIQ 核准報導；中國 NMPA 核准報導（2025）。 <span class="doi"></span> <span class="pill">官方與新聞</span></li>
+<li id="ref-22">Morin CM, Vallières A, Guay B, et al. Cognitive behavioral therapy, singly and combined with medication, for persistent insomnia: a randomized controlled trial. <i>JAMA</i>. 2009;301(19):2005–2015. <span class="doi"><a href="https://doi.org/10.1001/jama.2009.682">doi:10.1001/jama.2009.682</a></span> <span class="pill">全文</span></li>
+<li id="ref-23">Baandrup L, Ebdrup BH, Rasmussen JØ, Lindschou J, Gluud C, Glenthøj BY. Pharmacological interventions for benzodiazepine discontinuation in chronic benzodiazepine users. <i>Cochrane Database Syst Rev</i>. 2018;3:CD011481. <span class="doi"><a href="https://doi.org/10.1002/14651858.CD011481.pub2">doi:10.1002/14651858.CD011481.pub2</a></span> <span class="pill">全文</span></li>
+<li id="ref-24">彰化基督教醫院〈內科核心課程：失眠（中醫）〉講義，2018。 <span class="doi"></span> <span class="pill">二手</span></li>
+<li id="ref-25">古籍原文：《靈樞·邪客》（ctext.org 節錄）、《靈樞·大惑論》、《靈樞·營衛生會》、《素問·逆調論》、《景岳全書·不寐》、《醫宗必讀》、《傷寒論》宋本條文、《金匱要略·血痹虛勞》；以公開古籍網站與二手引用核對。證型清單：PMC10929891 中文綜述。「胃不和則臥不安」衍文說：《中醫雜誌》2024 年〈「胃不和則臥不安」探賾〉摘要。 <span class="doi"></span> <span class="pill">原文＋二手</span></li>
+<li id="ref-26">楊曜旭、陳保中、賴榮年等。〈睡眠障礙治療藥物與安神類科學中藥處方併用之副作用流行病學研究〉。衛生福利部《中醫藥年報》第 29 期第 9 冊。 <span class="doi"></span> <span class="pill">摘要</span></li>
+<li id="ref-27">黃煌。〈腦病常用經方〉，收於南京中醫藥大學國際經方學院講義彙編（柴胡加龍骨牡蠣湯、桂枝加龍骨牡蠣湯之方證提要與注意事項）。 <span class="doi"><a href="https://gjjfxy.njucm.edu.cn/">https://gjjfxy.njucm.edu.cn/</a></span> <span class="pill">全文（經網頁摘取）</span></li>
+<li id="ref-28">Wang X, Ju J, Li J, Fan Y, Xu H. Chaihu Longgu Muli decoction, a Chinese herbal formula, for the treatment of insomnia: a systematic review and meta-analysis. <i>Medicine (Baltimore)</i>. 2020;99(40):e22462. <span class="doi"><a href="https://doi.org/10.1097/MD.0000000000022462">doi:10.1097/MD.0000000000022462</a></span> <span class="pill">摘要</span></li>
+<li id="ref-29">（溫州醫學院團隊）Efficacy and safety of Suanzaoren decoction for primary insomnia: a systematic review of randomized controlled trials. <i>BMC Complement Altern Med</i>. 2013;13:18；Liu XX, et al. Suanzaoren decoction for the treatment of chronic insomnia: a systematic review and meta-analysis. <i>Eur Rev Med Pharmacol Sci</i>. 2022;26(22):8523–8533. <span class="doi"><a href="https://doi.org/10.1186/1472-6882-13-18">doi:10.1186/1472-6882-13-18</a></span> <span class="pill">摘要</span></li>
+<li id="ref-30">Yeung WF, Chung KF, Poon MMK, et al. Chinese herbal medicine for insomnia: a systematic review of randomized controlled trials. <i>Sleep Med Rev</i>. 2012;16(6):497–507. <span class="doi"><a href="https://doi.org/10.1016/j.smrv.2011.12.005">doi:10.1016/j.smrv.2011.12.005</a></span> <span class="pill">全文</span></li>
+<li id="ref-31">Zhao FY, Fu QQ, Kennedy GA, et al. Can acupuncture improve objective sleep indices in patients with primary insomnia? A systematic review and meta-analysis. <i>Sleep Med</i>. 2021;80:244–259. <span class="doi"><a href="https://doi.org/10.1016/j.sleep.2021.01.053">doi:10.1016/j.sleep.2021.01.053</a></span> <span class="pill">全文</span></li>
+<li id="ref-32">Yu Y, Li X, Zhu Z, et al. Acupuncture for chronic insomnia disorder: a systematic review with meta-analysis and trial sequential analysis. <i>Front Neurol</i>. 2025;16:1541276. <span class="doi"><a href="https://doi.org/10.3389/fneur.2025.1541276">doi:10.3389/fneur.2025.1541276</a></span> <span class="pill">摘要</span></li>
+<li id="ref-33">Wang C, Xu WL, Li GW, et al. Impact of acupuncture on sleep and comorbid symptoms for chronic insomnia: a randomized clinical trial. <i>Nat Sci Sleep</i>. 2021;13:1807–1822. <span class="doi"><a href="https://doi.org/10.2147/NSS.S326762">doi:10.2147/NSS.S326762</a></span> <span class="pill">摘要</span></li></ol>
+</section>
+
+<div class="endnote">以上是一般性衛教資訊，個人狀況請諮詢醫師。</div>
+<p class="small" style="text-align:center;margin-top:10px">本讀本為中醫師自學用初稿。三位病人為教學虛構個案。2026 年 11 月整理。</p>
+
+</div>
+</main>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+const hh=t=>{t=((t%24)+24)%24;const h=Math.floor(t),m=Math.round((t-h)*60);return (m===60?h+1:h).toString().padStart(2,'0')+':'+(m===60?0:m).toString().padStart(2,'0');};
+
+/* ---------- TOC + reveal ---------- */
+const links=$$('nav.toc a[href^="#"]');
+const secs=links.map(a=>document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s=>io.observe(s));
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target);}}),{rootMargin:'0px 0px -8% 0px'});
+$$('.box,figure,.widget,.tw,.two').forEach(x=>{x.classList.add('reveal');rv.observe(x);});
+
+/* ---------- Hypnogram ---------- */
+const HYP={
+ young:{segs:[['W',8],['N1',6],['N2',14],['N3',38],['N2',10],['R',10],['N2',22],['N3',30],['N2',12],['R',22],['N1',3],['N2',30],['N3',14],['N2',14],['R',28],['W',2],['N2',40],['N3',4],['N2',12],['R',34],['N2',38],['R',40],['N1',4],['W',45]],
+  txt:'深睡（N3）集中在前兩三個循環；REM 一次比一次長，最長的 REM 出現在清晨。整晚幾乎沒有完全醒來。'},
+ old:{segs:[['W',18],['N1',10],['N2',20],['N3',18],['N2',12],['W',6],['N1',5],['R',12],['N2',30],['N3',8],['N2',16],['W',10],['N1',6],['R',18],['N2',34],['W',14],['N1',8],['N2',30],['R',22],['W',16],['N1',6],['N2',26],['R',16],['W',98]],
+  txt:'入睡較慢、深睡明顯變少、夜裡醒來次數變多，而且整段睡眠提早結束（清晨就醒）。這不全是病，部分是正常老化 [示意]。'},
+ alc:{segs:[['W',4],['N1',3],['N2',12],['N3',50],['N2',14],['N3',30],['N2',16],['R',6],['N2',30],['N3',18],['N2',10],['W',12],['N1',6],['R',20],['W',10],['N1',8],['R',24],['W',14],['N2',20],['R',30],['W',8],['N1',6],['R',26],['W',63]],
+  txt:'前半夜好像睡得很沉（REM 被壓抑），血中酒精下降後的後半夜反覆醒來、REM 回彈、夢多。這就是「喝酒好入睡，但半夜醒」[示意，依 MB2012 的描述]。'}
+};
+function drawHyp(k){const svg=$('#hyp-svg');if(!svg)return;svg.innerHTML='';
+ const Y={W:30,R:70,N1:105,N2:140,N3:185},C={W:'#c9962e',R:'#8a5cc2',N1:'#b7cbe6',N2:'#6f93c6',N3:'#2c5d9c'},L={W:'清醒',R:'REM',N1:'N1',N2:'N2',N3:'N3 深睡'};
+ const x0=70,w=670,total=480;
+ Object.keys(Y).forEach(s=>{el('line',{x1:x0,x2:x0+w,y1:Y[s],y2:Y[s],stroke:'#eee'},svg);el('text',{x:x0-8,y:Y[s]+4,'text-anchor':'end',fill:C[s]==='#b7cbe6'?'#6f93c6':C[s]},svg,L[s]);});
+ for(let h=0;h<=8;h++){const x=x0+w*h*60/total;el('line',{x1:x,x2:x,y1:20,y2:200,stroke:'#f2eee6'},svg);el('text',{x:x,y:218,'text-anchor':'middle',fill:'#7a8197'},svg,h+'h');}
+ let t=0,prev=null,d='';
+ HYP[k].segs.forEach(([s,m])=>{const xa=x0+w*t/total,xb=x0+w*Math.min(t+m,total)/total;
+  el('rect',{x:xa,y:Y[s]-6,width:Math.max(xb-xa,1),height:12,fill:C[s],rx:2},svg);
+  d+=(prev===null?`M${xa},${Y[s]}`:`L${xa},${Y[s]}`)+`L${xb},${Y[s]}`;prev=s;t+=m;});
+ el('path',{d:d,fill:'none',stroke:'#1c2740','stroke-width':1,opacity:.35},svg);
+ el('text',{x:x0+w/2,y:12,'text-anchor':'middle',fill:'#46506a','font-size':11},svg,'入睡後經過的時間 →');
+ $('#hyp-out').textContent=HYP[k].txt;}
+$$('#w-hypno .btn').forEach(b=>b.onclick=()=>{$$('#w-hypno .btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');drawHyp(b.dataset.h);});
+drawHyp('young');
+
+/* ---------- Two-process simulator ---------- */
+const P={tw:18.2,ts:4.2,H0:.62,L0:.20,amp:.10,peak:18.5,S0:.18};
+const Cc=(t,adv)=>P.amp*Math.cos(2*Math.PI*(t-(P.peak-adv))/24);
+function simulate(Tw,Tb,nap,caf,adv){const dt=1/60;let t=Tw,S=P.S0;const path=[];
+ const cafOn=t=>caf&&t>=16&&t<25;
+ while(t<Tb){const napping=nap>0&&t>=14&&t<14+nap/60;S=napping?S*Math.exp(-dt/P.ts):1-(1-S)*Math.exp(-dt/P.tw);path.push([t,S,napping?'s':'w']);t+=dt;}
+ const eff=(t,S)=>S-(cafOn(t)?.06:0);
+ while(eff(t,S)<P.H0+Cc(t,adv)&&t<Tb+8){S=1-(1-S)*Math.exp(-dt/P.tw);path.push([t,S,'l']);t+=dt;}
+ const onset=t;
+ while(S>P.L0+Cc(t,adv)&&t<onset+14){S*=Math.exp(-dt/P.ts);path.push([t,S,'s']);t+=dt;}
+ const wake=t;const end=Math.max(Tw+30,wake+2);
+ while(t<end){S=1-(1-S)*Math.exp(-dt/P.tw);path.push([t,S,'w']);t+=dt;}
+ return{path,onset,wake,sol:(onset-Tb)*60,dur:wake-onset};}
+function drawSim(){const svg=$('#sim-svg');if(!svg)return;
+ const Tw=+$('#s-wake').value,Tb=+$('#s-bed').value,nap=+$('#s-nap').value,adv=+$('#s-adv').value,caf=$('#s-caf').checked;
+ $('#o-wake').textContent=hh(Tw);$('#o-bed').textContent=hh(Tb);$('#o-nap').textContent=nap+' 分';$('#o-adv').textContent=adv+' 小時';
+ const r=simulate(Tw,Tb,nap,caf,adv);svg.innerHTML='';
+ const t0=6,t1=36,x0=50,w=690,y0=230,h=200;const X=t=>x0+(t-t0)/(t1-t0)*w,Y=v=>y0-(v-.05)/(.85)*h;
+ for(let t=t0;t<=t1;t+=3){el('line',{x1:X(t),x2:X(t),y1:Y(.9),y2:y0,stroke:'#f0ebe0'},svg);el('text',{x:X(t),y:y0+16,'text-anchor':'middle',fill:'#7a8197'},svg,hh(t));}
+ el('rect',{x:X(Math.max(Tb,t0)),y:Y(.9),width:Math.max(0,X(r.onset)-X(Tb)),height:y0-Y(.9),fill:'#a8412c',opacity:.10},svg);
+ el('rect',{x:X(r.onset),y:Y(.9),width:X(r.wake)-X(r.onset),height:y0-Y(.9),fill:'#2c5d9c',opacity:.08},svg);
+ let dH='',dL='';for(let t=t0;t<=t1;t+=.1){dH+=(t===t0?'M':'L')+X(t)+','+Y(P.H0+Cc(t,adv));dL+=(t===t0?'M':'L')+X(t)+','+Y(P.L0+Cc(t,adv));}
+ el('path',{d:dH,fill:'none',stroke:'#a8412c','stroke-dasharray':'5 4','stroke-width':1.5},svg);
+ el('path',{d:dL,fill:'none',stroke:'#2c5d9c','stroke-dasharray':'5 4','stroke-width':1.5},svg);
+ el('text',{x:X(t0)+4,y:Y(P.H0+Cc(t0,adv))-8,fill:'#a8412c'},svg,'上門檻：壓力碰到就睡著');
+ el('text',{x:X(t0)+4,y:Y(P.L0+Cc(t0,adv))-8,fill:'#2c5d9c'},svg,'下門檻：壓力降到就醒來');
+ const col={w:'#c9962e',s:'#2c5d9c',l:'#a8412c'};let seg=[],cur=null;
+ const flush=()=>{if(seg.length>1)el('polyline',{points:seg.map(p=>X(p[0])+','+Y(p[1])).join(' '),fill:'none',stroke:col[cur],'stroke-width':3,'stroke-linecap':'round'},svg);};
+ r.path.forEach(p=>{if(p[0]<t0||p[0]>t1)return;if(p[2]!==cur){flush();seg=seg.length?[seg[seg.length-1]]:[];cur=p[2];}seg.push(p);});flush();
+ el('line',{x1:X(Tb),x2:X(Tb),y1:Y(.9),y2:y0,stroke:'#1c2740','stroke-width':1},svg);el('text',{x:X(Tb)+3,y:Y(.9)+12,fill:'#1c2740'},svg,'上床');
+ el('text',{x:x0,y:14,fill:'#46506a'},svg,'睡眠壓力（沙漏）');
+ [['#c9962e','清醒時累積'],['#a8412c','躺在床上醒著'],['#2c5d9c','睡著時清除']].forEach((a,i)=>{el('rect',{x:x0+150+i*130,y:5,width:14,height:4,fill:a[0]},svg);el('text',{x:x0+168+i*130,y:12,fill:'#46506a'},svg,a[1]);});
+ const sol=r.sol;const solT=sol<1?'幾乎立刻':(sol>90?'超過 1.5 小時（模型在此會誇大）':Math.round(sol)+' 分鐘');
+ const notes=[];
+ if(nap>=60)notes.push('長午睡先把沙漏漏掉一部分，晚上壓力不夠。');
+ if(Tb<=21.5&&sol>20)notes.push('太早上床：壓力還沒碰到上門檻，只能躺著醒著。');
+ if(adv>=1.5)notes.push('生理時鐘前移讓下門檻提早升起，所以提早醒。');
+ if(caf)notes.push('傍晚咖啡讓壓力被暫時「遮住」，入睡變慢。');
+ if(!notes.length)notes.push('壓力與時鐘配合良好：躺下就睡、睡到早上。');
+ $('#sim-out').innerHTML=`入睡需要：<b>${solT}</b>　｜　模型預測自然醒來：<b>${hh(r.wake)}</b>　｜　睡著時間：<b>${r.dur.toFixed(1)} 小時</b><br>在床上醒著的時間（入睡前）：<b>${Math.max(0,Math.round(sol))} 分</b><br><span class="small">${notes.join(' ')}</span>`;}
+['#s-wake','#s-bed','#s-nap','#s-adv','#s-caf'].forEach(id=>{const e=$(id);if(e)e.oninput=drawSim;});
+const setSim=(w,b,n,a,c)=>{$('#s-wake').value=w;$('#s-bed').value=b;$('#s-nap').value=n;$('#s-adv').value=a;$('#s-caf').checked=c;drawSim();};
+if($('#preset-b')){$('#preset-b').onclick=()=>setSim(6,20.5,30,3,false);$('#preset-b2').onclick=()=>setSim(6,22.5,0,3,false);$('#preset-r').onclick=()=>setSim(7,23,0,0,false);drawSim();}
+
+/* ---------- Decision tree ---------- */
+const T={
+start:{q:'病人主要抱怨的是哪一種？',o:[['晚上睡不著、睡不好','pil'],['白天很想睡，開會開車會打瞌睡','r_sleepy'],['睡覺時有異常動作、把夢演出來','r_rbd'],['晚上腿不舒服、很想動','r_rls']]},
+pil:{q:'他有足夠的機會睡嗎？（時間與環境都允許）',o:[['有','day'],['沒有，是工作、照顧、輪班擠掉了睡眠','r_insuf']]},
+day:{q:'白天有受影響，或他對睡眠很困擾嗎？',o:[['有','pat'],['沒有，白天精神正常也不困擾','r_nodx']]},
+pat:{q:'主要卡在晚上的哪一段？',o:[['入睡困難','onset'],['半夜醒、下半夜醒','maint'],['太早醒，醒了睡不回去','early'],['睡很久還是不解乏','nonres']]},
+onset:{q:'他是不是越晚越有精神、放假會睡到中午？',o:[['是','r_dsps'],['不是','dur']]},
+maint:{q:'下列哪一項最符合？',o:[['打鼾、有人看到他停止呼吸、白天嗜睡','r_osa'],['熱醒、流汗（圍停經期）','r_vaso'],['睡前有喝酒','r_alc'],['起來上廁所','r_noc'],['疼痛、胃酸逆流、咳嗽','r_med'],['都沒有','dur']]},
+early:{q:'他是不是傍晚就很想睡、總睡眠時數其實不少？',o:[['是','r_asps'],['不是','mood']]},
+mood:{q:'早醒時是否伴隨情緒低落、對事情失去興趣？',o:[['是','r_dep'],['不是','dur']]},
+nonres:{q:'有打鼾或白天嗜睡嗎？',o:[['有','r_osa'],['沒有','dur']]},
+dur:{q:'這樣的狀況持續多久、每週幾晚？',o:[['至少 3 個月，每週至少 3 晚','r_chr'],['不到 3 個月','r_acu']]},
+r_sleepy:{a:'<b>想到嗜睡，不是失眠。</b>失眠的人多半是累但睡不著。白天會打瞌睡要先排除睡眠呼吸中止、猝睡症與藥物殘留，必要時轉睡眠中心（第 2 章）。'},
+r_rbd:{a:'<b>疑似 REM 睡眠行為障礙（RBD）</b>，屬異睡症，不是失眠。常與神經病理有關，請轉介神經科或睡眠中心做 PSG（第 3 章）。'},
+r_rls:{a:'<b>疑似不寧腿症候群（RLS）。</b>確認四項：想動腳的衝動、休息時加重、活動可緩解、傍晚夜間明顯，且造成困擾。避免抗組織胺類成藥（第 3 章）。'},
+r_insuf:{a:'<b>這是睡眠不足，不是失眠障礙。</b>處理的是作息與生活安排，不需要安眠的治療（第 2 章）。'},
+r_nodx:{a:'<b>目前不需要失眠障礙的診斷。</b>可以衛教正常睡眠的變化，避免為了「睡滿 8 小時」而延長臥床（第 2 章）。'},
+r_dsps:{a:'<b>想到睡眠相位後移</b>（晝夜節律問題）。強迫早睡效果差；光照時間與作息調整較關鍵，褪黑激素在這裡的證據比一般失眠好（第 3、7 章）。'},
+r_osa:{a:'<b>先篩睡眠呼吸中止</b>（STOP-Bang），疑似就轉介。許多安眠藥會讓呼吸中止惡化（第 3、5 章）。'},
+r_vaso:{a:'<b>熱潮紅可以同時是誘發與維持因子。</b>處理熱潮紅本身就是治療的一部分，可與婦產科討論；同時仍要處理失眠的維持因子（第 12 章）。'},
+r_alc:{a:'<b>酒精造成的後半夜醒。</b>血中酒精下降時擾亂後半夜，長期飲酒的失眠在戒酒後未必完全恢復（第 3 章）。'},
+r_noc:{a:'<b>先查夜尿原因</b>（攝水時間、利尿劑服用時間、攝護腺、血糖等），再談失眠。'},
+r_med:{a:'<b>內科共病。</b>處理疼痛、逆流等症狀，但失眠本身仍值得單獨列為治療目標（第 3 章）。'},
+r_asps:{a:'<b>想到睡眠相位前移</b>（長者常見）。叫他更早睡只會更早醒；傍晚活動、光照、延後上床（第 1、12 章）。'},
+r_dep:{a:'<b>評估憂鬱。</b>失眠與憂鬱雙向相關；有輕生念頭請轉介。治療失眠可減少憂鬱的發生與復發（第 3、12 章）。'},
+r_chr:{a:'<b>符合慢性失眠障礙的時間條件。</b>維持因子是主角：日誌＋睡眠效率＋行為處方，再加上你的辨證（第 4、6、11 章）。若在用藥，規劃減量（第 8 章）。'},
+r_acu:{a:'<b>短期失眠。</b>多半與誘因有關、會自己好。處理誘因、方證祛邪，並<b>及早教刺激控制</b>，避免養成維持因子（第 4 章）。'}
+};
+function tree(id,trail){const box=$('#tree-box');if(!box)return;const n=T[id];trail=trail||[];
+ let h=`<div class="step"><div class="path">${trail.length?trail.join(' → '):'起點'}</div>`;
+ if(n.q){h+=`<div style="font-weight:700;margin-bottom:6px">${n.q}</div>`+n.o.map((o,i)=>`<button class="btn" data-i="${i}">${o[0]}</button>`).join('');}
+ else{h+=`<div class="ans">${n.a}</div>`;}
+ h+=trail.length?`<div style="margin-top:10px"><button class="btn" data-r="1">↺ 重新開始</button></div>`:'';h+='</div>';box.innerHTML=h;
+ box.querySelectorAll('button[data-i]').forEach(b=>b.onclick=()=>{const o=n.o[+b.dataset.i];tree(o[1],trail.concat(o[0]));});
+ const r=box.querySelector('button[data-r]');if(r)r.onclick=()=>tree('start');}
+tree('start');
+
+/* ---------- ISI ---------- */
+const ISI=['入睡困難的嚴重程度','睡眠維持困難（半夜醒）的嚴重程度','太早醒的嚴重程度','對目前睡眠狀況的不滿意程度','別人看得出你的生活因睡眠受影響的程度','你對自己睡眠問題的擔心或苦惱程度','睡眠問題干擾你白天功能的程度'];
+const lev=['0 無','1 輕微','2 中等','3 嚴重','4 非常嚴重'];
+if($('#isi-items')){$('#isi-items').innerHTML=ISI.map((q,i)=>`<label>${i+1}. ${q}<select data-i="${i}"><option value="">—</option>${lev.map((l,j)=>`<option value="${j}">${l}</option>`).join('')}</select></label>`).join('');
+ $$('#isi-items select').forEach(s=>s.onchange=()=>{const v=$$('#isi-items select').map(x=>x.value);if(v.some(x=>x==='')){$('#isi-out').textContent='已填 '+v.filter(x=>x!=='').length+' / 7 題';return;}
+  const s=v.reduce((a,b)=>a+ +b,0);const c=s<=7?'無臨床意義的失眠':s<=14?'閾下失眠':s<=21?'中度臨床失眠':'重度臨床失眠';
+  $('#isi-out').innerHTML=`總分 <b style="font-family:var(--mono);font-size:20px">${s}</b> / 28　→　<b>${c}</b><br><span class="small">追蹤時：下降 ≥ 7 分視為治療有反應；總分 &lt; 8 視為緩解。</span>`;});}
+
+/* ---------- Sleep restriction ---------- */
+function sr(){if(!$('#sr-tib'))return;const tib=+$('#sr-tib').value,tst=Math.min(+$('#sr-tst').value,tib),wk=+$('#sr-wake').value;
+ $('#sr-tib-o').textContent=tib.toFixed(2).replace(/\.?0+$/,'')+' h';$('#sr-tst-o').textContent=tst.toFixed(2).replace(/\.?0+$/,'')+' h';$('#sr-wake-o').textContent=hh(wk);
+ const se=tst/tib*100;let win=Math.max(4.5,Math.round(tst*4)/4);const bed=wk-win;
+ const status=se>=90?'已達 90%：可以提早 15 分鐘上床。':se<85?'低於 85%：在床上醒著的時間太多，適合啟動睡眠限制。':'85–90%：維持現狀觀察。';
+ $('#sr-out').innerHTML=`睡眠效率 <b style="font-family:var(--mono);font-size:20px">${se.toFixed(0)}%</b>　${status}<br>建議起始臥床窗口：<b>${win} 小時</b>，也就是 <b>${hh(bed)} 上床、${hh(wk)} 起床</b>（窗口外不躺不睡）。<br><span class="small">之後每 5 天看平均效率：≥90% 提早 15 分鐘上床；&lt;85% 縮短到平均睡著時間；85–90% 不變。</span>`;}
+['#sr-tib','#sr-tst','#sr-wake'].forEach(id=>{const e=$(id);if(e)e.oninput=sr;});sr();
+
+/* ---------- Drug explorer ---------- */
+const NODES={LC:[90,120,'LC','正腎上腺素'],TMN:[185,95,'TMN','組織胺'],DR:[280,120,'DR','血清素'],ACh:[120,215,'LDT/PPT','乙醯膽鹼'],ORX:[250,210,'Orexin','外側下視丘'],VLPO:[590,140,'VLPO','GABA・galanin'],SCN:[590,235,'SCN','生理時鐘']};
+const DRUGS={
+ bzd:{n:'BZD・Z-drug',hit:['VLPO','ALL'],m:'加強 GABA-A 受體的抑制作用（正向異位調節）。等於<b>全面踩煞車</b>：不只睡眠中樞，記憶、平衡、呼吸相關的神經也一起被抑制。',hl:'triazolam 4 h、temazepam 10 h、clonazepam 30 h；zolpidem 2.5 h、zaleplon 1 h、eszopiclone 6 h',es:'短效 BZD 0.83、中效 0.67、長效 0.58；eszopiclone 0.51、zolpidem 0.45、zaleplon 0.19',risk:'規律使用 20–50% 出現耐受與生理依賴；隔天鎮靜 5–10%；複雜睡眠行為 3–5%；長者跌倒、骨折'},
+ dora:{n:'Orexin 拮抗劑（DORA）',hit:['ORX'],m:'擋住 OX1R、OX2R，拿掉 orexin 對清醒中樞的推力。等於<b>鬆開一部分油門</b>，而不是全面踩煞車。',hl:'suvorexant 12 h、lemborexant 18 h、daridorexant 8 h',es:'lemborexant 0.36、suvorexant 0.31、daridorexant 0.23（CI 跨 0）；長期只有 lemborexant 優於安慰劑（低確定性）',risk:'嗜睡、疲倦、異常夢境、睡眠癱瘓；禁用於猝睡症；濫用與依賴潛力低'},
+ ah:{n:'抗組織胺',hit:['TMN'],m:'擋住結節乳頭核送出的組織胺清醒訊號（H1 受體）。成藥「睡眠輔助」常見。',hl:'diphenhydramine 6 h、doxylamine 10 h、hydroxyzine 20 h',es:'失眠證據有限',risk:'抗膽鹼（口乾、尿滯留）、耐受、停用反彈、加重不寧腿、長期失智風險'},
+ dox:{n:'低劑量 doxepin',hit:['TMN'],m:'3–6 mg 的低劑量主要是很強的 H1 阻斷，跟抗憂鬱劑量的作用不同；唯一有 FDA 失眠適應症的鎮靜性抗憂鬱劑。',hl:'15 h',es:'0.30（CI 跨 0）',risk:'Beers 準則未列入；睡眠維持有資料'},
+ sad:{n:'Trazodone・mirtazapine 等',hit:['TMN','DR','LC'],m:'同時作用在組織胺 H1、血清素 5-HT2A、腎上腺素 α1 等受體。Riemann 推測它們不太壓抑 REM，可能「穩定 REM」。',hl:'trazodone 9 h、mirtazapine 30 h、amitriptyline 30 h',es:'trazodone 0.52（證據不一致）',risk:'無 FDA 失眠適應症；姿勢性低血壓、心臟傳導、抗膽鹼；mirtazapine 體重與代謝'},
+ mel:{n:'褪黑激素・ramelteon',hit:['SCN'],m:'作用在 SCN 的 MT1/MT2 受體，像是告訴時鐘「天黑了」。<b>不是踩煞車，是調時鐘。</b>',hl:'melatonin 1 h、ramelteon 2 h',es:'melatonin 0.13、ramelteon 0.12（都跨 0）；入睡約快 5–7 分鐘',risk:'副作用少；對睡眠維持無效；台灣以藥品管理'},
+ gaba:{n:'Gabapentinoid',hit:[],m:'作用於電壓門控鈣離子通道的 α2δ 次單元，降低興奮性神經傳導；不對應圖上的特定節點。會增加慢波睡眠。',hl:'gabapentin 7 h、pregabalin 6 h',es:'失眠證據少',risk:'頭暈、步態不穩、呼吸抑制；適合合併疼痛或不寧腿時考慮'},
+ ap:{n:'Quetiapine 等抗精神病藥',hit:['TMN','DR','LC'],m:'作用在多種受體（組織胺、血清素、多巴胺、腎上腺素）。',hl:'quetiapine 6 h、olanzapine 30 h',es:'失眠證據有限',risk:'代謝、體重、錐體外症狀；除非合併相關精神疾病，否則不建議'}
+};
+function drugDraw(k){const svg=$('#drug-svg');if(!svg)return;svg.innerHTML='';const d=k?DRUGS[k]:null;const hit=d?d.hit:[];
+ el('rect',{x:20,y:30,width:340,height:240,rx:18,fill:'#fdf3dc',stroke:'#c9962e'},svg);el('text',{x:190,y:54,'text-anchor':'middle','font-weight':700,fill:'#8a6418'},svg,'清醒中樞（油門）');
+ el('rect',{x:440,y:30,width:300,height:240,rx:18,fill:'#e6eef9',stroke:'#2c5d9c'},svg);el('text',{x:590,y:54,'text-anchor':'middle','font-weight':700,fill:'#2c5d9c'},svg,'睡眠中樞與時鐘');
+ if(hit.includes('ALL')){el('rect',{x:24,y:34,width:332,height:232,rx:16,fill:'#2c5d9c',opacity:.12},svg);el('text',{x:190,y:262,'text-anchor':'middle',fill:'#2c5d9c','font-size':11.5},svg,'GABA-A 遍布全腦：整片一起被抑制');}
+ el('path',{d:'M370 130 C 420 120 450 125 556 135',stroke:'#a8412c','stroke-width':2.5,fill:'none'},svg);
+ el('path',{d:'M556 155 C 450 170 420 170 370 160',stroke:'#a8412c','stroke-width':2.5,fill:'none'},svg);
+ Object.entries(NODES).forEach(([id,[x,y,a,b]])=>{const on=hit.includes(id);const isR=id==='ORX';const g=el('g',{},svg);
+  if(isR)el('rect',{x:x-60,y:y-26,width:120,height:52,rx:12,fill:on?'#a8412c':'#c9962e'},g);else el('circle',{cx:x,cy:y,r:32,fill:on?'#a8412c':'#fff',stroke:id==='VLPO'||id==='SCN'?'#2c5d9c':'#c9962e','stroke-width':2},g);
+  const tc=on||isR?'#fff':'#1c2740';el('text',{x:x,y:y-2,'text-anchor':'middle','font-weight':700,fill:tc},g,a);el('text',{x:x,y:y+14,'text-anchor':'middle','font-size':10.5,fill:tc},g,b);
+  if(on&&id!=='VLPO'){el('line',{x1:x-20,y1:y-20,x2:x+20,y2:y+20,stroke:'#fff','stroke-width':3},g);}
+ });
+ if(hit.includes('VLPO')){el('text',{x:590,y:190,'text-anchor':'middle',fill:'#a8412c','font-weight':700},svg,'↑ 抑制作用被加強');}
+ el('text',{x:450,y:290,'text-anchor':'middle',fill:'#46506a','font-size':11.5},svg,d?('紅色＝'+d.n+' 作用的位置；白色斜線＝被阻斷'):'選一類藥');
+ if(d)$('#drug-out').innerHTML=`<b>${d.n}</b><br>${d.m}<br><span class="small"><b>半衰期：</b>${d.hl}　<b>短期效果量：</b>${d.es}<br><b>主要風險：</b>${d.risk}</span>`;}
+if($('#drug-btns')){$('#drug-btns').innerHTML=Object.entries(DRUGS).map(([k,d])=>`<button class="btn" data-k="${k}">${d.n}</button>`).join('');
+ $$('#drug-btns .btn').forEach(b=>b.onclick=()=>{$$('#drug-btns .btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');drugDraw(b.dataset.k);});drugDraw(null);}
+
+/* ---------- ES chart ---------- */
+const ES=[['短效 BZD',.83,.62,1.04,'g'],['中效 BZD',.67,.52,.82,'g'],['長效 BZD',.58,.42,.73,'g'],['Trazodone',.52,.16,.89,'a'],['Eszopiclone',.51,.35,.68,'g'],['Zolpidem',.45,.36,.56,'g'],['Lemborexant',.36,.08,.63,'o'],['Suvorexant',.31,.01,.62,'o'],['Doxepin（低劑量）',.30,-.05,.64,'a'],['Daridorexant',.23,-.01,.48,'o'],['Zaleplon',.19,0,.37,'g'],['Melatonin',.13,-.11,.38,'m'],['Ramelteon',.12,-.14,.37,'m']];
+const ESC={g:'#2c5d9c',o:'#a8412c',a:'#4f7f45',m:'#c9962e'};
+(function(){const svg=$('#es-chart');if(!svg)return;const x0=170,w=520,X=v=>x0+(v+.2)/1.3*w,rh=30,y0=40;
+ [-.2,0,.2,.5,.8,1.0].forEach(v=>{el('line',{x1:X(v),x2:X(v),y1:y0-14,y2:y0+ES.length*rh,stroke:v===0?'#1c2740':'#eee','stroke-width':v===0?1.5:1},svg);el('text',{x:X(v),y:y0-20,'text-anchor':'middle',fill:'#7a8197','font-family':'JetBrains Mono'},svg,v.toFixed(1));});
+ [[.2,'小'],[.5,'中'],[.8,'大']].forEach(([v,t])=>el('text',{x:X(v)+3,y:y0+ES.length*rh+14,fill:'#7a8197'},svg,t));
+ ES.forEach((r,i)=>{const y=y0+i*rh+10;el('text',{x:x0-10,y:y+4,'text-anchor':'end'},svg,r[0]);el('line',{x1:X(r[2]),x2:X(r[3]),y1:y,y2:y,stroke:'#b9b2a4','stroke-width':2},svg);
+  el('rect',{x:X(0),y:y-8,width:Math.max(0,X(r[1])-X(0)),height:16,rx:3,fill:ESC[r[4]],opacity:.85},svg);el('text',{x:X(r[3])+6,y:y+4,fill:'#1c2740','font-family':'JetBrains Mono','font-size':11},svg,r[1].toFixed(2));});
+ [['#2c5d9c','BZRA'],['#a8412c','Orexin 拮抗劑'],['#4f7f45','鎮靜性抗憂鬱劑'],['#c9962e','褪黑激素類']].forEach((a,i)=>{el('rect',{x:x0+i*130,y:y0+ES.length*rh+24,width:12,height:12,fill:a[0]},svg);el('text',{x:x0+16+i*130,y:y0+ES.length*rh+34},svg,a[1]);});})();
+
+/* ---------- Survival chart ---------- */
+(function(){const svg=$('#surv-chart');if(!svg)return;const x0=60,w=640,y0=270,h=230,X=m=>x0+m/24*w,Y=p=>y0-p/100*h;
+ [0,25,50,75,100].forEach(p=>{el('line',{x1:x0,x2:x0+w,y1:Y(p),y2:Y(p),stroke:'#eee'},svg);el('text',{x:x0-8,y:Y(p)+4,'text-anchor':'end',fill:'#7a8197','font-family':'JetBrains Mono'},svg,p+'%');});
+ [0,3,6,12,18,24].forEach(m=>el('text',{x:X(m),y:y0+18,'text-anchor':'middle',fill:'#7a8197'},svg,m+' 月'));
+ const D=[['督導減量',[100,100,83.3,64.8],'#2c5d9c'],['合併 CBT-I＋減量',[100,80.9,70.8,64.9],'#4f7f45'],['CBT-I 單獨（無減藥計畫）',[100,61.5,38.5,28.9],'#a8412c']],M=[0,3,12,24];
+ D.forEach(([n,v,c],i)=>{el('polyline',{points:v.map((p,j)=>X(M[j])+','+Y(p)).join(' '),fill:'none',stroke:c,'stroke-width':3},svg);v.forEach((p,j)=>el('circle',{cx:X(M[j]),cy:Y(p),r:4.5,fill:c},svg));
+  el('text',{x:X(24)+6,y:Y(v[3])+(i===1?14:i===0?-4:4),fill:c,'font-size':11.5,'font-weight':700},svg,'');
+  el('rect',{x:x0+20+i*210,y:12,width:14,height:4,fill:c},svg);el('text',{x:x0+40+i*210,y:19,fill:'#1c2740'},svg,n);});
+ el('text',{x:X(24),y:Y(64.9)-10,'text-anchor':'end',fill:'#1c2740','font-family':'JetBrains Mono','font-size':11},svg,'≈65%');
+ el('text',{x:X(24),y:Y(28.9)-10,'text-anchor':'end',fill:'#a8412c','font-family':'JetBrains Mono','font-size':11},svg,'28.9%');})();
+
+/* ---------- Taper planner ---------- */
+function taper(){if(!$('#tp-dose'))return;const D=+$('#tp-dose').value,s=+$('#tp-step').value/100,k=+$('#tp-int').value;
+ $('#tp-dose-o').textContent=D+' 顆';$('#tp-step-o').textContent=Math.round(s*100)+'%';$('#tp-int-o').textContent=k+' 週';
+ const rows=[];let d=D,wk=0;rows.push([wk,d,'起點：換成單一藥物、固定睡前吃（不是睡不著才吃）']);
+ while(d>0){let nd=Math.round((d-D*s)*4)/4;if(nd<0.25)nd=0;wk+=k;
+  rows.push([wk,nd,nd>0?(nd<=D*0.5?'安排並逐步增加不吃藥的夜晚':'持續記睡眠日誌'):'完全停藥；之後 3 個月密集追蹤']);d=nd;if(rows.length>20)break;}
+ $('#tp-out').innerHTML=`<table><tr><th>第幾週</th><th>每晚劑量</th><th>重點</th></tr>${rows.map(r=>`<tr><td class="num">${r[0]}</td><td class="num">${r[1]} 顆</td><td>${r[2]}</td></tr>`).join('')}</table><p class="small" style="margin:.5em 0 0">總共約 <b>${wk} 週</b>。顆數以 1/4 顆為最小單位四捨五入。若出現明顯戒斷症狀，停在目前劑量，與處方醫師討論放慢。</p>`;}
+['#tp-dose','#tp-step','#tp-int'].forEach(id=>{const e=$(id);if(e)e.oninput=taper;});taper();
+
+/* ---------- Pattern cards ---------- */
+const CARDS=[
+ ['肝鬱化火','實','入睡困難、急躁易怒、口苦、脈弦數','丹梔逍遙散、龍膽瀉肝湯','柴胡加龍骨牡蠣湯（胸滿煩驚）','過度警覺／誘發因子活躍；對應林小姐'],
+ ['痰熱內擾','實・滯','心煩難眠、胸悶痰多、口苦苔黃膩','黃連溫膽湯','（溫膽湯出自《千金》，非仲景方）','可先排除胃食道逆流、OSA'],
+ ['心火熾盛','實','心煩難眠、口舌生瘡、小便黃','導赤散（朱砂類不建議）','梔子豉湯（虛煩懊憹）、瀉心湯類','急性誘發期常見'],
+ ['胃氣不和','滯','脘腹脹滿、噯氣、食後更難睡','保和丸、半夏秫米湯','《內經》半夏湯思路（通）','先分清「睡不著」或「躺不平」（逆流、喘）'],
+ ['瘀血內阻','滯','久病頑固失眠、刺痛、舌暗有瘀','血府逐瘀湯','—','頑固失眠時的另一個方向；需排除其他疾病'],
+ ['陰虛火旺','虛中帶熱','心煩不寐、五心煩熱、盜汗、舌紅少苔','黃連阿膠湯、天王補心丹','黃連阿膠湯（心中煩，不得臥）','更年期常見；先問熱潮紅'],
+ ['心腎不交','虛','心煩不寐、腰痠、遺精、頭暈耳鳴','交泰丸、黃連阿膠湯','黃連阿膠湯','—'],
+ ['心脾兩虛','虛','多夢易醒、心悸健忘、乏力、食少','歸脾湯','酸棗仁湯（虛勞虛煩）','陳伯伯型：留意維持層（臥床久、午睡）'],
+ ['心膽氣虛','虛','易驚醒、膽怯、心悸','安神定志丸合酸棗仁湯','桂枝加龍骨牡蠣湯（虛而亢、易驚多夢）','高反應性的人；虛中夾亢']
+];
+if($('#cards')){$('#cards').innerHTML=CARDS.map(c=>`<div class="card"><div class="in"><div class="f"><div class="t">${c[0]}</div><div class="pill">${c[1]}</div><div class="s">${c[2]}</div><div class="hint">點一下翻面 ↻</div></div><div class="b"><b>常用方：</b>${c[3]}<br><br><b>經方對照：</b>${c[4]}<br><br><b>現代對照（假說）：</b>${c[5]}</div></div></div>`).join('');
+ $$('.card').forEach(c=>c.onclick=()=>c.classList.toggle('flip'));}
+})();
+
+</script>
+</body>
+</html>

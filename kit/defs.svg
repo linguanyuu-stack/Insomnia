@@ -1,0 +1,49 @@
+<svg id="ink-defs" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+<defs>
+  <!-- hatching (engraving shading). Use as fill="url(#ink-hatch)" on top of a base tint fill -->
+  <pattern id="ink-hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="4" stroke="#2a2018" stroke-width=".55" stroke-opacity=".75"/></pattern>
+  <pattern id="ink-hatch-l" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="5" stroke="#2a2018" stroke-width=".4" stroke-opacity=".45"/></pattern>
+  <pattern id="ink-hatch-d" width="2.6" height="2.6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="2.6" stroke="#2a2018" stroke-width=".6" stroke-opacity=".85"/></pattern>
+  <pattern id="ink-hatch-r" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+    <line x1="0" y1="0" x2="0" y2="4" stroke="#2a2018" stroke-width=".55" stroke-opacity=".7"/></pattern>
+  <pattern id="ink-hatch-h" width="4" height="3.2" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="1.6" x2="4" y2="1.6" stroke="#2a2018" stroke-width=".45" stroke-opacity=".6"/></pattern>
+  <pattern id="ink-cross" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <path d="M0 0V4M0 0H4" stroke="#2a2018" stroke-width=".5" stroke-opacity=".8"/></pattern>
+  <pattern id="ink-stipple" width="9" height="9" patternUnits="userSpaceOnUse">
+    <circle cx="1.2" cy="1.5" r=".55" fill="#2a2018"/><circle cx="5.6" cy="2.4" r=".45" fill="#2a2018"/>
+    <circle cx="3.4" cy="5.2" r=".5" fill="#2a2018"/><circle cx="7.8" cy="6.6" r=".55" fill="#2a2018"/>
+    <circle cx="1.9" cy="8.1" r=".4" fill="#2a2018"/><circle cx="6.1" cy="8.6" r=".35" fill="#2a2018"/></pattern>
+  <pattern id="ink-stipple-l" width="11" height="11" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2.5" r=".45" fill="#2a2018" fill-opacity=".7"/><circle cx="7.5" cy="4" r=".4" fill="#2a2018" fill-opacity=".7"/>
+    <circle cx="4.5" cy="8.5" r=".45" fill="#2a2018" fill-opacity=".7"/></pattern>
+  <pattern id="ink-stipple-d" width="5" height="5" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1.2" r=".6" fill="#2a2018"/><circle cx="3.6" cy="2.2" r=".55" fill="#2a2018"/>
+    <circle cx="2.2" cy="4.1" r=".6" fill="#2a2018"/><circle cx="4.5" cy="4.6" r=".4" fill="#2a2018"/></pattern>
+  <!-- membrane (lipid bilayer) -->
+  <pattern id="ink-membrane" width="7" height="34" patternUnits="userSpaceOnUse">
+    <circle cx="3.5" cy="4" r="3" fill="#f3e6c6" stroke="#2a2018" stroke-width=".6"/>
+    <path d="M2.5 7v9M4.5 7v9" stroke="#2a2018" stroke-width=".45"/>
+    <path d="M2.5 18v9M4.5 18v9" stroke="#2a2018" stroke-width=".45"/>
+    <circle cx="3.5" cy="30" r="3" fill="#f3e6c6" stroke="#2a2018" stroke-width=".6"/></pattern>
+  <!-- slightly wobbly hand-inked line. Apply to drawing groups only, NEVER to text -->
+  <filter id="ink-rough" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <!-- soft paper-tone vignette for rounded volumes -->
+  <radialGradient id="ink-vol" cx=".38" cy=".35" r=".75"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#e8dcc2"/></radialGradient>
+  <radialGradient id="ink-vol-red" cx=".38" cy=".35" r=".75"><stop offset="0" stop-color="#f4c9bd"/><stop offset="1" stop-color="#c46a58"/></radialGradient>
+  <radialGradient id="ink-vol-blue" cx=".38" cy=".35" r=".75"><stop offset="0" stop-color="#cfdcef"/><stop offset="1" stop-color="#5c82b5"/></radialGradient>
+  <radialGradient id="ink-vol-yel" cx=".38" cy=".35" r=".75"><stop offset="0" stop-color="#f8e9b5"/><stop offset="1" stop-color="#cfa53a"/></radialGradient>
+  <radialGradient id="ink-vol-flesh" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fbe8da"/><stop offset="1" stop-color="#dcae93"/></radialGradient>
+  <!-- leader-line end dot & arrows -->
+  <marker id="ink-dot" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5"><circle cx="3" cy="3" r="2" fill="#2a2018"/></marker>
+  <marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L9 5L0 9L2.5 5z" fill="#2a2018"/></marker>
+  <marker id="ink-arrow-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L9 5L0 9L2.5 5z" fill="#a8412c"/></marker>
+  <marker id="ink-arrow-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L9 5L0 9L2.5 5z" fill="#2c5d9c"/></marker>
+  <marker id="ink-tee" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5 0V10" stroke="#a8412c" stroke-width="2.4"/></marker>
+</defs>
+</svg>
