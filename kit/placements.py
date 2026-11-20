@@ -20,7 +20,7 @@ PLACEMENTS = [
     ('pl-conditioning',   T % 'REM INSTABILITY', 'before'),
     # ch7
     ('pl-molecules',      '<h3><span class="tag">CLASS BY CLASS</span>各類藥物一覽</h3>', 'after'),
-    ('pl-gabaa',          T % 'OREXIN ANTAGONISTS', 'before'),
+    ('pl-gabaa',          '<h4>BZRA：為什麼「藥效差不多，選擇看半衰期」</h4>', 'after'),
     ('pl-orexin-receptor','<h4>兩個關鍵試驗</h4>', 'before'),
     ('pl-melatonin',      '<div class="box say"><div class="bt">跟病人怎麼說</div>', 'before'),
     ('pl-histamine',      '<div class="box say"><div class="bt">跟病人怎麼說</div>', 'before'),
