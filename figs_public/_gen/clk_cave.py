@@ -252,7 +252,7 @@ a.append(bracket(AY0, AY0 + NENT * RH, '有日光', '#8a6a1a'))
 a.append(bracket(AY0 + NENT * RH, AY0 + ND * RH, '沒有日光也沒有時鐘', '#a8412c'))
 yb = AY0 + ND * RH
 # annotation under the plot
-a.append(lead([(600, yb + 22), (606, yb + 22), (X(11 + 24 + 19.5 * .2) - 2, yb - 3)], dot=True))
+a.append(lead([(X(11 + 24 + 19.5 * .2) + 1, yb + 6), (X(11 + 24 + 19.5 * .2) - 1, yb - 1)], dot=True))
 a.append(T(748, yb + 18, '入睡每天晚約 10–15 分鐘', 'lb', 'end', halo=True, style='font-size:12.5px;fill:#a8412c'))
 a.append(T(748, yb + 33, '三週後晚了約 4 小時', 'ls', 'end', halo=True, style='font-weight:700'))
 a.append(T(AX0, yb + 18, '金色虛線：有日光時，', 'ls', 'start', halo=True, style='font-weight:700;fill:#8a6a1a'))
