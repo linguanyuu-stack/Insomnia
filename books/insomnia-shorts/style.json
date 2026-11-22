@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "tier": "shorts",
+  "book": { "title": "重新認識失眠・短影音", "slug": "insomnia-shorts", "language": "zh-TW", "readers": "台灣一般民眾、睡不好的人與家人；不需背景知識", "pilot": "ch01", "use": "公開上網衛教" },
+  "platform": "IG Reels + YouTube Shorts；9:16，輸出 1080 x 1920；每集 90 秒內",
+  "source": "使用者自己的《重新認識失眠・民眾版》（重新認識失眠_民眾版.html），每集對應一章",
+  "words": [
+    "要做成哪一種互動形式：直式短影音系列",
+    "先試做：第1章 身體裡的時鐘；一集約 75–90 秒",
+    "重點：你體內的鐘每天慢 10 分鐘",
+    "畫面：重用民眾版的程式圖版，再加上公有領域老圖",
+    "配音：你給我 SRT，我去其他地方弄好旁白配音後，再給你"
+  ],
+  "series": {
+    "name": "重新認識失眠",
+    "episodes": [
+      { "chapter": "ch01", "title": "身體裡的時鐘", "point": "你體內的鐘每天慢 10 分鐘，早上的陽光幫它對時" },
+      { "chapter": "ch02", "title": "為什麼晚上會想睡", "point": "（待定）睡意沙漏、時鐘潮汐、壓力警報器" }
+    ]
+  },
+  "look": {
+    "palette": { "ground": "#f6efe0", "ink": "#2a2420", "accent": "#b5402f", "night": "#1f2a44", "gold": "#e8c66a" },
+    "fonts": { "key words": "Noto Sans TC 900（待定）", "quotes": "Noto Serif TC（待定）" },
+    "pictures": "民眾版圖版的元件拆成動畫零件，搭配 Commons 公有領域老圖；真人一律用圖版人物或剪影"
+  },
+  "voice": { "engine": "user recording", "voice": "使用者自行錄製", "level": "-14 LUFS, peak -1.5" },
+  "music": { "ch01": "（待定）" },
+  "sources": "史實年份與數字都要有出處，列在 chNN-script.md；螢幕上的老圖標示來源",
+  "engine": { "source": "DozenTwelve/Papermorph" },
+  "models": { "script": "opus", "pictures": "opus", "beats": "opus", "checks": "opus", "director": "opus" },
+  "approved": []
+}
