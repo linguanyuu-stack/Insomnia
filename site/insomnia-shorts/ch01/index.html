@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-TW" data-stage="portrait">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>重新認識失眠 · 1 身體裡的時鐘</title>
+<link rel="stylesheet" href="../lib/engine.css">
+<link rel="stylesheet" href="../lib/fonts-tc.css">
+<link rel="expect" href="#bar" blocking="render">
+</head>
+<body>
+<script src="../lib/engine.js"></script>
+<script src="audio/zh-TW/timings.js"></script>
+<script src="../img/art.js"></script>
+<script src="../lib/icons.js"></script>
+<script src="../lib/shorts.js"></script>
+<script src="../lib/insomnia.js"></script>
+<script>
+'use strict';
+const CHAPTER = { number: 1, title: '身體裡的時鐘', minutes: 2, language: 'zh-TW', next: '../ch02/' };
+const OPEN_PRE = .3;
+const PLATE_SRC = '圖：重新認識失眠・民眾版';
+
+const BEATS = [
+  // 0. The hook: a watch already ticking; the red true-time hand pulls ahead, the black one falls ten minutes behind
+  ['hook', '每天慢十分鐘', (m, D) => {
+    const p = panel(0), sl = m('slow');
+    const s = shot(p, 0, undefined, { bg: CREAM });
+    const push = G(s, { x: CX, y: 720, s: 1 });
+    tw(push, { s: 1.16 }, 0, D + .8, lin);
+    const w = watch(push, 0, 0, 330, { ghost: false });
+    // the hands run fast together, then the black one lags: the red ghost marks where it should be
+    prog(q => setTime(w, 60 * 9 + q * 50), 0, sl, lin);
+    put(w.ghost, { r: (60 * 9 + 50) * 6 });
+    show(w.ghost, sl, .15, lin);
+    prog(q => { setTime(w, 60 * 9 + 50 - q * 10); put(w.ghost, { r: (60 * 9 + 50) * 6 }); }, sl, .9, out);
+    const wedge = path(push, '', { fill: RED }, { o: .22 });
+    prog(q => { const a0 = (50 - 10 * q) * 6 * Math.PI / 180, a1 = 50 * 6 * Math.PI / 180, r = 240;
+      wedge.setAttribute('d', q ? `M0 0L${r * Math.sin(a0)} ${-r * Math.cos(a0)}A${r} ${r} 0 0 1 ${r * Math.sin(a1)} ${-r * Math.cos(a1)}Z` : ''); }, sl, .9, out);
+    for (let k = 0; k < 8; k++) sfx('hook', k * .5, 'tick', .35);
+    word(s, '你身體裡的錶', CX, 250, 0, { size: 96, fill: INK });
+    word(s, '每天慢 10 分鐘', CX, 1200, sl, { size: 132, fill: RED, stroke: CREAM });
+    sfx('hook', sl, 'thud', 1.2);
+  }, { pre: OPEN_PRE }],
+
+  // 1. Not folk wisdom: Nobel-prize science
+  ['claim', '諾貝爾獎', (m, D) => {
+    const p = panel(0), nb = m('nobel');
+    let s = shot(p, 0, nb, { bg: CREAM });
+    const w = watch(s, CX, 640, 230, {});
+    prog(q => setTime(w, 600 + q * 40), 0, nb, lin);
+    const ys = word(s, '養生說法？', CX, 1120, .05, { size: 120, fill: INK });
+    strike(s, ys, CX, 1120, 1.1, 120);
+    s = shot(p, nb, undefined, { bg: '#fdf6eb', whip: true });
+    const md = piece(s, 'pl-medal', CX, 700, nb, D + .8, { h: 760, s0: .94, s1: 1.06 });
+    stamp(s, '諾貝爾獎', CX, 1180, nb + .35, { size: 120, colour: RED });
+    srcTag(s, PLATE_SRC, 50, 150, nb);
+  }],
+
+  // 2. The series card, no voice
+  ['card', '系列卡', (m, D) => {
+    const p = panel(0);
+    const s = shot(p, 0, undefined, { swipe: true });
+    seriesCard(s, 0, 1);
+  }],
+
+  // 3. 1729: de Mairan puts a mimosa in a dark cupboard
+  ['mimosa', '1729 含羞草', (m, D) => {
+    const p = panel(0), dm = m('dm'), sh = m('shut');
+    let s = shot(p, 0, dm, { bg: CREAM });
+    piece(s, 'pl-day', CX, 760, 0, dm + .3, { h: 1100, s0: 1.0, s1: 1.1, dy: 40 });
+    label(s, '1729 · 法國巴黎', CX, 230, 0, { size: 64 });
+    srcTag(s, PLATE_SRC, 50, 150, 0);
+    word(s, '含羞草', CX, 1230, .7, { size: 110, fill: CREAM, stroke: INK });
+    // the astronomer with his candle, then the cupboard
+    s = shot(p, dm, undefined, { bg: CREAM, whip: true });
+    const cab = wide(s, 'pl-cabinet', [[dm, .28, .55, 1.45], [m('plant') + .2, .28, .55, 1.55], [sh - .1, .6, .5, 1.2], [D + .8, .6, .5, 1.26]]);
+    label(s, '天文學家 德梅朗', CX, 230, dm + .1, { size: 58 });
+    srcTag(s, PLATE_SRC, 50, 150, dm);
+    // the door shuts: everything goes dark
+    veil(s, sh, .86, .25, '#0b0f1a');
+    sfx('mimosa', sh, 'thud', 1.4);
+    word(s, '關進黑櫃子', CX, 1200, sh + .15, { size: 124, fill: CREAM, stroke: INK });
+  }],
+
+  // 4. In the dark the leaves still open by day and close by night
+  ['dark', '黑暗中照樣開合', (m, D) => {
+    const p = panel(0), op = m('open'), cl = m('close');
+    const s = shot(p, 0, undefined, { bg: '#0b0f1a' });
+    word(s, '看不到太陽', CX, 250, 0, { size: 96, fill: '#c9c2b2' });
+    // the plant seen by candle: open (day plate) then closed (night plate), under a dark wash
+    const pl = G(s, { x: CX, y: 760, s: 1 });
+    tw(pl, { s: 1.08 }, 0, D + .8, lin);
+    const a = plate(pl, 'pl-day', 0, 0, { h: 860 }), b = plate(pl, 'pl-night', 0, 0, { h: 860 });
+    put(a, { o: .35 }); put(b, { o: 0 });
+    tw(a, { o: 1 }, op - .2, .4, lin);
+    tw(b, { o: 1 }, cl - .1, .45, lin); tw(a, { o: 0 }, cl + .2, .3, lin);
+    const dark = rect(s, 0, 0, W, H, { fill: '#0b0f1a' }); put(dark, { o: .35 });
+    // the clock under it says what time it is outside
+    const w = watch(s, 700, 1180, 95, { face: '#e9e2d0' });
+    prog(q => setTime(w, 6 * 60 + q * 14 * 60), 0, D + .6, io);
+    const l1 = label(s, '白天：張開', 330, 1185, op, { size: 64, fill: LEAF, colour: CREAM });
+    sun(s, 330, 1050, 34, op);
+    hide(l1, cl - .1, .15, lin);
+    label(s, '晚上：合起', 330, 1185, cl, { size: 64, fill: BLUE, colour: CREAM });
+    moon(s, 330, 1050, 34, cl);
+    srcTag(s, PLATE_SRC, 50, 150, 0);
+  }],
+
+  // 5. So the plant has a clock of its own
+  ['plant', '植物有時鐘', (m, D) => {
+    const p = panel(0), ck = m('clock');
+    const s = shot(p, 0, undefined, { bg: CREAM, whip: true });
+    piece(s, 'f-mimosa', CX, 860, 0, D + .8, { h: 1120, s0: 1.0, s1: 1.1 });
+    srcTag(s, 'Blanco, Flora de Filipinas, c. 1880', 50, 150, 0);
+    const w = watch(s, CX, 640, 170, { t0: ck });
+    prog(q => setTime(w, q * 500), ck, D + .8 - ck, lin);
+    sfx('plant', ck, 'tick', .6);
+    band(s, ['植物身體裡', '有自己的時鐘'], 230, .05, { size: 76, step: ck - .05 });
+  }],
+
+  // 6. 1938: Kleitman moves into Mammoth Cave
+  ['cave', '1938 猛瑪洞', (m, D) => {
+    const p = panel(0), k = m('k'), cv = m('cave'), mo = m('month');
+    let s = shot(p, 0, undefined, { bg: '#2b241c', whip: true });
+    wide(s, 'pl-cave', [[0, .5, .12, 1.6], [k - .2, .52, .2, 1.6], [k + .4, .55, .38, 1.45], [cv, .55, .38, 1.45], [cv + .6, .5, .5, 1.0], [D + .8, .5, .55, 1.06]]);
+    label(s, '1938 · 美國猛瑪洞', CX, 230, 0, { size: 64 });
+    srcTag(s, PLATE_SRC, 50, 150, 0);
+    const kl = label(s, '克萊特曼 · 睡眠研究之父', CX, 1180, k, { size: 54, fill: CREAM, colour: INK });
+    hide(kl, cv - .1, .15, lin);
+    const ug = word(s, '住進地底', CX, 1180, cv, { size: 120, fill: CREAM, stroke: INK });
+    hide(ug, mo - .1, .15, lin);
+    sfx('cave', cv, 'whoosh', .5);
+    const n = counter(s, 32, CX - 40, 1220, mo, { size: 170, fill: CREAM, dur: .8 });
+    n.setAttribute('stroke', INK); n.setAttribute('stroke-width', 10); n.setAttribute('paint-order', 'stroke');
+    const d = T(s, '天', { x: CX + 90, y: 1220, size: 100, fill: CREAM, font: SANS, weight: 600, o: 0 });
+    d.setAttribute('stroke', INK); d.setAttribute('stroke-width', 8); d.setAttribute('paint-order', 'stroke');
+    show(d, mo, .2, lin);
+  }],
+
+  // 7. No sun, no clock: still regular, but each night a little later
+  ['drift', '每天往後飄', (m, D) => {
+    const p = panel(0), sp = m('sleep'), dr = m('drift');
+    const s = shot(p, 0, undefined, { bg: CREAM, whip: true });
+    word(s, '沒有陽光　沒有時鐘', CX, 240, 0, { size: 76, fill: INK });
+    // the record, one row a day: the daylit days first, the rows below written in as the voice goes on
+    const [iw, ih] = ART['pl-acto'], w = 840, h = ih * w / iw, x0 = CX - w / 2, y0 = 380;
+    const id = 'actoclip';
+    const r = mk('rect', { x: x0 - 10, y: y0, width: w + 20, height: h * .28 }, mk('clipPath', { id }, mk('defs', {}, s)));
+    const g = G(s, {}); g.setAttribute('clip-path', `url(#${id})`);
+    mk('image', { href: '../img/pl-acto.webp', x: x0, y: y0, width: w, height: h }, g);
+    prog(q => r.setAttribute('height', h * (.28 + .72 * q)), sp, dr + .9 - sp, lin);
+    srcTag(s, PLATE_SRC, 50, 150, 0);
+    T(s, '每一列 = 一天　藍色 = 睡覺', { x: CX, y: 1100, size: 40, fill: '#6b5f50', font: SANS, weight: 500, anchor: 'middle' });
+    const rg = label(s, '照樣規律地睡和醒', CX, 1200, sp, { size: 60, fill: BLUE, colour: CREAM });
+    hide(rg, dr - .1, .15, lin);
+    // the slope: a red arrow along the drift
+    const ar = path(s, `M285 590L480 1010`, { stroke: RED, 'stroke-width': 12 }, { d: 0 });
+    draw(ar, dr + .1, .8, out);
+    label(s, '每天往後飄一點', CX, 1200, dr, { size: 70, fill: RED, colour: CREAM });
+  }],
+
+  // 8. Harvard measured it: 24 hours and about 10 minutes
+  ['period', '24 小時又 10 分', (m, D) => {
+    const p = panel(0), hv = m('harvard'), ct = m('count');
+    const s = shot(p, 0, undefined, { bg: NIGHT, whip: true });
+    label(s, '1999 · 哈佛團隊', CX, 240, hv, { size: 60, fill: CREAM, colour: INK });
+    srcTag(s, 'Czeisler et al., Science 1999', 50, 150, hv);
+    // one turn of the body clock: a ring filling round, then ten minutes more in red
+    const R = 250, cy = 720;
+    mk('circle', { cx: CX, cy, r: R, fill: 'none', stroke: '#3a4766', 'stroke-width': 40 }, s);
+    const ring = path(s, `M${CX} ${cy - R}A${R} ${R} 0 1 1 ${CX - .01} ${cy - R}`, { stroke: GOLD, 'stroke-width': 40, 'stroke-linecap': 'butt' }, { d: 0 });
+    draw(ring, .3, ct - .3, io);
+    const a = 2 * Math.PI * 10 / 1440 * 6;   // ten minutes, drawn six times wider so it can be seen
+    const ex = path(s, `M${CX} ${cy - R}A${R} ${R} 0 0 1 ${CX + R * Math.sin(a)} ${cy - R * Math.cos(a)}`, { stroke: RED, 'stroke-width': 40, 'stroke-linecap': 'butt' }, { d: 0 });
+    draw(ex, ct + .2, .5, out);
+    const n = T(s, '24 小時', { x: CX, y: cy + 40, size: 120, fill: CREAM, font: SANS, weight: 600, anchor: 'middle', o: 0 });
+    show(n, .4, .3, lin);
+    prog(q => { n.textContent = `${Math.round(24 * q)} 小時`; }, .4, ct - .6, out);
+    for (let k = 0; k < 6; k++) sfx('period', .4 + k * (ct - .6) / 6, 'tick', .4);
+    word(s, '＋10 分鐘', CX, 1180, ct + .2, { size: 140, fill: '#e8564a' });
+    sfx('period', ct + .2, 'thud', 1.2);
+    T(s, '人體時鐘一圈', { x: CX, y: cy - 110, size: 46, fill: '#b9b2a2', font: SANS, weight: 500, anchor: 'middle' });
+  }],
+
+  // 9. Where is the clock? Fruit flies: some days of 19 hours, some of 28
+  ['flies', '果蠅', (m, D) => {
+    const p = panel(0), fl = m('fly'), a = m('f19'), b = m('f28');
+    let s = shot(p, 0, fl, { bg: CREAM, whip: true });
+    word(s, '時鐘藏在哪？', CX, 760, .05, { size: 130, fill: INK });
+    s = shot(p, fl, undefined, { bg: CREAM, swipe: true });
+    const f = G(s, { x: CX, y: 1700, r: -25 });
+    plate(f, 'pl-fly', 0, 0, { h: 640 });
+    tw(f, { y: 560, r: 0 }, fl, .7, out);
+    tw(f, { y: 470, s: .62 }, a - .25, .4, io);
+    sfx('flies', fl, 'whoosh', .5);
+    label(s, '果蠅', CX, 230, fl + .3, { size: 64 });
+    srcTag(s, PLATE_SRC, 50, 150, fl);
+    const w1 = watch(s, 250, 1010, 130, { t0: a });
+    prog(q => setTime(w1, q * 720 * 1.26), a, D + .8 - a, lin);
+    label(s, '一天 19 小時', 250, 1240, a + .1, { size: 54, fill: RED, colour: CREAM });
+    const w2 = watch(s, 650, 1010, 130, { t0: b });
+    prog(q => setTime(w2, q * 720 * .86), b, D + .8 - b, lin);
+    label(s, '一天 28 小時', 650, 1240, b + .1, { size: 54, fill: BLUE, colour: CREAM });
+  }],
+
+  // 10. One gene, period; three scientists, the 2017 prize
+  ['gene', 'period 基因', (m, D) => {
+    const p = panel(0), gn = m('gene'), pr = m('per'), th = m('three'), pz = m('prize');
+    let s = shot(p, 0, th, { bg: CREAM, whip: true });
+    word(s, '同一個基因', CX, 250, gn, { size: 96, fill: INK });
+    // a double helix drawn on, one rung turning red
+    const hx = G(s, { x: CX, y: 720, r: -12 });
+    const pts = k => Array.from({ length: 61 }, (_, i) => { const x = -400 + i * 800 / 60; return `${i ? 'L' : 'M'}${x} ${Math.sin(i / 60 * Math.PI * 4 + k) * 110}`; }).join('');
+    path(hx, pts(0), { stroke: BLUE, 'stroke-width': 18 }, { d: 0 }); path(hx, pts(Math.PI), { stroke: RED, 'stroke-width': 18 }, { d: 0 });
+    [...hx.children].forEach(c => draw(c, 0, Math.max(.6, gn), lin));
+    for (let i = 0; i < 16; i++) {
+      const x = -380 + i * 760 / 15, y = Math.sin((x + 400) / 800 * Math.PI * 4) * 110;
+      const rung = path(hx, `M${x} ${y}L${x} ${-y}`, { stroke: i === 9 ? RED : '#b9ae96', 'stroke-width': i === 9 ? 16 : 8 }, { d: 0 });
+      draw(rung, .2 + i * .05, .3, out);
+    }
+    const hl = G(hx, { x: -380 + 9 * 760 / 15, y: 0, o: 0, s: .5 });
+    mk('circle', { r: 120, fill: 'none', stroke: RED, 'stroke-width': 10 }, hl);
+    pop(hl, pr);
+    word(s, 'period', CX, 1150, pr, { size: 170, fill: RED, stroke: CREAM });
+    T(s, '（週期）', { x: CX, y: 1260, size: 56, fill: INK, font: SANS, weight: 500, anchor: 'middle', o: 0 });
+    show(s.lastChild, pr + .3, .2, lin);
+    // the three, then the medal again
+    s = shot(p, th, undefined, { bg: '#fdf6eb', whip: true });
+    const md = piece(s, 'pl-medal', CX, 800, th, D + .8, { h: 560, s0: .9, s1: 1.04 });
+    put(md, { o: 0 }); show(md, pz - .2, .3, lin);
+    band(s, ['Hall', 'Rosbash', 'Young'], 230, th, { size: 60, step: .3 });
+    srcTag(s, PLATE_SRC, 50, 150, th);
+    stamp(s, '2017 諾貝爾獎', CX, 1180, pz, { size: 104, colour: RED });
+  }],
+
+  // 11. Clocks in nearly every cell; the conductor sits above the optic chiasm: the SCN
+  ['scn', '視交叉上核', (m, D) => {
+    const p = panel(0), ce = m('cells'), bs = m('boss'), sc = m('scn');
+    let s = shot(p, 0, sc, { bg: CREAM, whip: true });
+    const [iw, ih] = ART['pl-body'];
+    const bh = 1500, bw = iw * bh / ih;
+    const body = G(s, { x: CX, y: 820, s: 1 });
+    plate(body, 'pl-body', 0, 0, { h: bh });
+    // the organ clocks pulse in turn (their places on the plate, as fractions of its size)
+    const CLK = [[.47, .33], [.33, .38], [.57, .39], [.48, .43], [.30, .48], [.48, .48], [.06, .47], [.36, .63]];
+    CLK.forEach(([fx, fy], i) => {
+      const r = G(body, { x: (fx - .5) * bw, y: (fy - .5) * bh, s: .3, o: 0 });
+      mk('circle', { r: 34, fill: 'none', stroke: RED, 'stroke-width': 6 }, r);
+      tw(r, { s: 1.4, o: 1 }, ce + i * .14, .25, out); tw(r, { o: 0 }, ce + i * .14 + .4, .4, lin);
+    });
+    word(s, '每個細胞都有時鐘', CX, 230, ce, { size: 84, fill: INK });
+    // to the head: the conductor's seat behind the eyes
+    tw(body, { s: 3.4, y: 820 + (.5 - .055) * bh * 3.4 }, bs, 1.1, io);
+    label(s, '總指揮', CX, 1200, bs + .7, { size: 80, fill: RED, colour: CREAM });
+    s = shot(p, sc, undefined, { bg: CREAM, swipe: true });
+    piece(s, 'pl-scn', CX, 700, sc, D + .8, { h: 860, s0: 1.0, s1: 1.08 });
+    srcTag(s, PLATE_SRC, 50, 150, sc);
+    word(s, '視交叉上核', CX, 1250, sc, { size: 120, fill: RED, stroke: CREAM });
+    T(s, 'SCN · 視神經交叉的正上方', { x: CX, y: 230, size: 50, fill: INK, font: SANS, weight: 600, anchor: 'middle' });
+  }],
+
+  // 12. It sets the whole body by the light the eyes see
+  ['light', '用光對時', (m, D) => {
+    const p = panel(0), ey = m('eye'), sy = m('sync');
+    const s = shot(p, 0, undefined, { bg: CREAM, whip: true });
+    const [iw, ih] = ART['pl-body'];
+    const body = G(s, { x: 560, y: 900, s: 1 });
+    plate(body, 'pl-body', 0, 0, { h: 1240 });
+    tw(body, { s: 1.05 }, 0, D + .8, lin);
+    const sn = sun(s, 150, 330, 70, 0);
+    const eye = [560 + (.52 - .5) * iw * 1240 / ih, 900 + (.07 - .5) * 1240];
+    const ray = path(s, `M200 380L${eye[0]} ${eye[1]}`, { stroke: '#f0b64a', 'stroke-width': 14, 'stroke-dasharray': '1 1' }, { d: 0 });
+    draw(ray, ey, .45, out);
+    label(s, '眼睛看到的光', 290, 560, ey + .1, { size: 54, fill: GOLD, colour: INK });
+    // four clocks out of step, then all snap to the same time
+    const Wt = [[160, 1180, 200], [360, 1180, 470], [160, 1380, 610], [360, 1380, 90]].map(([x, y, t]) => { const w = watch(s, x, y, 80, {}); setTime(w, t); return [w, t]; });
+    Wt.forEach(([w, t]) => prog(q => setTime(w, t + (420 - t) * q), sy, .45, back));
+    sfx('light', sy, 'tick', .9);
+    word(s, '對時', 650, 300, sy, { size: 150, fill: RED, stroke: CREAM });
+  }],
+
+  // 13. The answer to the hook: morning light sets your watch; without it, it slips again
+  ['sun', '早上的陽光', (m, D) => {
+    const p = panel(0), su = m('sun'), se = m('set'), lg = m('lag');
+    const s = shot(p, 0, undefined, { bg: NIGHT, whip: true });
+    const sky = rect(s, -20, -20, W + 40, H + 40, { fill: '#f3e2b8' }); put(sky, { o: 0 });
+    tw(sky, { o: 1 }, su - .1, .6, lin);
+    const sn = G(s, { x: CX, y: 1500 });
+    sun(sn, 0, 0, 90, undefined);
+    tw(sn, { y: 330 }, su - .2, .9, out);
+    const w = watch(s, CX, 860, 280, { ghost: true });
+    setTime(w, 7 * 60 - 10); put(w.ghost, { r: 7 * 60 * 6 });
+    prog(q => setTime(w, 7 * 60 - 10 + 10 * q), se, .45, back);
+    sfx('sun', se, 'tick', 1);
+    const ok = word(s, '早上曬太陽 = 對時', CX, 1270, se + .1, { size: 100, fill: RED, stroke: CREAM });
+    // without it: the sun goes, the hand slips a day at a time
+    tw(sky, { o: 0 }, lg - .3, .5, lin); tw(sn, { y: 1600 }, lg - .3, .7, io);
+    hide(ok, lg - .2, .15, lin);
+    prog(q => { const k = Math.floor(q * 4); setTime(w, 7 * 60 - 10 * k); }, lg, D + .8 - lg, lin);
+    for (let k = 1; k < 4; k++) sfx('sun', lg + k * (D + .8 - lg) / 4, 'tick', .6);
+    word(s, '少了它 → 一天天慢下去', CX, 1270, lg, { size: 84, fill: CREAM, stroke: INK });
+  }],
+
+  // 14. Next time
+  ['next', '下一集', (m, D) => {
+    const p = panel(0), nx = m('next');
+    const s = shot(p, 0, undefined, { swipe: true });
+    seriesCard(s, 0, 2, { lead: nx - .5 });
+    word(s, '為什麼晚上會想睡？', CX, 1400 - 180, nx, { size: 84, fill: CREAM });
+  }],
+].map(shortsBeat);
+
+startSeries();
+</script>
+</body>
+</html>

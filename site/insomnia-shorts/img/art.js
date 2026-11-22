@@ -1,0 +1,1 @@
+window.ART = {"pl-day":[516,588],"pl-night":[519,588],"pl-cabinet":[1047,804],"pl-cave":[1041,900],"pl-acto":[888,696],"pl-fly":[630,684],"pl-medal":[384,486],"pl-cell":[828,828],"pl-body":[546,1566],"pl-sun":[294,276],"pl-scn":[648,654],"f-mimosa":[1062,1432]};

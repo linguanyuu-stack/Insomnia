@@ -1,3 +1,5 @@
 kit/_tmp_*
 figs/_gen/__pycache__/
 __pycache__/
+books/*/art/plates/
+books/*/export/*.tmp.mp4
