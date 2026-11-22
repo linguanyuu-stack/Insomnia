@@ -3,3 +3,4 @@ figs/_gen/__pycache__/
 __pycache__/
 books/*/art/plates/
 books/*/export/*.tmp.mp4
+books/*/export/*.tmp.mp4
