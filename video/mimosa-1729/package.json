@@ -1,0 +1,17 @@
+{
+  "name": "mimosa-1729-video",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/im-fell-english": "^5.3.0",
+    "@fontsource/lxgw-wenkai-tc": "^5.3.1",
+    "@fontsource/pinyon-script": "^5.3.0"
+  }
+}
