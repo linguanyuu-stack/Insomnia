@@ -1,0 +1,42 @@
+{
+  "name": "mimosa-1729",
+  "version": "1.0.0",
+  "description": "1729 含羞草的時鐘 — animated explainer (Remotion)",
+  "repository": {},
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.546",
+    "@remotion/fonts": "4.0.546",
+    "@remotion/media": "4.0.546",
+    "@remotion/transitions": "4.0.546",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.546"
+  },
+  "devDependencies": {
+    "@fontsource/im-fell-english": "^5.3.0",
+    "@fontsource/lxgw-wenkai-tc": "^5.3.1",
+    "@fontsource/pinyon-script": "^5.3.0",
+    "@remotion/eslint-config-flat": "4.0.546",
+    "@types/react": "19.3.0",
+    "@types/web": "0.0.166",
+    "eslint": "10.15.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "fonts": "python3 scripts/build_fonts.py",
+    "render": "remotion render Mimosa1729 out/mimosa-1729.mp4 --crf=17"
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}
