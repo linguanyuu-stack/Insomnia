@@ -1,0 +1,227 @@
+{
+ "banner": {
+  "file": "el/banner.png",
+  "back": "el/banner.back.png",
+  "w": 1715,
+  "h": 803,
+  "panel": "p1",
+  "x0": 8,
+  "y0": 30
+ },
+ "globe": {
+  "file": "el/globe.png",
+  "back": "el/globe.back.png",
+  "w": 358,
+  "h": 393,
+  "panel": "p1",
+  "x0": 488,
+  "y0": 456
+ },
+ "books": {
+  "file": "el/books.png",
+  "back": "el/books.back.png",
+  "w": 434,
+  "h": 283,
+  "panel": "p1",
+  "x0": 766,
+  "y0": 570
+ },
+ "portrait": {
+  "file": "el/portrait.png",
+  "back": "el/portrait.back.png",
+  "w": 1165,
+  "h": 1441,
+  "panel": "p2",
+  "x0": 0,
+  "y0": 6
+ },
+ "orbit": {
+  "file": "el/orbit.png",
+  "back": "el/orbit.back.png",
+  "w": 620,
+  "h": 389,
+  "panel": "p2",
+  "x0": 966,
+  "y0": 20
+ },
+ "name": {
+  "file": "el/name.png",
+  "back": "el/name.back.png",
+  "w": 601,
+  "h": 337,
+  "panel": "p2",
+  "x0": 1003,
+  "y0": 388
+ },
+ "telescope": {
+  "file": "el/telescope.png",
+  "back": "el/telescope.back.png",
+  "w": 529,
+  "h": 603,
+  "panel": "p2",
+  "x0": 1013,
+  "y0": 660
+ },
+ "plantOpen": {
+  "file": "el/plantOpen.png",
+  "back": "el/plantOpen.back.png",
+  "w": 1179,
+  "h": 736,
+  "panel": "p3",
+  "x0": 50,
+  "y0": 236
+ },
+ "plantClosed": {
+  "file": "el/plantClosed.png",
+  "back": "el/plantClosed.back.png",
+  "w": 1171,
+  "h": 646,
+  "panel": "p3",
+  "x0": 1418,
+  "y0": 318
+ },
+ "sun": {
+  "file": "el/sun.png",
+  "back": "el/sun.back.png",
+  "w": 444,
+  "h": 380,
+  "panel": "p3",
+  "x0": 128,
+  "y0": 10
+ },
+ "cloud": {
+  "file": "el/cloud.png",
+  "back": "el/cloud.back.png",
+  "w": 394,
+  "h": 157,
+  "panel": "p3",
+  "x0": 554,
+  "y0": 81
+ },
+ "nightSky": {
+  "file": "el/nightSky.png",
+  "back": "el/nightSky.back.png",
+  "w": 980,
+  "h": 504,
+  "panel": "p3",
+  "x0": 1685,
+  "y0": 21
+ },
+ "title": {
+  "file": "el/title.png",
+  "back": "el/title.back.png",
+  "w": 755,
+  "h": 341,
+  "panel": "p3",
+  "x0": 980,
+  "y0": 19
+ },
+ "arrows": {
+  "file": "el/arrows.png",
+  "back": "el/arrows.back.png",
+  "w": 247,
+  "h": 195,
+  "panel": "p3",
+  "x0": 1221,
+  "y0": 536
+ },
+ "labelDay": {
+  "file": "el/labelDay.png",
+  "back": "el/labelDay.back.png",
+  "w": 792,
+  "h": 378,
+  "panel": "p3",
+  "x0": 279,
+  "y0": 942
+ },
+ "labelNight": {
+  "file": "el/labelNight.png",
+  "back": "el/labelNight.back.png",
+  "w": 809,
+  "h": 368,
+  "panel": "p3",
+  "x0": 1647,
+  "y0": 945
+ },
+ "mairanLens": {
+  "file": "el/mairanLens.png",
+  "back": "el/mairanLens.back.png",
+  "w": 1219,
+  "h": 640,
+  "panel": "p4",
+  "x0": 574,
+  "y0": 532
+ },
+ "mairanWrite": {
+  "file": "el/mairanWrite.png",
+  "back": "el/mairanWrite.back.png",
+  "w": 1089,
+  "h": 766,
+  "panel": "p5",
+  "x0": 0,
+  "y0": 521
+ },
+ "cabinet": {
+  "file": "el/cabinet.png",
+  "back": "el/cabinet.back.png",
+  "w": 691,
+  "h": 780,
+  "panel": "p5",
+  "x0": 981,
+  "y0": 459
+ },
+ "bubble": {
+  "file": "el/bubble.png",
+  "back": "el/bubble.back.png",
+  "w": 418,
+  "h": 483,
+  "panel": "p5",
+  "x0": 661,
+  "y0": 554
+ },
+ "watch": {
+  "file": "el/watch.png",
+  "back": "el/watch.back.png",
+  "w": 453,
+  "h": 373,
+  "panel": "p5",
+  "x0": 2117,
+  "y0": 697
+ },
+ "note": {
+  "file": "el/note.png",
+  "back": "el/note.back.png",
+  "w": 881,
+  "h": 534,
+  "panel": "p5",
+  "x0": 1613,
+  "y0": 740
+ },
+ "resultHead": {
+  "file": "el/resultHead.png",
+  "back": "el/resultHead.back.png",
+  "w": 945,
+  "h": 264,
+  "panel": "p5",
+  "x0": 1616,
+  "y0": 26
+ },
+ "resultDay": {
+  "file": "el/resultDay.png",
+  "back": "el/resultDay.back.png",
+  "w": 881,
+  "h": 270,
+  "panel": "p5",
+  "x0": 1675,
+  "y0": 238
+ },
+ "resultNight": {
+  "file": "el/resultNight.png",
+  "back": "el/resultNight.back.png",
+  "w": 888,
+  "h": 263,
+  "panel": "p5",
+  "x0": 1662,
+  "y0": 483
+ }
+}
