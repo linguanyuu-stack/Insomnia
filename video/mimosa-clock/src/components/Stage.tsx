@@ -28,6 +28,12 @@ export type Piece = {
   seed?: number;
   /** ignore the scene's night tint */
   glow?: boolean;
+  /** rotation around the vertical axis (degrees) — e.g. a door swinging on its hinge */
+  rotY?: number;
+  /** screen point that rot / rotY turn around (defaults to the centre) */
+  pivot?: [number, number];
+  /** only draw inside this screen-space circle [x, y, r] */
+  clip?: [number, number, number];
   key?: string;
 };
 
@@ -87,10 +93,11 @@ vec2 rot2(vec2 p, float a) { float c = cos(a), s = sin(a); return vec2(c * p.x -
 const FRAG = /* glsl */ `
 uniform sampler2D map; uniform sampler2D backMap;
 uniform float uDraw, uColor, uBack, uOpacity, uSeed;
-uniform vec2 uSize; uniform vec3 uTint;
+uniform vec2 uSize; uniform vec3 uTint; uniform vec3 uClip;
 varying vec2 vUv;
 ${NOISE}
 void main() {
+  if (uClip.z > 0.0 && distance(gl_FragCoord.xy, uClip.xy) > uClip.z) discard;
   vec4 art = texture2D(map, vUv);
   float back = texture2D(backMap, vUv).r;
   vec2 q = vUv * uSize / 260.0;
@@ -144,9 +151,11 @@ const PieceMesh: React.FC<{ p: Piece; tex: Record<string, THREE.Texture>; order:
           uSeed: { value: 0 },
           uSize: { value: new THREE.Vector2(info.w, info.h) },
           uTint: { value: new THREE.Vector3(1, 1, 1) },
+          uClip: { value: new THREE.Vector3(0, 0, 0) },
         },
         vertexShader: VERT,
         fragmentShader: FRAG,
+        side: THREE.DoubleSide, // a door swung open shows its back
         transparent: true,
         depthTest: false,
         depthWrite: false,
@@ -173,6 +182,8 @@ const PieceMesh: React.FC<{ p: Piece; tex: Record<string, THREE.Texture>; order:
   u.uSeed.value = p.seed ?? (p.el.length * 7.13) % 10;
   const nt = p.glow ? 0 : night;
   (u.uTint.value as THREE.Vector3).set(1 - 0.26 * nt, 1 - 0.2 * nt, 1 - 0.02 * nt);
+  const c = p.clip;
+  (u.uClip.value as THREE.Vector3).set(c ? c[0] : 0, c ? 1080 - c[1] : 0, c ? c[2] : 0);
   shadowMat.uniforms.uBack.value = p.back ?? 0;
   shadowMat.uniforms.uAmt.value = (p.shadow ?? 0) * (p.opacity ?? 1) * Math.min(1, (p.color ?? 1) * 1.5 + (p.back ?? 0));
 
@@ -180,14 +191,16 @@ const PieceMesh: React.FC<{ p: Piece; tex: Record<string, THREE.Texture>; order:
   const k = (D0 - z) / D0;
   const s = p.s * k;
   const lift = 1 + 0.02 * (p.shadow ?? 0);
+  const [px, py] = p.pivot ?? [p.x, p.y];
+  const off: [number, number] = [(p.x - px) * k, -(p.y - py) * k];
   return (
-    <group position={[(p.x - 960) * k, -(p.y - 540) * k, z]} rotation={[0, 0, (-(p.rot ?? 0) * Math.PI) / 180]}>
+    <group position={[(px - 960) * k, -(py - 540) * k, z]} rotation={[0, ((p.rotY ?? 0) * Math.PI) / 180, (-(p.rot ?? 0) * Math.PI) / 180]}>
       {(p.shadow ?? 0) > 0.001 ? (
-        <mesh position={[14 * k, -20 * k, 0]} scale={[s * lift, s * lift, 1]} renderOrder={order * 2} material={shadowMat}>
+        <mesh position={[off[0] + 14 * k, off[1] - 20 * k, 0]} scale={[s * lift, s * lift, 1]} renderOrder={order * 2} material={shadowMat}>
           <planeGeometry args={[info.w, info.h]} />
         </mesh>
       ) : null}
-      <mesh scale={[s, s, 1]} renderOrder={order * 2 + 1} material={mat}>
+      <mesh position={[off[0], off[1], 0]} scale={[s, s, 1]} renderOrder={order * 2 + 1} material={mat}>
         <planeGeometry args={[info.w, info.h]} />
       </mesh>
     </group>
@@ -207,10 +220,10 @@ const CameraRig: React.FC<{ cam: Cam }> = ({ cam }) => {
 
 /**
  * A paper page filmed by a gently moving camera. Pieces are Three.js planes at different
- * depths (parallax). `night` tints the page blue. Children render as a DOM overlay
- * (hand-drawn pencil marks, captions).
+ * depths (parallax). `night` tints the page blue. `under` is DOM drawn on the paper below
+ * the drawings; children render as a DOM overlay (hand-drawn pencil marks, captions).
  */
-export const Stage: React.FC<{ pieces: Piece[]; cam?: Cam; night?: number; children?: React.ReactNode }> = ({ pieces, cam = {}, night = 0, children }) => {
+export const Stage: React.FC<{ pieces: Piece[]; cam?: Cam; night?: number; under?: React.ReactNode; children?: React.ReactNode }> = ({ pieces, cam = {}, night = 0, under, children }) => {
   const { width, height } = useVideoConfig();
   const files = useMemo(() => [...new Set(pieces.flatMap((p) => [elements[p.el].file, elements[p.el].back]))].sort(), [pieces]);
   const tex = useTextures(files);
@@ -221,7 +234,16 @@ export const Stage: React.FC<{ pieces: Piece[]; cam?: Cam; night?: number; child
   return (
     <AbsoluteFill>
       <Img src={staticFile('paper.jpg')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
-      <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 70% 20%, #7f93d6, #4a5aa0)', mixBlendMode: 'multiply', opacity: 0.5 * night }} />
+      {/* night: a blue wash with blue-pencil hatching, like the storyboard's night sky */}
+      <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 72% 18%, #9aaee6, #5a6db5 70%, #4a5aa2)', mixBlendMode: 'multiply', opacity: 0.55 * night }} />
+      <AbsoluteFill
+        style={{
+          background: 'repeating-linear-gradient(118deg, rgba(60,78,160,0) 0px, rgba(60,78,160,0) 7px, rgba(60,78,160,.5) 8px, rgba(60,78,160,0) 10px)',
+          mixBlendMode: 'multiply',
+          opacity: 0.35 * night,
+        }}
+      />
+      {under}
       {tex ? (
         <ThreeCanvas width={width} height={height} flat gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }} camera={{ fov: FOV, near: 10, far: 20000, position: [0, 0, D0] }}>
           <CameraRig cam={cam} />
@@ -234,6 +256,13 @@ export const Stage: React.FC<{ pieces: Piece[]; cam?: Cam; night?: number; child
       {children}
     </AbsoluteFill>
   );
+};
+
+/** place another element of the same storyboard panel exactly where it sits relative to `base` */
+export const alignTo = (base: Pick<Piece, 'el' | 'x' | 'y' | 's'>, el: ElName) => {
+  const e = elements[el];
+  const [x, y] = pointOn(base, e.x0 + e.w / 2, e.y0 + e.h / 2);
+  return { el, x, y, s: base.s };
 };
 
 /** screen position of a point given in the element's storyboard panel px (x4) */

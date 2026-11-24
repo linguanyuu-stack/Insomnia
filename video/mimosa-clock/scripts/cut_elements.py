@@ -21,6 +21,12 @@ MARGIN = 16  # backing margin in x4 px
 PROPS = [(128, 128), (212, 128), (214, 150), (292, 150), (294, 210), (126, 210)]
 PLANT_CLOSED = [(360, 80), (455, 80), (470, 100), (640, 108), (645, 234), (360, 234)]
 WATCH = [(535, 180), (645, 180), (645, 262), (535, 262)]
+# the cabinet, taken apart so it can be animated (see cut_cabinet)
+CAB_BODY = [(255, 119), (384, 119), (384, 144), (368, 144), (368, 300), (255, 300)]
+CAB_INSIDE = (270, 148, 363, 279)  # the dark opening (x0, y0, x1, y1)
+CAB_PLANT = [(270, 168), (356, 168), (356, 277), (270, 277)]
+DOOR_QUAD = [(366, 146), (404, 129), (404, 287), (367, 285)]  # the open door, seen at an angle
+DOOR_FRONT = (268, 146, 366, 288)  # where the closed door sits (x0, y0, x1, y1)
 
 ELEMENTS = {
     # 1729
@@ -39,20 +45,14 @@ ELEMENTS = {
     'cloud': ('p3', [(140, 15), (245, 15), (245, 62), (140, 62)], []),
     'nightSky': ('p3', [(425, 0), (671, 0), (671, 125), (425, 125)], [PLANT_CLOSED]),
     'title': ('p3', [(250, 5), (430, 5), (430, 84), (250, 84)], []),
-    'arrows': ('p3', [(300, 132), (368, 132), (368, 178), (300, 178)], []),
-    'labelDay': ('p3', [(65, 236), (275, 236), (275, 324), (65, 324)], []),
-    'labelNight': ('p3', [(400, 236), (625, 236), (625, 324), (400, 324)], []),
     # de Mairan with the magnifier
     'mairanLens': ('p4', [(150, 293), (150, 250), (170, 238), (185, 210), (213, 190), (248, 160), (268, 140), (305, 134), (335, 148), (346, 178), (350, 198), (395, 198), (412, 208), (442, 226), (442, 293)], []),
     # the cabinet experiment
     'mairanWrite': ('p5', [(0, 140), (112, 136), (172, 160), (186, 250), (264, 270), (264, 320), (0, 324)], []),
-    'cabinet': ('p5', [(264, 118), (412, 118), (412, 302), (252, 302), (252, 258), (264, 250)], []),
-    'bubble': ('p5', [(172, 140), (250, 140), (262, 225), (262, 252), (172, 252)], []),
     'watch': ('p5', WATCH, []),
-    'note': ('p5', [(410, 185), (645, 185), (645, 324), (410, 324)], [WATCH]),
-    'resultHead': ('p5', [(410, 12), (645, 12), (645, 66), (410, 66)], []),
-    'resultDay': ('p5', [(421, 67), (632, 67), (632, 121), (421, 121)], []),
-    'resultNight': ('p5', [(421, 125), (632, 125), (632, 179), (421, 179)], []),
+    # key words only (the rest of the storyboard text is acted out instead)
+    'kwDark': ('p5', [(175, 192), (209, 192), (209, 206), (175, 206)], []),
+    'kwClock': ('p5', [(436, 230), (530, 230), (530, 254), (436, 254)], []),
 }
 
 
@@ -73,6 +73,106 @@ def poly_mask(shape, poly):
     return m.astype(bool)
 
 
+def emit(out_dir, manifest, rng, name, panel, rgb, alpha, m, ox=0, oy=0):
+    """save art + scissor-cut backing; (ox, oy) = where this array sits in the panel (x4 px)"""
+    H, W = m.shape
+    a = np.clip(alpha, 0, 1)[..., None]
+    blob = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((25, 25), np.uint8))
+    blob = ndimage.binary_fill_holes(blob)
+    blob = np.pad(blob, MARGIN * 2)  # room for the margin
+    d = ndimage.distance_transform_edt(~blob)
+    Hp, Wp = blob.shape
+    wobble = cv2.resize(rng.normal(0, 1, (Hp // 24 + 1, Wp // 24 + 1)).astype(np.float32), (Wp, Hp), interpolation=cv2.INTER_CUBIC)
+    back = np.clip((MARGIN + wobble * 4 - d) / 1.5, 0, 1)
+    P = MARGIN * 2
+    rgba = np.zeros((Hp, Wp, 4), np.float32)
+    rgba[P:P + H, P:P + W, :3] = np.clip(rgb, 0, 255)
+    rgba[P:P + H, P:P + W, 3] = a[..., 0] * 255
+    ys, xs = np.nonzero((back > 0.01) | (rgba[..., 3] > 2))
+    pad = 6
+    x0, x1 = max(xs.min() - pad, 0), min(xs.max() + pad + 1, Wp)
+    y0, y1 = max(ys.min() - pad, 0), min(ys.max() + pad + 1, Hp)
+    Image.fromarray(rgba[y0:y1, x0:x1].astype(np.uint8), 'RGBA').save(out_dir / f'{name}.png', optimize=True)
+    Image.fromarray((back[y0:y1, x0:x1] * 255).astype(np.uint8), 'L').save(out_dir / f'{name}.back.png', optimize=True)
+    manifest[name] = {'file': f'el/{name}.png', 'back': f'el/{name}.back.png', 'w': int(x1 - x0), 'h': int(y1 - y0),
+                      'panel': panel, 'x0': int(ox + x0 - P), 'y0': int(oy + y0 - P)}
+    print(f'{name:12s} {x1 - x0}x{y1 - y0}')
+
+
+def load_panel(panel):
+    img = np.asarray(Image.open(ROOT / 'assets' / 'panels' / f'{panel}_x4.png').convert('RGB')).astype(np.float32)
+    field = paper_field(img)
+    dist = np.linalg.norm(img - field, axis=2)
+    soft = np.clip((dist - 9) / 26, 0, 1)
+    ink = cv2.morphologyEx((dist > 16).astype(np.uint8), cv2.MORPH_CLOSE, np.ones((7, 7), np.uint8)).astype(bool)
+    for a in (ink, soft):  # storyboard's white panel border is not ink
+        a[:16, :] = 0; a[-16:, :] = 0; a[:, :16] = 0; a[:, -16:] = 0
+    return img, field, soft, ink
+
+
+def lasso(img, field, soft, ink, region):
+    m = ndimage.binary_fill_holes(ink & region) & region
+    lab, n = ndimage.label(m)
+    if n:
+        sizes = ndimage.sum(m, lab, range(1, n + 1))
+        m = np.isin(lab, 1 + np.flatnonzero(sizes >= 60))
+    solid = ndimage.binary_erosion(m, iterations=2)
+    alpha = cv2.GaussianBlur((np.where(solid, 1.0, soft) * m).astype(np.float32), (0, 0), 0.8) * region
+    a = np.clip(alpha, 0, 1)[..., None]
+    rgb = np.where(a > 0.02, (img - (1 - a) * field) / np.maximum(a, 0.02), img)
+    return rgb, alpha, m
+
+
+def cut_cabinet(out_dir, manifest, rng):
+    """the storyboard cabinet → empty cabinet body, the potted plant, and a flat front door"""
+    img, field, soft, ink = load_panel('p5')
+    H, W = ink.shape
+    # potted plant: everything inside that is not the dark hatched interior
+    lum = img.mean(axis=2)
+    sat = (img.max(axis=2) - img.min(axis=2)) / np.maximum(img.max(axis=2), 1)
+    plant_box = poly_mask((H, W), CAB_PLANT)
+    pm = plant_box & ((lum > 105) | ((sat > 0.3) & (lum > 60)))
+    pm = cv2.morphologyEx(pm.astype(np.uint8), cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
+    pm = cv2.morphologyEx(pm, cv2.MORPH_CLOSE, np.ones((7, 7), np.uint8)).astype(bool)
+    lab, n = ndimage.label(pm)
+    sizes = ndimage.sum(pm, lab, range(1, n + 1))
+    pm = lab == 1 + int(np.argmax(sizes))  # the plant + pot is the one big piece
+    pm = pm | (ndimage.binary_fill_holes(pm) & (lum > 100))
+    palpha = cv2.GaussianBlur(ndimage.binary_erosion(pm, iterations=1).astype(np.float32), (0, 0), 1.0)
+    ys, xs = np.nonzero(pm)
+    y0, y1, x0, x1 = ys.min() - 4, ys.max() + 5, xs.min() - 4, xs.max() + 5
+    emit(out_dir, manifest, rng, 'pot', 'p5', img[y0:y1, x0:x1], palpha[y0:y1, x0:x1], pm[y0:y1, x0:x1], x0, y0)
+    # empty cabinet: repaint the whole dark opening with pencil hatching, leave the open door behind
+    ix0, iy0, ix1, iy1 = [v * S for v in CAB_INSIDE]
+    hole = np.zeros((H, W), np.uint8)
+    hole[iy0:iy1, ix0:ix1] = 1
+    dark = np.median(img[iy0:iy1, ix0:ix1][~pm[iy0:iy1, ix0:ix1]], axis=0)
+    noise = rng.normal(0, 1, (H, W)).astype(np.float32)
+    k = np.zeros((31, 31), np.float32)
+    cv2.line(k, (0, 30), (30, 0), 1.0, 1)
+    streak = cv2.filter2D(noise, -1, k / k.sum())  # long diagonal pencil strokes
+    streak = streak / streak.std()
+    shade = np.linspace(-6, 10, iy1 - iy0)[:, None]  # a little lighter towards the floor
+    bare = img.copy()
+    bare[iy0:iy1, ix0:ix1] = dark + (streak[iy0:iy1, ix0:ix1, None] * 9 + shade[..., None]) * np.array([1, 1, 1.05])
+    region = poly_mask((H, W), CAB_BODY)
+    rgb, alpha, m = lasso(bare, field, soft, ink | (hole > 0), region)
+    emit(out_dir, manifest, rng, 'cabinetBare', 'p5', rgb, alpha, m)
+    # the door: un-warp the angled open door into a flat front panel the size of the opening
+    fx0, fy0, fx1, fy1 = [v * S for v in DOOR_FRONT]
+    dw, dh = fx1 - fx0, fy1 - fy0
+    src = np.float32([(x * S, y * S) for x, y in DOOR_QUAD])
+    dst = np.float32([(0, 0), (dw, 0), (dw, dh), (0, dh)])
+    door = cv2.warpPerspective(img, cv2.getPerspectiveTransform(src, dst), (dw, dh), flags=cv2.INTER_CUBIC)
+    dmask = np.ones((dh, dw), bool)
+    dalpha = np.ones((dh, dw), np.float32)
+    dalpha[:, :3] = 0.5
+    cut_bottom = int(dh * 0.035)  # the warp catches a sliver of the cabinet base
+    dalpha[-cut_bottom:, :] = 0
+    dmask[-cut_bottom:, :] = False
+    emit(out_dir, manifest, rng, 'door', 'p5', door, dalpha, dmask, fx0, fy0)
+
+
 def main():
     out_dir = ROOT / 'public' / 'el'
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -81,43 +181,15 @@ def main():
     rng = np.random.default_rng(3)
     for name, (panel, poly, minus) in ELEMENTS.items():
         if panel not in panels:
-            img = np.asarray(Image.open(ROOT / 'assets' / 'panels' / f'{panel}_x4.png').convert('RGB')).astype(np.float32)
-            field = paper_field(img)
-            dist = np.linalg.norm(img - field, axis=2)
-            soft = np.clip((dist - 9) / 26, 0, 1)
-            ink = cv2.morphologyEx((dist > 16).astype(np.uint8), cv2.MORPH_CLOSE, np.ones((7, 7), np.uint8)).astype(bool)
-            for a in (ink, soft):  # storyboard's white panel border is not ink
-                a[:16, :] = 0; a[-16:, :] = 0; a[:, :16] = 0; a[:, -16:] = 0
-            panels[panel] = (img, field, soft, ink)
+            panels[panel] = load_panel(panel)
         img, field, soft, ink = panels[panel]
         H, W = ink.shape
         region = poly_mask((H, W), poly)
         for mp in minus:
             region &= ~poly_mask((H, W), mp)
-        m = ndimage.binary_fill_holes(ink & region) & region
-        lab, n = ndimage.label(m)
-        if n:
-            sizes = ndimage.sum(m, lab, range(1, n + 1))
-            m = np.isin(lab, 1 + np.flatnonzero(sizes >= 60))
-        solid = ndimage.binary_erosion(m, iterations=2)
-        alpha = cv2.GaussianBlur((np.where(solid, 1.0, soft) * m).astype(np.float32), (0, 0), 0.8) * region
-        a = np.clip(alpha, 0, 1)[..., None]
-        rgb = np.where(a > 0.02, (img - (1 - a) * field) / np.maximum(a, 0.02), img)
-        # scissor-cut backing: silhouette grown by MARGIN with a slightly irregular edge
-        blob = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((25, 25), np.uint8))
-        blob = ndimage.binary_fill_holes(blob)
-        d = ndimage.distance_transform_edt(~blob)
-        wobble = cv2.resize(rng.normal(0, 1, (H // 24 + 1, W // 24 + 1)).astype(np.float32), (W, H), interpolation=cv2.INTER_CUBIC)
-        back = np.clip((MARGIN + wobble * 4 - d) / 1.5, 0, 1)
-        ys, xs = np.nonzero(back > 0.01)
-        pad = 6
-        x0, x1 = max(xs.min() - pad, 0), min(xs.max() + pad + 1, W)
-        y0, y1 = max(ys.min() - pad, 0), min(ys.max() + pad + 1, H)
-        rgba = np.dstack([np.clip(rgb, 0, 255), a[..., 0] * 255])[y0:y1, x0:x1].astype(np.uint8)
-        Image.fromarray(rgba, 'RGBA').save(out_dir / f'{name}.png', optimize=True)
-        Image.fromarray((back[y0:y1, x0:x1] * 255).astype(np.uint8), 'L').save(out_dir / f'{name}.back.png', optimize=True)
-        manifest[name] = {'file': f'el/{name}.png', 'back': f'el/{name}.back.png', 'w': int(x1 - x0), 'h': int(y1 - y0), 'panel': panel, 'x0': int(x0), 'y0': int(y0)}
-        print(f'{name:12s} {x1 - x0}x{y1 - y0}')
+        rgb, alpha, m = lasso(img, field, soft, ink, region)
+        emit(out_dir, manifest, rng, name, panel, rgb, alpha, m)
+    cut_cabinet(out_dir, manifest, rng)
     (ROOT / 'src' / 'elements.json').write_text(json.dumps(manifest, indent=1))
 
 

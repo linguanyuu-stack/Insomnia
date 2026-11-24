@@ -77,7 +77,8 @@ const tearEdge = (p: number, seed: number) => {
 };
 
 const TornComp: React.FC<TransitionPresentationComponentProps<TornProps>> = ({ children, presentationDirection, presentationProgress, passedProps }) => {
-  if (presentationDirection === 'entering') return <AbsoluteFill style={{ zIndex: 1 }}>{children}</AbsoluteFill>;
+  // the new page simply lies underneath; no z-index here (it would stay on the scene for its whole length)
+  if (presentationDirection === 'entering') return <AbsoluteFill>{children}</AbsoluteFill>;
   if (presentationProgress <= 0) return <AbsoluteFill>{children}</AbsoluteFill>;
   const p = ease(presentationProgress);
   const edge = tearEdge(p, passedProps.seed);
@@ -107,33 +108,57 @@ const TornComp: React.FC<TransitionPresentationComponentProps<TornProps>> = ({ c
 };
 export const torn = (seed = 11): TransitionPresentation<TornProps> => ({ component: TornComp, props: { seed } });
 
-// ───────────────────────── 3. a new collage sheet slides over ─────────────────────────
-type SlideProps = { fromX: number; fromY: number; rot: number };
+// ───────────────────────── 3. watercolour bloom ─────────────────────────
+// The next page spreads out from a point like wet paint: soft, irregular edge with a pigment rim.
+type BloomProps = { from: [number, number]; seed: number };
 
-const SlideComp: React.FC<TransitionPresentationComponentProps<SlideProps>> = ({ children, presentationDirection, presentationProgress, passedProps }) => {
-  const p = ease(presentationProgress);
-  if (presentationDirection === 'exiting') {
-    return (
-      <AbsoluteFill style={{ scale: `${1 - 0.03 * p}` }}>
-        {children}
-        <AbsoluteFill style={{ backgroundColor: '#2b1d10', opacity: 0.22 * p }} />
-      </AbsoluteFill>
-    );
+const blob = (cx: number, cy: number, r: number, seed: number) => {
+  const pts: string[] = [];
+  const n = 48;
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2;
+    const k = 1 + 0.09 * Math.sin(a * 3 + seed) + 0.06 * Math.sin(a * 7 + seed * 2.3) + 0.04 * Math.sin(a * 13 + seed * 0.7);
+    pts.push(`${(cx + Math.cos(a) * r * k).toFixed(1)},${(cy + Math.sin(a) * r * k).toFixed(1)}`);
   }
+  return `M${pts.join(' L')}Z`;
+};
+
+const BloomComp: React.FC<TransitionPresentationComponentProps<BloomProps>> = ({ children, presentationDirection, presentationProgress, passedProps }) => {
+  if (presentationDirection === 'exiting') return <AbsoluteFill>{children}</AbsoluteFill>;
+  const p = ease(presentationProgress);
+  const [cx, cy] = passedProps.from;
+  const r = interpolate(p, [0, 1], [20, 2500]);
+  const seed = passedProps.seed + p * 1.5; // the edge keeps creeping as it spreads
+  const soft = 26 + p * 40;
+  // union of soft round "drops" of paint around the centre → an irregular, feathered edge
+  const rr = rnd(passedProps.seed * 97 + 13);
+  const drops = Array.from({ length: 9 }).map((_, i) => {
+    const ang = (i / 9) * Math.PI * 2 + rr() * 0.6;
+    const off = i === 0 ? 0 : r * (0.12 + rr() * 0.16);
+    const rad = r * (i === 0 ? 0.92 : 0.72 + rr() * 0.22);
+    const x = cx + Math.cos(ang) * off;
+    const y = cy + Math.sin(ang) * off;
+    return `radial-gradient(circle at ${x.toFixed(0)}px ${y.toFixed(0)}px, #000 0px, #000 ${(rad - soft).toFixed(0)}px, transparent ${(rad + soft).toFixed(0)}px)`;
+  });
+  const url = drops.join(', ');
   return (
-    <AbsoluteFill
-      style={{
-        translate: `${passedProps.fromX * (1 - p)}px ${passedProps.fromY * (1 - p)}px`,
-        rotate: `${passedProps.rot * (1 - p)}deg`,
-        boxShadow: `0 ${30 * (1 - p) + 4}px ${70 * (1 - p) + 10}px rgba(40,25,10,${0.45 * (1 - p * 0.8)})`,
-        overflow: 'hidden',
-      }}
-    >
-      {children}
+    <AbsoluteFill>
+      <AbsoluteFill style={{ maskImage: url, WebkitMaskImage: url }}>{children}</AbsoluteFill>
+      {/* pigment rim: a warm, slightly darker edge where the "paint" is still wet */}
+      <svg width={W} height={H} style={{ position: 'absolute', mixBlendMode: 'multiply', opacity: 0.55 * Math.sin(Math.PI * Math.min(1, presentationProgress * 1.1)) }}>
+        <defs>
+          <filter id="bloomRim" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves={3} seed={3} />
+            <feDisplacementMap in="SourceGraphic" scale={90 + p * 120} xChannelSelector="R" yChannelSelector="G" result="d" />
+            <feGaussianBlur in="d" stdDeviation={6} />
+          </filter>
+        </defs>
+        <path d={blob(cx, cy, r, seed)} fill="none" stroke="#e6b96a" strokeWidth={22} filter="url(#bloomRim)" />
+      </svg>
     </AbsoluteFill>
   );
 };
-export const sheetSlide = (fromX = 1300, fromY = 500, rot = 9): TransitionPresentation<SlideProps> => ({ component: SlideComp, props: { fromX, fromY, rot } });
+export const bloom = (from: [number, number], seed = 2): TransitionPresentation<BloomProps> => ({ component: BloomComp, props: { from, seed } });
 
 // ───────────────────────── 4. dark paper swallows the light, becomes the cabinet ─────────────────────────
 type IrisProps = { from: [number, number]; to: { x: number; y: number; w: number; h: number }; seed: number };

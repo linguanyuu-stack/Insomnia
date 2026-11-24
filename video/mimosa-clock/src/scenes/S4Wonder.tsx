@@ -24,7 +24,7 @@ const darkScrap = (cx: number, cy: number) => {
 /** 大家以為植物在「看太陽」… 但如果看不到太陽呢？ */
 export const S4Wonder: React.FC = () => {
   const t = useCurrentFrame() / useVideoConfig().fps;
-  const mairan = cut('mairanLens', 1330, 690, 0.78, collage(t, 1.4, { dx: 950, rot: 12 }, 0, 2.2), { z: 50 });
+  const mairan = cut('mairanLens', 1330, 690, 0.78, collage(t, 2.0, { dx: 950, rot: 12 }, 0, 2.2), { z: 50 });
   const [hx, hy] = pointOn(mairan, 300 * 4, 150 * 4);
   const cover = kf(t, [5.8, 7.2], [0, 1]);
   const [sx, sy] = S4_SUN;
@@ -33,9 +33,9 @@ export const S4Wonder: React.FC = () => {
       night={0.35 * cover}
       cam={{ zoom: kf(t, [0, S4_SECONDS], [1.0, 1.07]), x: kf(t, [0, S4_SECONDS], [980, 900]), y: kf(t, [0, S4_SECONDS], [540, 500]) }}
       pieces={[
-        { el: 'sun', x: sx, y: sy, s: 0.62, z: -60, rot: t * 4, glow: true, ...sketchIn(t, 0.2, 2.0) },
-        { el: 'cloud', x: 640 + t * 8, y: 150, s: 0.5, z: -80, ...sketchIn(t, 0.6, 2.0) },
-        { el: 'plantOpen', x: 610, y: 610, s: 0.66, z: 10, rot: sway(t, 0.8, 0.9), ...sketchIn(t, 0.4, 2.6) },
+        { el: 'sun', x: sx, y: sy, s: 0.62, z: -60, rot: t * 4, glow: true }, // already up: the morning blooms out of it
+        { el: 'cloud', x: 640 + t * 8, y: 150, s: 0.5, z: -80, ...sketchIn(t, 1.0, 2.0) },
+        { el: 'plantOpen', x: 610, y: 610, s: 0.66, z: 10, rot: sway(t, 0.8, 0.9), ...sketchIn(t, 0.9, 2.6) },
         mairan,
       ]}
     >
@@ -43,8 +43,8 @@ export const S4Wonder: React.FC = () => {
         id="s4"
         strokes={[
           // "the plant looks at the sun": a dashed pencil line from the sun to the leaves
-          { d: `M${sx + 70},${sy + 80} Q${sx + 260},${sy + 40} ${sx + 330},${sy + 230}`, p: ramp(t, 2.8, 1.3) * (1 - ramp(t, 5.8, 1.0)), dash: '16 14', width: 5, color: '#c58a2a' },
-          { d: `M${sx + 305},${sy + 205} L${sx + 330},${sy + 232} L${sx + 345},${sy + 198}`, p: ramp(t, 4.0, 0.4) * (1 - ramp(t, 5.8, 0.6)), width: 5, color: '#c58a2a' },
+          { d: `M${sx + 70},${sy + 80} Q${sx + 260},${sy + 40} ${sx + 330},${sy + 230}`, p: ramp(t, 3.4, 1.3) * (1 - ramp(t, 5.8, 1.0)), dash: '16 14', width: 5, color: '#c58a2a' },
+          { d: `M${sx + 305},${sy + 205} L${sx + 330},${sy + 232} L${sx + 345},${sy + 198}`, p: ramp(t, 4.6, 0.4) * (1 - ramp(t, 5.8, 0.6)), width: 5, color: '#c58a2a' },
           // a big hand-drawn question mark next to de Mairan
           { d: `M${hx - 70},${hy - 250} C${hx - 70},${hy - 330} ${hx + 50},${hy - 330} ${hx + 45},${hy - 260} C${hx + 40},${hy - 210} ${hx - 15},${hy - 205} ${hx - 15},${hy - 150}`, p: ramp(t, 7.0, 1.1), width: 11, color: '#b4553f' },
           { d: `M${hx - 16},${hy - 112} l2,4`, p: ramp(t, 8.1, 0.2), width: 14, color: '#b4553f' },
@@ -69,7 +69,7 @@ export const S4Wonder: React.FC = () => {
       ) : null}
       <Captions
         items={[
-          [0.8, 5.4, '那時，大家都以為那是植物在「看太陽」。'],
+          [1.2, 5.5, '那時，大家都以為那是植物在「看太陽」。'],
           [5.8, 9.8, '但他想知道：如果看不到太陽呢？'],
         ]}
       />

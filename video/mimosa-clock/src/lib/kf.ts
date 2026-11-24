@@ -45,3 +45,5 @@ export const collage = (t: number, start: number, from: { dx?: number; dy?: numb
     shadow: 1,
   };
 };
+
+export const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
