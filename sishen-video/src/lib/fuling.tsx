@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { Sprite, SpriteName, wave } from "./kit";
+import { FaceSpec, Sprite, SpriteName, wave } from "./kit";
 
 /**
  * 茯苓 with body states:
@@ -20,7 +20,8 @@ export const Fuling: React.FC<{
   rot?: number;
   flip?: boolean;
   opacity?: number;
-}> = ({ x, y, h = 300, pose = "fuling_idle", inflate = 0, slim = 0, muscle = 0, lift = 0, rot = 0, flip, opacity = 1 }) => {
+  face?: FaceSpec;
+}> = ({ x, y, h = 300, pose = "fuling_idle", inflate = 0, slim = 0, muscle = 0, lift = 0, rot = 0, flip, opacity = 1, face }) => {
   const f = useCurrentFrame();
   const jig = inflate > 0.05 ? wave(f, 22, 0.04 * inflate) : 0;
   const breathe = wave(f, 60, 0.012);
@@ -41,6 +42,7 @@ export const Fuling: React.FC<{
       opacity={opacity}
       shadow={0.25}
       tint={{ color: "#9cc9ea", amount: inflate * 0.5 }}
+      face={face}
     >
       {inflate > 0.2 ? (
         <g opacity={(inflate - 0.2) / 0.8}>
@@ -58,11 +60,15 @@ export const Fuling: React.FC<{
           <path d="M42 79 C 45 81 47 81 49 79 M 51 79 C 53 81 55 81 58 79" />
           <path d="M43 86 C 45 88 47 88 49 86 M 51 86 C 53 88 55 88 57 86" />
           {/* flexing arms */}
-          <g transform={`translate(0 ${(1 - muscle) * 12})`} strokeWidth={2.2} strokeLinejoin="round">
-            <path d="M22 64 C 10 66 -6 60 -10 46 C -14 34 -12 22 -6 16 C -2 10 6 10 8 16 C 10 22 6 26 2 28 C 4 36 8 42 14 44 C 18 40 24 38 28 44 C 30 50 28 58 22 64 Z" fill="#f4e9d2" />
+          <g transform={`translate(0 ${10 + (1 - muscle) * 12})`} strokeWidth={2.2} strokeLinejoin="round">
+            <g transform="translate(22 62) scale(0.72) translate(-22 -62)">
+            <path d="M22 64 C 10 66 -6 60 -10 46 C -14 34 -12 22 -6 16 C -2 10 6 10 8 16 C 10 22 6 26 2 28 C 4 36 8 42 14 44 C 18 40 24 38 28 44 C 30 50 28 58 22 64 Z" fill="#efe1c6" />
             <path d="M-2 40 C 2 32 10 30 14 36" />
-            <path d="M78 64 C 90 66 106 60 110 46 C 114 34 112 22 106 16 C 102 10 94 10 92 16 C 90 22 94 26 98 28 C 96 36 92 42 86 44 C 82 40 76 38 72 44 C 70 50 72 58 78 64 Z" fill="#f4e9d2" />
+            </g>
+            <g transform="translate(78 62) scale(0.72) translate(-78 -62)">
+            <path d="M78 64 C 90 66 106 60 110 46 C 114 34 112 22 106 16 C 102 10 94 10 92 16 C 90 22 94 26 98 28 C 96 36 92 42 86 44 C 82 40 76 38 72 44 C 70 50 72 58 78 64 Z" fill="#efe1c6" />
             <path d="M102 40 C 98 32 90 30 86 36" />
+            </g>
           </g>
         </g>
       ) : null}

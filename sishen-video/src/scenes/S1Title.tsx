@@ -15,8 +15,8 @@ export const S1Title: React.FC = () => {
     <SceneFade dur={S1_DUR} inF={12}>
       <Outdoors sun={1} />
       <Wash x={960} y={330} w={1300} h={420} color="#fff8ea" opacity={0.85} blur={50} />
-      <Sprite name="fuling_shy" x={tw(f, [0, 40], [-200, 600])} y={930} h={300} lift={Math.abs(wave(f, 24, 18))} />
-      <Sprite name="lianzi_idle" x={tw(f, [10, 50], [2120, 1320])} y={930} h={300} lift={Math.abs(wave(f, 24, 18, 12))} />
+      <Sprite name="fuling_idle" x={tw(f, [0, 40], [-200, 600])} y={930} h={300} lift={Math.abs(wave(f, 24, 18))} face={f < 45 ? { e: "determined", look: 1 } : { e: "shy", look: 1 }} />
+      <Sprite name="lianzi_idle" x={tw(f, [10, 50], [2120, 1320])} y={930} h={300} flip lift={Math.abs(wave(f, 24, 18, 12))} face={f < 55 ? { e: "smile", look: -1 } : { e: "happy", look: -1, blush: 0.6 }} />
       <Heart x={960} y={720 + wave(f, 40, 10)} s={hp * (1.6 + wave(f, 20, 0.12))} />
       <AbsoluteFill style={{ alignItems: "center", top: 140 }}>
         <div

@@ -12,7 +12,7 @@ const LINEUP: { name: SpriteName; h: number }[] = [
   { name: "chuanxiong_point", h: 150 },
   { name: "danggui_tea", h: 170 },
   { name: "huaishan_herb", h: 170 },
-  { name: "gouqi_cup", h: 160 },
+  { name: "gouqi_jump", h: 165 },
 ];
 
 export const S9End: React.FC = () => {
@@ -90,6 +90,7 @@ export const S9End: React.FC = () => {
             h={c.h}
             opacity={p}
             lift={Math.abs(wave(f, 20, 22, i * 4)) + (1 - p) * 60}
+            face={c.name === "lianzi_leaf" ? undefined : { e: i % 2 ? "laugh" : "happy", look: i < 3 ? 0.5 : -0.5 }}
           />
         );
       })}

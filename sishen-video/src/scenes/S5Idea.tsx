@@ -1,16 +1,16 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { BRUSH, INK, ROUND, Bubble, Caption, SceneFade, Sprite, SpriteName, Ticks, tw, usePop, wave } from "../lib/kit";
+import { BRUSH, INK, ROUND, Bubble, Caption, FaceSpec, SceneFade, Sprite, SpriteName, Ticks, tw, usePop, wave } from "../lib/kit";
 import { ChefHat, Lightbulb, Outdoors } from "../lib/props";
 import { Fuling } from "../lib/fuling";
 
 export const S5_DUR = 180;
 const G = 930;
 
-const CHEFS: { name: SpriteName; label: string; sub: string; hatX: number; hatY: number; hatW: number; color: string }[] = [
-  { name: "danggui_tea", label: "當歸大廚", sub: "補血活血", hatX: 0.47, hatY: 0.1, hatW: 150, color: "#e9b7c3" },
-  { name: "huaishan_herb", label: "淮山大廚", sub: "健脾益氣", hatX: 0.52, hatY: 0.12, hatW: 130, color: "#c9dcae" },
-  { name: "gouqi_cup", label: "枸杞大廚", sub: "滋補明目", hatX: 0.6, hatY: 0.1, hatW: 120, color: "#f3b39b" },
+const CHEFS: { name: SpriteName; label: string; sub: string; hatX: number; hatY: number; hatW: number; color: string; face: FaceSpec }[] = [
+  { name: "danggui_tea", label: "當歸大廚", sub: "補血活血", hatX: 0.47, hatY: 0.1, hatW: 150, color: "#e9b7c3", face: { e: "happy", look: 0.4 } },
+  { name: "huaishan_herb", label: "淮山大廚", sub: "健脾益氣", hatX: 0.52, hatY: 0.12, hatW: 130, color: "#c9dcae", face: { e: "determined" } },
+  { name: "gouqi_jump", label: "枸杞大廚", sub: "滋補明目", hatX: 0.55, hatY: 0.08, hatW: 120, color: "#f3b39b", face: { e: "laugh", look: -0.4 } },
 ];
 
 export const S5Idea: React.FC = () => {
@@ -20,9 +20,28 @@ export const S5Idea: React.FC = () => {
   return (
     <SceneFade dur={S5_DUR}>
       <Outdoors humid={0.8} sun={0} />
-      <Fuling x={560} y={G} h={240} inflate={1} />
-      <Sprite name="qianshi_angry" x={260} y={G + 10} h={200} rot={-88} style={{ transformOrigin: "50% 90%" }} />
-      <Sprite name="chuanxiong_point" x={1200} y={G} h={260} lift={f < 30 ? tw(f, [0, 12, 24], [0, 60, 0]) : 0} />
+      <Fuling x={560} y={G} h={240} inflate={1} face={f < 22 ? { e: "sad", lookY: 1, tear: true } : { e: "surprised", look: 1 }} />
+      <Sprite
+        name="qianshi_idle"
+        x={260}
+        y={G + 10}
+        h={200}
+        rot={f < 26 ? -88 : tw(f, [26, 36], [-88, -30])}
+        style={{ transformOrigin: "50% 90%" }}
+        face={f < 22 ? { e: "dizzy" } : { e: "surprised", look: 1, lookY: -0.5 }}
+      />
+      {f < 16 ? (
+        <Sprite name="chuanxiong_idle" x={1200} y={G} h={240} flip face={{ e: "disappointed", look: -1, lookY: 0.6 }} />
+      ) : (
+        <Sprite
+          name="chuanxiong_point"
+          x={1200}
+          y={G}
+          h={260}
+          lift={f < 30 ? tw(f, [16, 24, 32], [0, 60, 0]) : 0}
+          face={f < 34 ? { e: "surprised", lookY: -1 } : { e: "determined", look: -1, talk: f < 66 ? Math.abs(Math.sin(f / 2.4)) : 0 }}
+        />
+      )}
       <Lightbulb x={1230} y={520 + wave(f, 30, 6)} s={bulb} glow={0.6 + wave(f, 12, 0.4)} />
       <Ticks x={1150} y={480} at={16} />
       <Ticks x={1320} y={470} at={18} rot={40} />
@@ -61,7 +80,7 @@ export const S5Idea: React.FC = () => {
                   }}
                 />
                 <div style={{ transform: `translateY(${(1 - p) * 80}px)` }}>
-                  <Sprite name={c.name} x={cx} y={730} h={h} lift={Math.abs(wave(f, 30, 10, i * 10))} shadow={0.15} />
+                  <Sprite name={c.name} x={cx} y={730} h={h} lift={Math.abs(wave(f, 30, 10, i * 10))} shadow={0.15} face={c.face} />
                   <ChefHat x={cx - 210 + c.hatX * 420} y={730 - h + c.hatY * h - Math.abs(wave(f, 30, 10, i * 10))} w={c.hatW} rot={(i - 1) * 8} />
                 </div>
                 <div

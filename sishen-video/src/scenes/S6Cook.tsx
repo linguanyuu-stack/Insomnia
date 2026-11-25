@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BRUSH, INK, ROUND, Caption, SceneFade, Sprite, Ticks, tw, wave, Wash } from "../lib/kit";
+import { BRUSH, INK, ROUND, Bubble, Caption, SceneFade, Sprite, Ticks, tw, wave, Wash } from "../lib/kit";
 import { ChefHat, Steam } from "../lib/props";
 import { INGREDIENTS, SoupPot3D } from "../three/ThreeBits";
 
@@ -61,12 +61,45 @@ export const S6Cook: React.FC = () => {
       <Steam x={960} y={560} from={0} n={14} spread={380} size={170} rise={420} period={70} />
 
       {/* chefs */}
-      <Sprite name="danggui_water" x={330} y={1000} h={430} lift={Math.abs(wave(f, 40, 8))} />
-      <ChefHat x={320} y={610 - Math.abs(wave(f, 40, 8))} w={140} rot={-6} />
-      <Sprite name="gouqi_cup" x={1460} y={1010} h={280} lift={Math.abs(wave(f, 26, 14, 5))} />
-      <ChefHat x={1488} y={770 - Math.abs(wave(f, 26, 14, 5))} w={100} rot={10} />
-      <Sprite name="huaishan_herb" x={1700} y={1000} h={420} flip lift={Math.abs(wave(f, 40, 8, 13))} />
+      <Sprite
+        name="danggui_water"
+        x={330}
+        y={1000}
+        h={430}
+        lift={Math.abs(wave(f, 40, 8))}
+        rot={f > 30 && f < 110 ? 6 : 0}
+        face={done > 0 ? { e: "laugh", look: 1 } : f < 110 ? { e: "smile", look: 1, lookY: 0.6 } : { e: "determined", look: 1, lookY: 0.4 }}
+      />
+      <ChefHat x={320 + (f > 30 && f < 110 ? 30 : 0)} y={610 - Math.abs(wave(f, 40, 8))} w={140} rot={-6} />
+      <Sprite
+        name={(f >= 240 && f < 280) || done > 0 ? "gouqi_jump" : "gouqi_point"}
+        x={1400}
+        y={1010}
+        h={300}
+        flip
+        lift={(f >= 240 && f < 280) || done > 0 ? Math.abs(wave(f, 22, 40, 5)) : Math.abs(wave(f, 26, 6, 5))}
+        face={
+          done > 0
+            ? { e: "laugh", look: -0.5 }
+            : f >= 240 && f < 280
+              ? { e: "happy", look: -1, talk: Math.abs(Math.sin(f / 2.4)) }
+              : { e: "smile", look: -1, lookY: 0.4 }
+        }
+      />
+      <ChefHat x={1392} y={748 - ((f >= 240 && f < 280) || done > 0 ? Math.abs(wave(f, 22, 40, 5)) : Math.abs(wave(f, 26, 6, 5)))} w={100} rot={-10} />
+      <Sprite
+        name="huaishan_herb"
+        x={1700}
+        y={1000}
+        h={420}
+        flip
+        lift={Math.abs(wave(f, 40, 8, 13))}
+        face={done > 0 ? { e: "proud", look: -1 } : f >= 110 && f < 240 ? { e: "determined", look: -1, lookY: 0.5, talk: f > 118 && f < 150 ? Math.abs(Math.sin(f / 2.4)) : 0 } : { e: "smile", look: -1, lookY: 0.5 }}
+      />
       <ChefHat x={1690} y={630 - Math.abs(wave(f, 40, 8, 13))} w={120} rot={8} />
+      <Bubble x={1500} y={700} text="枸杞來囉～" at={244} until={282} size={38} tail="right" />
+      <Bubble x={1640} y={520} text="四神，下鍋！" at={118} until={160} size={38} tail="right" />
+      <Bubble x={420} y={520} text="先放當歸、川芎～" at={20} until={70} size={38} tail="left" />
 
       {/* ingredient tags */}
       {INGREDIENTS.map((ing, i) => {

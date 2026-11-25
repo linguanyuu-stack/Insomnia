@@ -23,28 +23,67 @@ export const S7Transform: React.FC = () => {
       <Outdoors humid={humid} sun={sun} />
       {/* tired helpers perk up later */}
       <Sprite
-        name={f < 215 ? "qianshi_angry" : "qianshi_run"}
+        name={f < 215 ? "qianshi_idle" : "qianshi_run"}
         x={330}
         y={G}
         h={200}
-        rot={f < 215 ? -10 : 0}
+        rot={f < 215 ? -6 : 0}
         lift={f >= 215 ? Math.abs(wave(f, 18, 40)) : 0}
+        face={f < 112 ? { e: "tired", look: 1 } : f < 215 ? { e: "surprised", look: 1, lookY: -0.4 } : { e: "laugh", look: 1 }}
       />
-      <Sprite name={f < 215 ? "chuanxiong_idle" : "chuanxiong_point"} x={560} y={G} h={220} lift={f >= 215 ? Math.abs(wave(f, 18, 40, 9)) : 0} />
+      <Sprite
+        name={f < 215 ? "chuanxiong_idle" : "chuanxiong_point"}
+        x={560}
+        y={G}
+        h={220}
+        lift={f >= 215 ? Math.abs(wave(f, 18, 40, 9)) : 0}
+        face={f < 112 ? { e: "tired", look: 1, lookY: 0.4 } : f < 215 ? { e: "surprised", look: 1, lookY: -0.4 } : { e: "laugh", look: 1 }}
+      />
 
       <Fuling
         x={960}
         y={G}
         h={f < 190 ? 250 : tw(f, [190, 210], [250, 290])}
-        pose={f < 190 ? (f < 60 ? "fuling_shy" : "fuling_idle") : "fuling_idle"}
+        pose="fuling_idle"
         inflate={Math.max(0, deflate)}
         slim={slim}
         muscle={muscle}
         lift={flexLift}
+        face={
+          f < 45
+            ? { e: "sad", lookY: 0.8, tear: true }
+            : f < 62
+              ? { e: "surprised", look: 1 }
+              : f < 110
+                ? { e: "sleep" }
+                : f < 165
+                  ? { e: "surprised", lookY: Math.sin(f / 8) * 0.6 }
+                  : f < 195
+                    ? { e: "surprised", lookY: 1 }
+                    : { e: "proud", look: f > 250 ? 0.6 : 0 }
+        }
       />
 
       {/* goji brings soup */}
-      <Sprite name={f < 56 ? "gouqi_cup" : "gouqi_cup"} x={gx} y={G} h={260} lift={f < 45 ? Math.abs(wave(f, 14, 16)) : 0} />
+      <Sprite
+        name={f < 45 ? "gouqi_run" : f < 195 ? "gouqi_point" : "gouqi_jump"}
+        x={gx}
+        y={G}
+        h={270}
+        flip
+        lift={f < 45 ? Math.abs(wave(f, 14, 16)) : f >= 195 ? Math.abs(wave(f, 20, 40, 4)) : 0}
+        face={
+          f < 62
+            ? { e: "smile", look: -1, talk: f > 40 && f < 60 ? Math.abs(Math.sin(f / 2.4)) : 0 }
+            : f < 112
+              ? { e: "giggle", look: -1 }
+              : f < 195
+                ? { e: "surprised", look: -1, lookY: -0.4 }
+                : { e: "laugh", look: -1 }
+        }
+      />
+      {f < 50 ? <Bowl x={gx - 110} y={G - 150 - (f < 45 ? Math.abs(wave(f, 14, 16)) : 0)} s={0.8} /> : null}
+      <Bubble x={gx - 60} y={G - 300} text="趁熱喝吧！" at={40} until={62} size={40} tail="right" />
       {f >= 50 && f < 118 ? (
         <Bowl x={f < 60 ? tw(f, [50, 60], [1190, 1080]) : 1080} y={tw(f, [50, 60], [720, 640]) - drink * 40} s={0.9} rot={-drink * 55} fill={1 - drink} />
       ) : null}

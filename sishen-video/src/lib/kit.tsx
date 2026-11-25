@@ -11,6 +11,8 @@ import {
 } from "remotion";
 import { loadFont } from "@remotion/fonts";
 import sizes from "../sprites.json";
+import { Face, FaceSpec, hasFace } from "./face";
+export type { FaceSpec, Expr } from "./face";
 
 // Glyph-subset copies of Huninn (jf 粉圓) and LXGW WenKai TC, fetched by tools/fonts.py
 export const ROUND = "Huninn";
@@ -64,6 +66,7 @@ type SpriteProps = {
   lift?: number; // jump height (shadow stays on ground)
   style?: React.CSSProperties;
   children?: React.ReactNode; // overlay in a 0..100 box that follows the sprite
+  face?: FaceSpec; // redraw the face with this expression (look is in world space)
 };
 
 export const Sprite: React.FC<SpriteProps> = ({
@@ -81,10 +84,12 @@ export const Sprite: React.FC<SpriteProps> = ({
   lift = 0,
   style,
   children,
+  face,
 }) => {
   const [iw, ih] = sizes[name];
   const w = (iw / ih) * h;
-  const src = staticFile(`sprites/${name}.png`);
+  const withFace = face && hasFace(name);
+  const src = staticFile(`sprites/${name}${withFace ? "__nf" : ""}.png`);
   return (
     <>
       {shadow > 0 ? (
@@ -130,6 +135,11 @@ export const Sprite: React.FC<SpriteProps> = ({
               maskSize: "100% 100%",
             }}
           />
+        ) : null}
+        {withFace ? (
+          <svg viewBox={`0 0 ${iw} ${ih}`} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}>
+            <Face name={name} spec={{ ...face, look: (face.look ?? 0) * (flip ? -1 : 1) }} />
+          </svg>
         ) : null}
         {children ? (
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}>

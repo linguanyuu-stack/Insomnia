@@ -3,11 +3,23 @@
   230,
   219
  ],
+ "chuanxiong_idle__nf": [
+  230,
+  219
+ ],
  "chuanxiong_point": [
   274,
   218
  ],
+ "chuanxiong_point__nf": [
+  274,
+  218
+ ],
  "chuanxiong_walk": [
+  240,
+  217
+ ],
+ "chuanxiong_walk__nf": [
   240,
   217
  ],
@@ -19,7 +31,15 @@
   277,
   275
  ],
+ "danggui_tea__nf": [
+  277,
+  275
+ ],
  "danggui_water": [
+  302,
+  275
+ ],
+ "danggui_water__nf": [
   302,
   275
  ],
@@ -31,13 +51,57 @@
   199,
   205
  ],
+ "fuling_idle__nf": [
+  199,
+  205
+ ],
  "fuling_shy": [
+  185,
+  204
+ ],
+ "fuling_shy__nf": [
   185,
   204
  ],
  "gouqi_cup": [
   456,
   503
+ ],
+ "gouqi_jump": [
+  223,
+  275
+ ],
+ "gouqi_jump__nf": [
+  223,
+  275
+ ],
+ "gouqi_point": [
+  240,
+  299
+ ],
+ "gouqi_point__nf": [
+  240,
+  299
+ ],
+ "gouqi_run": [
+  258,
+  300
+ ],
+ "gouqi_run__nf": [
+  258,
+  300
+ ],
+ "heidou_peek": [
+  285,
+  276
+ ],
+ "heidou_sleep": [
+  351,
+  239
+ ],
+ "heidou_wave": [
+  311,
+  281
  ],
  "heshouwu_cheer": [
   349,
@@ -67,7 +131,15 @@
   252,
   250
  ],
+ "huaishan_calm__nf": [
+  252,
+  250
+ ],
  "huaishan_herb": [
+  225,
+  286
+ ],
+ "huaishan_herb__nf": [
   225,
   286
  ],
@@ -75,7 +147,23 @@
   231,
   285
  ],
+ "huangqi_serve": [
+  294,
+  337
+ ],
+ "huangqi_stir": [
+  331,
+  350
+ ],
+ "huangqi_wood": [
+  322,
+  313
+ ],
  "lianzi_idle": [
+  192,
+  201
+ ],
+ "lianzi_idle__nf": [
   192,
   201
  ],
@@ -83,7 +171,15 @@
   265,
   205
  ],
+ "lianzi_leaf__nf": [
+  265,
+  205
+ ],
  "lianzi_surprise": [
+  180,
+  200
+ ],
+ "lianzi_surprise__nf": [
   180,
   200
  ],
@@ -91,11 +187,23 @@
   209,
   186
  ],
+ "qianshi_angry__nf": [
+  209,
+  186
+ ],
  "qianshi_idle": [
   200,
   200
  ],
+ "qianshi_idle__nf": [
+  200,
+  200
+ ],
  "qianshi_run": [
+  236,
+  204
+ ],
+ "qianshi_run__nf": [
   236,
   204
  ],

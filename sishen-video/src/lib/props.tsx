@@ -199,6 +199,29 @@ export const Bedroom: React.FC<{ doorOpen?: number; rain?: boolean }> = ({ doorO
           <rect x={130} y={20} width={22} height={40} rx={4} fill="#e6a5a5" stroke={INK} strokeWidth={3} />
           <rect x={156} y={28} width={20} height={32} rx={4} fill="#a5c3e6" stroke={INK} strokeWidth={3} />
         </g>
+        {/* wall clock */}
+        <g transform="translate(1250 200)">
+          <circle r={58} fill="#fffaf0" stroke={INK} strokeWidth={6} />
+          {Array.from({ length: 12 }).map((_, i) => (
+            <line key={i} x1={Math.cos((i / 12) * Math.PI * 2) * 44} y1={Math.sin((i / 12) * Math.PI * 2) * 44} x2={Math.cos((i / 12) * Math.PI * 2) * 50} y2={Math.sin((i / 12) * Math.PI * 2) * 50} stroke={INK} strokeWidth={3} />
+          ))}
+          <line x1={0} y1={0} x2={0} y2={-34} stroke={INK} strokeWidth={5} strokeLinecap="round" transform={`rotate(${f * 0.5})`} />
+          <line x1={0} y1={0} x2={26} y2={0} stroke={INK} strokeWidth={6} strokeLinecap="round" transform="rotate(-50)" />
+          <circle r={5} fill={INK} />
+        </g>
+        {/* calendar */}
+        <g transform="translate(1110 330)">
+          <rect x={0} y={0} width={90} height={110} rx={6} fill="#fffaf0" stroke={INK} strokeWidth={4} />
+          <rect x={0} y={0} width={90} height={28} rx={6} fill="#e0475f" stroke={INK} strokeWidth={4} />
+          <text x={45} y={88} textAnchor="middle" fontFamily={ROUND} fontSize={44} fill={INK}>14</text>
+          <path d="M60 46 C 52 38 42 44 48 54 L 60 64 L 72 54 C 78 44 68 38 60 46 Z" fill="#f07f95" opacity={0.85} />
+        </g>
+        {/* slippers */}
+        <g transform="translate(1260 860)">
+          <ellipse cx={0} cy={0} rx={46} ry={18} fill="#c9a6d4" stroke={INK} strokeWidth={4} />
+          <ellipse cx={70} cy={10} rx={46} ry={18} fill="#c9a6d4" stroke={INK} strokeWidth={4} />
+          <path d="M-30 -4 C -10 -20 20 -20 30 -4 M 40 6 C 60 -10 90 -10 100 6" fill="#b48ac4" stroke={INK} strokeWidth={3} />
+        </g>
         {/* door frame on the right */}
         <g transform="translate(1500 300)">
           <rect x={0} y={0} width={300} height={462} fill="#6d4a2f" stroke={INK} strokeWidth={6} />
@@ -288,6 +311,39 @@ export const Outdoors: React.FC<{ humid?: number; sun?: number; house?: boolean;
         {[90, 420, 760, 1120, 1380, 1760].map((gx, i) => (
           <path key={i} d={`M${gx} 790 l 8 -34 l 6 30 l 10 -40 l 4 42 l 12 -28 l 2 30`} stroke="#6f9a52" strokeWidth={5} fill="none" strokeLinejoin="round" />
         ))}
+        {/* puddles */}
+        <g opacity={humid}>
+          <ellipse cx={520} cy={900} rx={120} ry={18} fill="#b9cdd2" stroke="#8aa4aa" strokeWidth={3} />
+          <ellipse cx={1500} cy={960} rx={160} ry={22} fill="#b9cdd2" stroke="#8aa4aa" strokeWidth={3} />
+          {[0, 1].map((i) => {
+            const t = ((f + i * 25) % 50) / 50;
+            return <ellipse key={i} cx={i ? 1480 : 540} cy={i ? 960 : 900} rx={20 + t * 60} ry={4 + t * 10} fill="none" stroke="#e8f0f2" strokeWidth={2} opacity={1 - t} />;
+          })}
+        </g>
+        {/* birds */}
+        <g opacity={sun} stroke="#5a3b22" strokeWidth={4} fill="none" strokeLinecap="round">
+          {[0, 1, 2].map((i) => {
+            const bx = ((f * (2.2 + i * 0.4) + i * 400) % 2300) - 200;
+            const by = 200 + i * 50 + Math.sin(f / 20 + i) * 14;
+            const flap = Math.sin(f / 4 + i * 2) * 10;
+            return <path key={i} d={`M${bx - 22} ${by - flap} Q ${bx - 10} ${by - 14} ${bx} ${by} Q ${bx + 10} ${by - 14} ${bx + 22} ${by - flap}`} />;
+          })}
+        </g>
+        {/* butterflies */}
+        <g opacity={sun}>
+          {[0, 1].map((i) => {
+            const bx = 760 + i * 520 + Math.sin(f / 37 + i * 3) * 160;
+            const by = 640 - i * 40 + Math.sin(f / 13 + i) * 40;
+            const wv = Math.abs(Math.sin(f / 3 + i));
+            return (
+              <g key={i} transform={`translate(${bx} ${by})`}>
+                <ellipse cx={-9} cy={0} rx={10 * wv + 2} ry={12} fill={i ? "#f6c76b" : "#f4a7b6"} stroke="#5a3b22" strokeWidth={2} />
+                <ellipse cx={9} cy={0} rx={10 * wv + 2} ry={12} fill={i ? "#f6c76b" : "#f4a7b6"} stroke="#5a3b22" strokeWidth={2} />
+                <line x1={0} y1={-10} x2={0} y2={10} stroke="#5a3b22" strokeWidth={3} />
+              </g>
+            );
+          })}
+        </g>
         {house ? <LotusHouse doorOpen={doorOpen} /> : null}
       </svg>
       {/* humidity fog */}

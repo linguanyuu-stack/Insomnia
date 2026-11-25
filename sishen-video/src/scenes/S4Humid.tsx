@@ -38,31 +38,67 @@ export const S4Humid: React.FC = () => {
       <Outdoors humid={humid} sun={0} />
       {f < 52 ? (
         <>
-          <Sprite name="qianshi_run" x={walkX - 260} y={G} h={210} lift={Math.abs(wave(f, 14, 8))} />
-          <Sprite name="chuanxiong_walk" x={walkX} y={G} h={230} sy={0.92} lift={Math.abs(wave(f, 14, 6))} />
-          <Sprite name="fuling_shy" x={walkX + 10} y={G - 190} h={200} rot={-70 + wave(f, 14, 6)} shadow={0} />
+          <Sprite name="qianshi_run" x={walkX - 260} y={G} h={210} rot={16} lift={Math.abs(wave(f, 14, 8))} face={{ e: "determined", look: 1 }} />
+          <Sprite name="chuanxiong_walk" x={walkX} y={G} h={230} sy={0.92} lift={Math.abs(wave(f, 14, 6))} face={{ e: "tired", look: 1, lookY: 0.5 }} />
+          <Sprite name="fuling_idle" x={walkX + 10} y={G - 190} h={200} rot={-70 + wave(f, 14, 6)} shadow={0} face={{ e: "tired", lookY: -0.5 }} />
         </>
       ) : (
         <>
           {/* helpers */}
           <Sprite
-            name={collapse > 0 ? "qianshi_angry" : "qianshi_run"}
-            x={push ? tw(f, [200, 215], [620, 700]) : 620}
+            name={push ? "qianshi_run" : "qianshi_idle"}
+            x={push ? tw(f, [200, 215], [620, 680]) : 620}
             y={G + collapse * 10}
             h={210}
-            rot={push ? 18 + shake : collapse * -88}
+            rot={push ? 20 + shake : collapse * -88}
             style={{ transformOrigin: collapse > 0 ? "50% 90%" : "50% 100%" }}
+            face={
+              collapse > 0
+                ? { e: "dizzy" }
+                : push
+                  ? { e: "strain", look: 1 }
+                  : f < 100
+                    ? { e: "smile", look: 1 }
+                    : { e: "surprised", look: 1, lookY: -0.6 }
+            }
           />
           <Sprite
-            name="chuanxiong_walk"
-            x={push ? tw(f, [200, 215], [1320, 1250]) : 1320}
+            name={push ? "chuanxiong_walk" : "chuanxiong_idle"}
+            x={push ? tw(f, [200, 215], [1320, 1260]) : 1320}
             y={G + collapse * 10}
             h={230}
             flip
-            rot={push ? -18 - shake : collapse * 88}
+            rot={push ? -20 - shake : collapse * 88}
             style={{ transformOrigin: collapse > 0 ? "50% 90%" : "50% 100%" }}
+            face={
+              collapse > 0
+                ? { e: "dizzy" }
+                : push
+                  ? { e: "strain", look: -1 }
+                  : f < 110
+                    ? { e: "tired", look: -1 }
+                    : { e: "surprised", look: -1, lookY: -0.6 }
+            }
           />
-          <Fuling x={fx} y={G} h={240} pose={inflate > 0.4 ? "fuling_idle" : "fuling_shy"} inflate={inflate} lift={tw(f, [52, 62], [190, 0])} />
+          <Fuling
+            x={fx}
+            y={G}
+            h={240}
+            pose="fuling_idle"
+            inflate={inflate}
+            lift={tw(f, [52, 62], [190, 0])}
+            face={
+              f < 75
+                ? { e: "tired" }
+                : f < 125
+                  ? { e: "surprised", look: Math.sin(f / 9) }
+                  : f < 200
+                    ? { e: "sad", lookY: 0.7, tear: true, talk: f > 128 && f < 190 ? Math.abs(Math.sin(f / 2.5)) : 0 }
+                    : f < 246
+                      ? { e: "nervous", look: Math.sin(f / 6) }
+                      : { e: "disappointed", lookY: 1, tear: true }
+            }
+          />
           {drops}
           <Ticks x={fx - 230} y={G - 380} at={150} dur={40} color="#4d8fb8" rot={-20} scale={1.3} />
           <Ticks x={fx + 230} y={G - 380} at={160} dur={40} color="#4d8fb8" rot={20} scale={1.3} />

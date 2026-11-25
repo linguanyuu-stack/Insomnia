@@ -30,10 +30,31 @@ export const S2Bedroom: React.FC = () => {
   const cloudP = usePop(222, 9);
   const tryUp = tw(f, [205, 235], [0, 50]) - tw(f, [252, 266], [0, 50], (t) => t * t);
   const squash = f >= 252 && f < 290 ? 1 - Math.max(0, Math.sin(((f - 252) / 38) * Math.PI)) * 0.15 : 1;
-  const pose = f < 95 || f >= 300 ? "fuling_shy" : "fuling_idle";
+  const pose = "fuling_idle";
+  const talkA = (a: number, b: number) => (f >= a && f < b ? Math.abs(Math.sin(f / 2.6)) : 0);
+  const face =
+    f < 95
+      ? { e: "sleep" as const }
+      : f < 128
+        ? { e: "smile" as const, look: 0.3, lookY: -1, blush: 0.6 }
+        : f < 200
+          ? { e: "love" as const, look: 0.6 }
+          : f < 240
+            ? { e: "determined" as const, look: 0.7, talk: talkA(202, 236) }
+            : f < 266
+              ? { e: "surprised" as const, lookY: -1 }
+              : f < 300
+                ? { e: "tired" as const, talk: talkA(270, 296) }
+                : f < 330
+                  ? { e: "disappointed" as const, look: -0.8, lookY: -0.6 }
+                  : { e: "sleep" as const };
   return (
     <SceneFade dur={S2_DUR}>
       <Bedroom />
+      <div style={{ position: "absolute", left: 735, top: 170, width: 130, height: 150, background: "#fff6e4", border: "8px solid #b07a4c", borderRadius: 10, boxShadow: "0 4px 0 rgba(90,59,34,0.3)", transform: `rotate(${-4 + (f > 128 && f < 200 ? wave(f, 30, 1) : 0)}deg)`, overflow: "hidden" }}>
+        <Sprite name="lianzi_idle" x={65} y={150} h={130} shadow={0} face={{ e: "smile", look: 0.2 }} />
+      </div>
+      <Heart x={870} y={170 - (f > 128 && f < 200 ? Math.abs(wave(f, 30, 12)) : 0)} s={0.45} opacity={f > 128 && f < 200 ? 1 : 0.6} />
       <BedBack />
       <Sprite
         name={pose}
@@ -44,6 +65,7 @@ export const S2Bedroom: React.FC = () => {
         sx={2 - squash}
         shadow={0}
         rot={f >= 266 && f < 300 ? wave(f, 8, 3) : 0}
+        face={face}
       />
       <BedBlanket lift={tryUp * 0.3} />
       <Zzz x={820} y={520} to={95} />

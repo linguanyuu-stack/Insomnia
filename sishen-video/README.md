@@ -29,7 +29,12 @@ npx remotion render SishenLove out/sishen-love.mp4
 ## 素材流程（tools/）
 
 - `extract.py`：從角色設定圖（`src_art/1,3,5.webp`）去背切出 30 個姿勢 → `public/sprites/`
-- `extract_goji.py`：用 GrabCut 從包裝插圖切出枸杞（無獨立設定圖）
+- `extract.py` 也切出圖六的枸杞、北黃耆、黑豆（`gouqi_* / huangqi_* / heidou_*`）
+- `faces.py`：把常用姿勢的原始五官修補（inpaint）掉，輸出 `*__nf.png` 與 `src/faces.json` 五官錨點；
+  影片中用 `<Sprite face={{ e: "angry", look: -1 }} />` 重新畫表情（`src/lib/face.tsx`，共 18 種：
+  smile/happy/laugh/proud/angry/shout/strain/tired/sleep/sad/disappointed/surprised/love/shy/determined/dizzy/giggle/nervous），
+  `look` 讓眼神與臉轉向對手角色，`talk` 做說話嘴型
+- `extract_goji.py`：（舊）從包裝插圖切出端湯的枸杞，已改用圖六
 - `assets.py`：產生 `src/sprites.json`、紙紋 `public/paper.jpg`、包裝正反面去背
 - `fonts.py`：下載只含片中用字的粉圓（Huninn）與霞鶩文楷 TC 子集字型 → `public/fonts/`
   （改了台詞若出現新字，重跑這支）

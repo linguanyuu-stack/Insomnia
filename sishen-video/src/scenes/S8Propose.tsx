@@ -13,9 +13,9 @@ const FRIENDS: { name: SpriteName; h: number; dx: number }[] = [
   { name: "chuanxiong_idle", h: 220, dx: -95 },
   { name: "danggui_tea", h: 250, dx: 15 },
   { name: "huaishan_calm", h: 240, dx: 125 },
-  { name: "gouqi_cup", h: 220, dx: 225 },
+  { name: "gouqi_point", h: 230, dx: 225 },
 ];
-const CHEER: SpriteName[] = ["qianshi_run", "chuanxiong_point", "danggui_water", "huaishan_herb", "gouqi_cup"];
+const CHEER: SpriteName[] = ["qianshi_run", "chuanxiong_point", "danggui_water", "huaishan_herb", "gouqi_jump"];
 
 export const S8Propose: React.FC = () => {
   const f = useCurrentFrame();
@@ -46,7 +46,17 @@ export const S8Propose: React.FC = () => {
           x={1670}
           y={812}
           h={f > 268 ? 230 : 210}
+          flip={f <= 268}
           shadow={0.15}
+          face={
+            f < 205
+              ? { e: "surprised", look: -1, talk: f > 168 && f < 196 ? 0.6 : 0 }
+              : f < 250
+                ? { e: "shy", look: -1, lookY: 0.6 }
+                : f <= 268
+                  ? { e: "happy", look: -1, blush: 0.8, talk: f > 252 ? Math.abs(Math.sin(f / 2.4)) : 0 }
+                  : { e: "laugh", look: -1, blush: 0.7 }
+          }
           opacity={tw(f, [160, 168], [0, 1])}
           lift={f > 268 ? Math.abs(wave(f, 22, 30)) : 0}
         />
@@ -71,6 +81,7 @@ export const S8Propose: React.FC = () => {
             lift={out ? Math.abs(wave(f, 16, 70, i * 5)) : bob}
             rot={giggle}
             shadow={out ? 0.2 : 0}
+            face={out ? { e: "laugh", look: 1 } : f < 165 ? { e: i % 2 ? "smile" : "surprised", look: 1 } : f < 205 ? { e: "surprised", look: 1, lookY: -0.3 } : { e: "giggle", look: 1 }}
           />
         );
       })}
@@ -84,9 +95,24 @@ export const S8Propose: React.FC = () => {
         h={250}
         slim={1}
         muscle={f < 160 ? 0.0 : 0}
-        pose={f >= 166 && f < 250 ? "fuling_shy" : "fuling_idle"}
+        pose="fuling_idle"
         lift={running ? Math.abs(wave(f, 14, 26)) : kneel * -26}
         rot={kneel * 10}
+        face={
+          f < 16
+            ? { e: "smile", look: -0.6, lookY: 0.4 }
+            : f < 40
+              ? { e: "love", look: 0.4 }
+              : f < 110
+                ? { e: "determined", look: 1 }
+                : f < 166
+                  ? { e: "nervous", look: 1, blush: 0.8 }
+                  : f < 210
+                    ? { e: "nervous", look: 1, lookY: -0.3, blush: 1, talk: f > 170 && f < 206 ? Math.abs(Math.sin(f / 2.4)) : 0 }
+                    : f < 250
+                      ? { e: "shy", look: 1 }
+                      : { e: "laugh", look: 1, blush: 0.6 }
+        }
       />
       <Rose x={roseX} y={roseY} s={0.75} rot={roseR} />
       <Ticks x={250} y={G - 300} at={24} />
@@ -95,6 +121,9 @@ export const S8Propose: React.FC = () => {
       <Ticks x={1790} y={640} at={118} dur={30} color="#e0475f" rot={20} />
       <Bubble x={1760} y={580} text="叮咚～♪" at={118} until={152} size={44} tail="right" />
 
+      <Bubble x={1300} y={G - 250} text="蓮子……這朵花，送給妳！" at={170} until={210} size={36} tail="right" />
+      <Bubble x={1700} y={470} text="哇……！" at={166} until={200} size={38} tail="right" />
+      <Bubble x={1640} y={540} text="謝謝你～♡" at={252} until={285} size={38} tail="right" />
       <HeartBurst x={1600} y={640} from={205} to={330} n={10} spread={260} />
 
       {f >= burst ? (
