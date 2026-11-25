@@ -1,0 +1,126 @@
+{
+ "chuanxiong_idle": [
+  230,
+  219
+ ],
+ "chuanxiong_point": [
+  274,
+  218
+ ],
+ "chuanxiong_walk": [
+  240,
+  217
+ ],
+ "danggui_blanket": [
+  366,
+  280
+ ],
+ "danggui_tea": [
+  277,
+  275
+ ],
+ "danggui_water": [
+  302,
+  275
+ ],
+ "fuling_cloth": [
+  389,
+  196
+ ],
+ "fuling_idle": [
+  199,
+  205
+ ],
+ "fuling_shy": [
+  185,
+  204
+ ],
+ "gouqi_cup": [
+  456,
+  503
+ ],
+ "heshouwu_cheer": [
+  349,
+  267
+ ],
+ "heshouwu_lantern": [
+  300,
+  274
+ ],
+ "heshouwu_read": [
+  321,
+  266
+ ],
+ "hongzao_cup": [
+  220,
+  278
+ ],
+ "hongzao_pour": [
+  263,
+  281
+ ],
+ "hongzao_wave": [
+  237,
+  280
+ ],
+ "huaishan_calm": [
+  252,
+  250
+ ],
+ "huaishan_herb": [
+  225,
+  286
+ ],
+ "huaishan_shy": [
+  231,
+  285
+ ],
+ "lianzi_idle": [
+  192,
+  201
+ ],
+ "lianzi_leaf": [
+  265,
+  205
+ ],
+ "lianzi_surprise": [
+  180,
+  200
+ ],
+ "qianshi_angry": [
+  209,
+  186
+ ],
+ "qianshi_idle": [
+  200,
+  200
+ ],
+ "qianshi_run": [
+  236,
+  204
+ ],
+ "shudi_sleep": [
+  341,
+  243
+ ],
+ "shudi_stretch": [
+  322,
+  272
+ ],
+ "shudi_yawn": [
+  297,
+  273
+ ],
+ "tianma_sleep": [
+  346,
+  195
+ ],
+ "tianma_star": [
+  217,
+  273
+ ],
+ "tianma_yawn": [
+  258,
+  277
+ ]
+}
