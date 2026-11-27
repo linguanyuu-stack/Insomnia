@@ -12,6 +12,10 @@ END=148.74
 shots[7]['narration']='為了回答這個問題，我們得回到 1729 年的法國。'
 shots[9]['narration']='法國天文學家德梅朗，注意到了一個有趣的現象。'
 # camera: (cx,cy,z) from -> to ; fx list
+from PIL import Image
+SIZES={f"{i:02d}":Image.open(f"ep01img/{i:02d}.webp").size for i in range(1,28)}
+CAM2={'05':((.5,.55,1.0),(.5,.64,1.14)),'09':((.36,.5,1.12),(.62,.5,1.12)),'16':((.42,.45,1.0),(.32,.40,1.08)),'27':((.5,.5,1.0),(.45,.45,1.1)),'22':((.45,.5,1.0),(.42,.45,1.05))}
+TR={'02':('cut',0),'03':('mix',.9),'04':('mix',.9),'05':('mix',.6),'06':('mix',.6),'07':('mix',.7),'08':('cut',0),'09':('wipe',.8),'10':('cut',0),'11':('mix',.5),'12':('mix',1.3),'13':('cut',0),'14':('cut',0),'15':('cut',0),'16':('cut',0),'17':('cut',0),'18':('mix',.5),'19':('cut',0),'20':('dip',.5),'21':('mix',.9),'22':('cut',0),'23':('mix',.6),'24':('cut',0),'25':('mix',.6),'26':('cut',0),'27':('mix',.8)}
 CAM={
 '01':((340,224,1.0),(310,232,1.08)),'02':((310,224,1.04),(335,224,1.10)),'03':((340,224,1.0),(340,224,1.05)),
 '04':((340,224,1.06),(300,240,1.12)),'05':((340,224,1.0),(385,292,1.3)),'06':((340,224,1.0),(340,224,1.05)),
@@ -27,8 +31,11 @@ XF={'12':0.9,'21':0.6,'20':0.5,'23':0.6,'27':0.5}
 data=[]
 for i,s in enumerate(shots):
     st=cuts[i]; en=cuts[i+1] if i+1<len(cuts) else END
-    a,b=CAM[s['id']]
-    data.append({"id":s['id'],"title":s['title'],"t0":st,"t1":en,"img":i,"from":a,"to":b,"xf":XF.get(s['id'],0.3),"say":s['narration']})
+    w,h=SIZES[s['id']]
+    if s['id'] in CAM2: a,b=CAM2[s['id']]
+    else: a,b=((.5,.5,1.0),(.5,.5,1.035)) if i%2==0 else ((.5,.5,1.035),(.5,.5,1.0))
+    tr=TR.get(s['id'],('cut',0))
+    data.append({"id":s['id'],"title":s['title'],"t0":st,"t1":en,"img":i,"w":w,"h":h,"from":a,"to":b,"tr":tr[0],"xf":tr[1],"say":s['narration']})
 imgs=[s['image'] for s in shots]
 audio='data:audio/mpeg;base64,'+base64.b64encode(open('film/voice.mp3','rb').read()).decode()
 html=open('film/template.html',encoding='utf-8').read()
