@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insomnia EP.01 動態試剪 V1.3</title>
+<style>
+:root{--paper:#f6f2e9;--surface:#fffdf6;--ink:#282b24;--muted:#5d6559;--line:#cccbbd;--moss:#38513b;--pale:#e5ebdf;
+--serif:"Songti TC","Noto Serif CJK TC","Noto Serif TC",serif;--sans:"PingFang TC","Noto Sans CJK TC",system-ui,sans-serif;--mono:"SF Mono",Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans)}
+main{width:min(1180px,calc(100% - 32px));margin:auto;padding:28px 0 40px}
+header{margin-bottom:14px}
+.kicker{color:var(--moss);font:700 .73rem/1.2 var(--mono);letter-spacing:.13em;margin:0 0 8px}
+h1{font:700 clamp(1.6rem,4vw,2.4rem)/1.15 var(--serif);margin:0}
+header p:not(.kicker){margin:6px 0 0;color:var(--muted)}
+#wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;border-radius:4px;box-shadow:0 2px 14px rgba(40,43,36,.18)}
+#stage{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0;overflow:hidden;background:#f8eedd}
+#shots{position:absolute;inset:0;z-index:0}
+.shot{position:absolute;inset:0;opacity:0;overflow:hidden;will-change:opacity}
+.plate{position:absolute;left:0;top:0;width:681px;height:448px;transform-origin:0 0;will-change:transform}
+.plate img{position:absolute;left:0;top:0;width:681px;height:448px;display:block}
+.ov{position:absolute;pointer-events:none;opacity:0}
+.erase{border-radius:50%;background:radial-gradient(closest-side,#f8e7d4 62%,rgba(248,231,212,0) 100%)}
+.glow{border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,120,.95),rgba(255,214,120,0))}
+#grain{position:absolute;inset:-40px;pointer-events:none;opacity:.16;mix-blend-mode:multiply;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+#vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 62%,rgba(60,45,30,.22) 100%)}
+.card{position:absolute;font-family:var(--serif);color:#3a3328;opacity:0;pointer-events:none;text-shadow:0 0 18px #f8eedd,0 0 6px #f8eedd}
+#c08{left:96px;bottom:180px;font-size:76px;letter-spacing:.06em}
+#c08 small{display:block;font:600 22px/1.4 var(--mono);letter-spacing:.3em;color:#6b5f4c}
+#c11{right:80px;bottom:92px;font-size:34px;text-align:right}
+#c11 i{display:block;font-size:24px;color:#6b5f4c}
+#c25{right:80px;top:84px;font-size:46px;text-align:right}
+#c25 small{display:block;font-size:22px;color:#6b5f4c;letter-spacing:.04em}
+#c25 i{display:block;font-size:30px;color:#6b5f4c}
+#black{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+#fade{position:absolute;inset:0;background:#f8eedd;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center;font:600 40px/1.4 var(--serif);color:#5a5244;letter-spacing:.2em}
+#subs{position:absolute;left:0;right:0;bottom:44px;text-align:center;pointer-events:none}
+#subs span{display:inline-block;max-width:1300px;padding:6px 22px;font:500 38px/1.45 var(--sans);color:#fff;background:rgba(30,28,24,.58);border-radius:6px}
+#subs span:empty{display:none}
+#subs.off{display:none}
+#big{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(246,242,233,.25);border:0;cursor:pointer;color:var(--ink)}
+#big span{width:120px;height:120px;border-radius:50%;background:rgba(56,81,59,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25)}
+#big svg{width:46px;height:46px;margin-left:8px;fill:#fff}
+#big[hidden]{display:none}
+.player{background:var(--surface);border:1px solid var(--line);border-top:0;padding:10px 12px 12px;border-radius:0 0 4px 4px}
+.transport{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.transport button{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:6px 11px;cursor:pointer}
+#play{min-width:72px;background:var(--moss);border-color:var(--moss);color:#fff}
+#cc[aria-pressed="true"]{background:var(--pale);border-color:var(--moss)}
+#time{margin-left:auto;color:var(--moss);font:650 .86rem/1.3 var(--mono);white-space:nowrap}
+#now{color:var(--muted);font-size:.86rem;flex-basis:100%;margin:2px 0 0}
+#progress{width:100%;margin:8px 0 6px;accent-color:var(--moss)}
+.chips{display:grid;grid-template-columns:repeat(27,minmax(0,1fr));gap:3px}
+.chips button{min-width:0;padding:5px 0;border:1px solid var(--line);background:var(--surface);border-radius:2px;font:650 .7rem/1.3 var(--mono);cursor:pointer;color:var(--ink)}
+.chips button[aria-current="true"]{background:var(--moss);border-color:var(--moss);color:#fff}
+.notes{margin-top:16px;color:var(--muted);font-size:.86rem}
+.notes li{margin:3px 0}
+@media (max-width:720px){.chips{grid-template-columns:repeat(9,minmax(0,1fr))}.chips button{padding:8px 0}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="kicker">INSOMNIA STUDIO / EP.01 · V1.3 動態試剪</p>
+<h1>序幕與第一幕</h1>
+<p>第 01～27 鏡 · 用 V1.2 草圖與你的試讀做成會動的版本。</p>
+</header>
+
+<div id="wrap">
+<div id="stage">
+<div id="shots"></div>
+<div class="card" id="c08">1729 年<small>FRANCE · 法國</small></div>
+<div class="card" id="c11">含羞草<i>Mimosa pudica</i></div>
+<div class="card" id="c25"><small>今天叫做</small>晝夜節律<i>Circadian rhythm</i></div>
+<div id="black"></div>
+<div id="fade">待續</div>
+<div id="grain"></div>
+<div id="vignette"></div>
+<div id="subs"><span></span></div>
+</div>
+<button id="big" type="button" aria-label="播放"><span><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span></button>
+</div>
+
+<section class="player" aria-label="播放控制">
+<div class="transport">
+<button id="play" type="button">播放</button>
+<button id="restart" type="button">回到開頭</button>
+<button id="cc" type="button" aria-pressed="true">字幕</button>
+<button id="full" type="button">全螢幕</button>
+<output id="time">00:00.0 / 00:00.0</output>
+<p id="now"></p>
+</div>
+<input type="range" id="progress" min="0" step=".01" value="0" aria-label="播放位置">
+<div class="chips" id="chips"></div>
+</section>
+
+<ul class="notes">
+<li>08：旁白改成「回到 1729 年的法國」，用你錄好的「1729 年」剪接進去；正式版請重錄這一句。</li>
+<li>10：拿掉重複的「1729 年。」，之後所有鏡頭往前移約 2.3 秒。</li>
+<li>25：字卡改成「今天叫做 晝夜節律 · Circadian rhythm」。</li>
+<li>草圖原檔 681×448，放大到 16:9 會有點糊；正式美術換高解析圖層即可。</li>
+</ul>
+</main>
+<audio id="voice" preload="auto" src="__AUDIO__"></audio>
+<script>
+'use strict';
+const SHOTS=/*SHOTS*/;
+const IMGS=/*IMGS*/;
+const END=/*END*/;
+const $=id=>document.getElementById(id);
+const voice=$('voice'),stage=$('stage'),wrap=$('wrap');
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=p=>.5-.5*Math.cos(Math.PI*clamp(p));
+const ramp=(t,a,d=.6)=>clamp((t-a)/d);
+const bell=(t,a,b,d=.5)=>clamp((t-a)/d)*clamp((b-t)/d);
+const fmt=t=>{const x=Math.round(Math.max(0,t)*10);return String(Math.floor(x/600)).padStart(2,'0')+':'+((x%600)/10).toFixed(1).padStart(4,'0')};
+
+// build shots
+const host=$('shots');
+const els=SHOTS.map((s,i)=>{
+  const d=document.createElement('div');d.className='shot';
+  const p=document.createElement('div');p.className='plate';
+  const im=new Image();im.src=IMGS[s.img];im.alt='第 '+s.id+' 鏡：'+s.title;im.decoding='async';p.appendChild(im);
+  d.appendChild(p);host.appendChild(d);
+  return {d,p,ov:{}};
+});
+function ov(i,name,css,cls='ov'){const e=document.createElement('div');e.className=cls;e.style.cssText=css;els[i].p.appendChild(e);els[i].ov[name]=e;return e}
+const idx=id=>SHOTS.findIndex(s=>s.id===id);
+// 05 second hand
+(()=>{const i=idx('05');const e=ov(i,'hand','left:0;top:0;width:681px;height:448px;opacity:1');
+ e.innerHTML="<svg width='681' height='448' viewBox='0 0 681 448'><g id='sh' transform='rotate(0 385 313)'><line x1='385' y1='326' x2='385' y2='252' stroke='#b8432f' stroke-width='2.6' stroke-linecap='round'/><circle cx='385' cy='313' r='4.5' fill='#b8432f'/></g></svg>";})();
+// 06 erasers
+[['m1',155,222,135],['m2',410,215,140],['m3',640,215,110]].forEach(([n,x,y,r])=>ov(idx('06'),n,`left:${x-r}px;top:${y-r}px;width:${2*r}px;height:${2*r}px`,'ov erase'));
+// 21 glows
+ov(idx('21'),'sun','left:625px;top:45px;width:90px;height:90px','ov glow');
+ov(idx('21'),'moon','left:628px;top:240px;width:84px;height:84px','ov glow');
+
+// subtitle parts
+SHOTS.forEach(s=>{
+  let parts=[];
+  s.say.split('\n').forEach(line=>{
+    if(line.replace(/[，。？！、…—\s]/g,'').length>24){
+      const k=line.indexOf('，',Math.floor(line.length/2)-6);
+      if(k>0){parts.push(line.slice(0,k+1));parts.push(line.slice(k+1));return}
+    }
+    parts.push(line);
+  });
+  const n=c=>c.replace(/[，。？！、…—\s]/g,'').length||1;
+  const tot=parts.reduce((a,c)=>a+n(c),0);
+  const span=Math.max(.5,(s.t1-s.t0)-.25);let acc=s.t0;
+  s.subs=parts.map(c=>{const e={t:acc,txt:c};acc+=span*n(c)/tot;return e});
+});
+
+// chips
+const chips=$('chips');
+SHOTS.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.textContent=s.id;b.title=s.title;b.onclick=()=>seek(s.t0+.01);chips.appendChild(b)});
+const chipEls=[...chips.children];
+$('progress').max=END;
+
+function camera(i,t){
+  const s=SHOTS[i],next=SHOTS[i+1];
+  const dur=(s.t1-s.t0)+(next?next.xf:1.2);
+  const local=t-s.t0;
+  let p=local/dur;
+  if(s.id==='22'){p=local<.7?.7*(1-Math.pow(1-local/.7,3)):.7+.3*clamp((local-.7)/(dur-.7));}
+  else p=ease(p);
+  const [a,b]=[s.from,s.to];
+  const z=a[2]+(b[2]-a[2])*p;const K=1600/681*z;
+  let cx=a[0]+(b[0]-a[0])*p,cy=a[1]+(b[1]-a[1])*p;
+  cx=clamp(cx,800/K,681-800/K);cy=clamp(cy,450/K,448-450/K);
+  let dx=0,dy=0;
+  if(s.id==='03'&&local<.9){const k=1-local/.9;dx=Math.sin(local*70)*5*k;dy=Math.cos(local*55)*2*k}
+  if(s.id==='13'){dy=Math.sin(clamp((local-.25)/.8)*Math.PI)*9}
+  return `translate(${(800-cx*K+dx).toFixed(2)}px,${(450-cy*K+dy).toFixed(2)}px) scale(${K.toFixed(4)})`;
+}
+
+let cur=-1,lastSub='';
+function shotAt(t){let i=0;while(i<SHOTS.length-1&&t>=SHOTS[i+1].t0)i++;return i}
+function render(t){
+  const i=shotAt(t);
+  els.forEach((e,k)=>{
+    if(k===i||k===i-1){
+      let o=1;
+      if(k===i&&i>0){o=clamp((t-SHOTS[i].t0)/SHOTS[i].xf)}
+      e.d.style.opacity=o;e.d.style.zIndex=k===i?2:1;
+      e.p.style.transform=camera(k,t);
+    } else e.d.style.opacity=0;
+  });
+  // fx
+  const L=id=>t-SHOTS[idx(id)].t0;
+  document.getElementById('sh').setAttribute('transform',`rotate(${Math.floor(t)*6} 385 313)`);
+  const o6=els[idx('06')].ov,l6=L('06');
+  o6.m1.style.opacity=ramp(l6,4.2,.7);o6.m2.style.opacity=ramp(l6,5.3,.7);o6.m3.style.opacity=ramp(l6,6.8,.7);
+  $('c08').style.opacity=bell(t,SHOTS[idx('08')].t0+2.4,SHOTS[idx('09')].t0+.3,.6);
+  $('c11').style.opacity=bell(t,SHOTS[idx('11')].t0+.4,SHOTS[idx('12')].t1-.2,.6);
+  $('c25').style.opacity=bell(t,SHOTS[idx('25')].t0+2,SHOTS[idx('25')].t1,.7);
+  const o21=els[idx('21')].ov,l21=L('21');
+  o21.sun.style.opacity=bell(l21,1.4,4.6,.6)*(.75+.25*Math.sin(t*5));
+  o21.moon.style.opacity=bell(l21,5.3,8.6,.6)*(.75+.25*Math.sin(t*5));
+  const s19=SHOTS[idx('19')];$('black').style.opacity=t<s19.t1&&t>s19.t0?clamp((t-(s19.t1-.5))/.5):0;
+  const f=$('fade');f.style.opacity=clamp((t-(END-1.2))/1.2);
+  // subs
+  let txt='';const s=SHOTS[i];for(const p of s.subs) if(t>=p.t) txt=p.txt;
+  if(t>=END-.15) txt='';
+  if(txt!==lastSub){$('subs').firstChild.textContent=txt;lastSub=txt}
+  if(i!==cur){cur=i;chipEls.forEach((b,k)=>b.setAttribute('aria-current',String(k===i)));$('now').textContent='第 '+s.id+' 鏡 · '+s.title}
+  $('progress').value=t;$('time').textContent=fmt(t)+' / '+fmt(END);
+  $('play').textContent=voice.paused?'播放':'暫停';
+}
+// grain boil
+let gb=0;setInterval(()=>{if(!voice.paused){gb=(gb+1)%3;$('grain').style.transform=`translate(${[0,-13,-27][gb]}px,${[0,-19,-8][gb]}px)`}},125);
+
+let raf;function loop(){render(Math.min(voice.currentTime,END));if(!voice.paused)raf=requestAnimationFrame(loop)}
+function seek(t){voice.currentTime=clamp(t,0,END);render(voice.currentTime)}
+function toggle(){if(voice.paused){if(voice.currentTime>=END-.05)voice.currentTime=0;voice.play();$('big').hidden=true}else voice.pause()}
+voice.addEventListener('play',()=>{cancelAnimationFrame(raf);loop()});
+voice.addEventListener('pause',()=>render(voice.currentTime));
+voice.addEventListener('seeked',()=>render(voice.currentTime));
+voice.addEventListener('ended',()=>render(END));
+$('play').onclick=toggle;$('big').onclick=toggle;
+$('restart').onclick=()=>seek(0);
+$('progress').addEventListener('input',e=>seek(+e.target.value));
+$('cc').onclick=e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',on);$('subs').classList.toggle('off',!on)};
+$('full').onclick=()=>{const r=wrap.requestFullscreen||wrap.webkitRequestFullscreen;if(document.fullscreenElement)document.exitFullscreen();else if(r)r.call(wrap)};
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&e.target.tagName!=='INPUT'&&e.target.tagName!=='BUTTON'){e.preventDefault();toggle()}});
+function fit(){stage.style.transform=`scale(${wrap.clientWidth/1600})`}
+addEventListener('resize',fit);document.addEventListener('fullscreenchange',fit);fit();
+render(0);
+</script>
+</body>
+</html>
